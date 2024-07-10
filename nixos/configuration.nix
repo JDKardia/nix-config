@@ -88,12 +88,14 @@
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel"];
+      extraGroups = ["wheel" "networkmanager" "pipewire"];
     };
   };
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
+    useUserPackages = true;
+    useGlobalPkgs = true;
     users = {
       # Import your home-manager configuration
       kardia = import ../home-manager/home.nix;
@@ -125,8 +127,16 @@
     grml-zsh-config
     zip
     unzip
+    pipewire
     gnome.gnome-tweaks
   ];
+
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = ["kardia"];
+  };
+
 
   programs.steam = {
     enable = true;
@@ -135,12 +145,6 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
-
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["kardia"];
-  };
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 

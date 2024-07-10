@@ -40,7 +40,6 @@ in {
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "kardia";
     homeDirectory = "/home/kardia";
