@@ -24,7 +24,10 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  programs.command-not-found = {
+    enable = true;
+    dbPath = "${inputs.programs-db}/programs.sqlite";
+  };
   hardware.opengl.enable = true;
   hardware.nvidia = {
     open = false;
@@ -116,25 +119,30 @@
 
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
-    vim
-    wget
-    jq
-    ripgrep
-    fd
-    nvidia-smi
-    nvtop
-    zsh
-    grml-zsh-config
-    lspci
-    zip
-    unzip
-    pipewire
-    gnome.gnome-tweaks
-    steam
-    lshw
     btop
-    ipconfig
+    coreutils-full
+    fd
+    gnome.gnome-tweaks
+    grml-zsh-config
+    hyperfine
+    jq
+    lshw
+    moreutils
+    mpv
+    neovim
+    nettools
+    nvtopPackages.full
     osquery
+    pciutils
+    pipewire
+    ripgrep
+    steam
+    unzip
+    vim
+    vlc
+    wget
+    zip
+    zsh
   ];
 
   programs._1password.enable = true;

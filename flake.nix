@@ -10,6 +10,7 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hardware.url = "github:NixOS/nixos-hardware/master";
+    programs-db.url = "https://channels.nixos.org/nixos-22.05/nixexprs.tar.xz";
   };
 
   outputs = {
