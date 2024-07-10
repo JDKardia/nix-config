@@ -132,6 +132,9 @@
     neovim
     nettools
     nvtopPackages.full
+    iotop
+    iostat
+    netcat
     osquery
     pciutils
     pipewire
