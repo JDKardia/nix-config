@@ -95,7 +95,6 @@
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     useUserPackages = true;
-    useGlobalPkgs = true;
     users = {
       # Import your home-manager configuration
       kardia = import ../home-manager/home.nix;
