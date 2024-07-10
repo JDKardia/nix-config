@@ -49,11 +49,17 @@ in {
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
-    steam
     nil
     alejandra
     firefox-beta
   ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
 
   # Enable home-manager and git
   programs.ssh = {
@@ -69,7 +75,6 @@ in {
     userName = "Kardia";
     userEmail = "joe@kardia.codes";
   };
-
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
