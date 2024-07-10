@@ -31,7 +31,6 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -122,12 +121,20 @@
     jq
     ripgrep
     fd
+    nvidia-smi
+    nvtop
     zsh
     grml-zsh-config
+    lspci
     zip
     unzip
     pipewire
     gnome.gnome-tweaks
+    steam
+    lshw
+    btop
+    ipconfig
+    osquery
   ];
 
   programs._1password.enable = true;
@@ -135,7 +142,6 @@
     enable = true;
     polkitPolicyOwners = ["kardia"];
   };
-
 
   programs.steam = {
     enable = true;
@@ -146,6 +152,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = ["nvidia"];
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
