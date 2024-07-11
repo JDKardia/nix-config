@@ -166,12 +166,20 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver = {
+    enable = true;
+    videoDrivers = ["nvidia"];
+    resolutions = [
+      {
+        x = 2560;
+        y = 1440;
+      }
+    ];
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   # This option defines the first version of NixOS you have installed on this particular machine,
