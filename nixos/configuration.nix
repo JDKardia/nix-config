@@ -36,7 +36,7 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    forceFullCompositionPipeline = true;
+    #forceFullCompositionPipeline = true;
   };
   nixpkgs = {
     # You can add overlays here
