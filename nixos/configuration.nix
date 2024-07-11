@@ -20,6 +20,10 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  # TODO
+  # setup hibernation: https://gist.github.com/mattdenner/befcf099f5cfcc06ea04dcdd4969a221
+  #
+
   #boot.loader.grub.devices = ["nodev"];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -28,6 +32,10 @@
     enable = true;
     dbPath = "${inputs.programs-db}/programs.sqlite";
   };
+  hardware.trackpoint.device = "TPPS/2 Elan TrackPoint";
+  services.xserver.monitorSection = lib.mkDefault ''
+    DisplaySize 344 193
+  '';
   hardware.opengl.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
@@ -36,6 +44,11 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    prime = {
+      sync.enable = true;
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
     #forceFullCompositionPipeline = true;
   };
   nixpkgs = {
