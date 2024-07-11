@@ -30,9 +30,13 @@
   };
   hardware.opengl.enable = true;
   hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    forceFullCompositionPipeline = true;
   };
   nixpkgs = {
     # You can add overlays here
@@ -133,7 +137,7 @@
     nettools
     nvtopPackages.full
     iotop
-    iostat
+    sysstat
     netcat
     osquery
     pciutils
