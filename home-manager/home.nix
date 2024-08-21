@@ -51,6 +51,8 @@ in {
     nil
     alejandra
     firefox-beta
+    reaper
+    audacity
   ];
 
   # Enable home-manager and git
