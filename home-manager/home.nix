@@ -55,7 +55,7 @@ in {
     audacity
     yt-dlp
     syncthing
-    syncthing-tray
+    syncthingtray
   ];
 
   # Enable home-manager and git
