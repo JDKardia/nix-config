@@ -53,6 +53,7 @@ in {
     firefox-beta
     reaper
     audacity
+    yt-dlp
   ];
 
   # Enable home-manager and git
