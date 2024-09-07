@@ -54,6 +54,7 @@ in {
     reaper
     audacity
     yt-dlp
+    syncthing
     syncthing-tray
   ];
 
