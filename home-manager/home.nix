@@ -57,8 +57,17 @@ in {
     syncthing
     syncthingtray
     gnomeExtensions.appindicator
+    discord
   ];
 
+  dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "appindicatorsupport@rgcjonas.gmail.com"
+      ];
+    };
+  };
   # Enable home-manager and git
   programs.ssh = {
     enable = true;

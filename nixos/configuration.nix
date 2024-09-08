@@ -139,28 +139,36 @@
     btop
     coreutils-full
     fd
+    ffmpeg
+    gimp
     gnome.gnome-tweaks
     grml-zsh-config
     hyperfine
+    iotop
     jq
     lshw
     moreutils
     mpv
+    mpv
     neovim
+    netcat
     nettools
     nvtopPackages.full
-    iotop
-    sysstat
-    netcat
+    obs-studio
     osquery
     pciutils
     pipewire
+    rclone
     ripgrep
+    rsync
     steam
+    sysstat
+    tree
     unzip
     vim
     vlc
     wget
+    xclip
     zip
     zsh
   ];
