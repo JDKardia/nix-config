@@ -56,6 +56,7 @@ in {
     yt-dlp
     syncthing
     syncthingtray
+    gnomeExtensions.appindicator
   ];
 
   # Enable home-manager and git
