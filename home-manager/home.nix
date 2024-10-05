@@ -55,6 +55,7 @@ in {
     audacity
     yt-dlp
     syncthing
+    syncthingtray
     gnomeExtensions.appindicator
     discord
   ];
@@ -83,7 +84,7 @@ in {
   };
   services = {
     dropbox.enable = true;
-    syncthing.tray = true;
+    syncthing.tray.enable = true;
   };
 
   # Nicely reload system units when changing configs
