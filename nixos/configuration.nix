@@ -149,7 +149,6 @@
     lshw
     moreutils
     mpv
-    mpv
     neovim
     netcat
     nettools
@@ -171,6 +170,7 @@
     xclip
     zip
     zsh
+    htop
   ];
 
   programs._1password.enable = true;

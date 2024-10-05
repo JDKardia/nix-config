@@ -55,7 +55,6 @@ in {
     audacity
     yt-dlp
     syncthing
-    syncthingtray
     gnomeExtensions.appindicator
     discord
   ];
@@ -82,19 +81,11 @@ in {
     userName = "Kardia";
     userEmail = "joe@kardia.codes";
   };
-
-  systemd.user.services.dropbox = {
-    Unit = {
-      Description = "Dropbox service";
-    };
-    Install = {
-      WantedBy = ["default.target"];
-    };
-    Service = {
-      ExecStart = "${pkgs.dropbox}/bin/dropbox";
-      Restart = "on-failure";
-    };
+  services = {
+    dropbox.enable = true;
+    syncthing.tray = true;
   };
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
