@@ -82,10 +82,11 @@ in {
     userName = "Kardia";
     userEmail = "joe@kardia.codes";
   };
-  services = {
-    dropbox.enable = true;
-    syncthing.tray.enable = true;
+  services.dropbox = {
+    enable = true;
+    path = "${config.home.homeDirectory}/Dropbox";
   };
+  services.syncthing.tray.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
