@@ -83,6 +83,18 @@ in {
     userEmail = "joe@kardia.codes";
   };
 
+  systemd.user.services.dropbox = {
+    Unit = {
+      Description = "Dropbox service";
+    };
+    Install = {
+      WantedBy = ["default.target"];
+    };
+    Service = {
+      ExecStart = "${pkgs.dropbox}/bin/dropbox";
+      Restart = "on-failure";
+    };
+  };
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
