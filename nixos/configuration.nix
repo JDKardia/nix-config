@@ -35,13 +35,6 @@
     };
   };
 
-  # Useful other development tools
-  environment.systemPackages = with pkgs; [
-    dive # look into docker image layers
-    podman-tui # status of containers in the terminal
-    podman-compose # start group of containers for dev
-  ];
-
   #boot.loader.grub.devices = ["nodev"];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -154,6 +147,9 @@
 
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
+    dive # look into docker image layers
+    podman-tui # status of containers in the terminal
+    podman-compose # start group of containers for dev
     btop
     coreutils-full
     fd
