@@ -173,6 +173,7 @@
     pipewire
     rclone
     ripgrep
+    chromium
     rsync
     steam
     sysstat
