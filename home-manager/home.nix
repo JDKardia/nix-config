@@ -77,7 +77,7 @@ in {
       genericName = "download manager";
       exec = "xdman %U";
       terminal = false;
-      categories = ["Application" "Network" "Downloader"];
+      categories = ["Network"];
     };
   };
 
