@@ -71,16 +71,15 @@ in {
     (callPackage "${xdm}/derivation.nix" {inherit pkgs;})
   ];
 
-  # xdg.desktopEntries={
-  # xdm={
-  #    name = "XDM";
-  #     genericName = "download manager";
-  #     exec = "firefox %U";
-  #     terminal = false;
-  #     categories = [ "Application" "Network" "WebBrowser" ];
-  #     mimeType = [ "text/html" "text/xml" ];
-  # };
-  # };
+  xdg.desktopEntries = {
+    xdm = {
+      name = "XDM";
+      genericName = "download manager";
+      exec = "xdman %U";
+      terminal = false;
+      categories = ["Application" "Network" "Downloader"];
+    };
+  };
 
   dconf.settings = {
     "org/gnome/shell" = {
