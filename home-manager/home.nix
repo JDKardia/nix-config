@@ -8,6 +8,12 @@
   ...
 }: let
   onePassPath = "~/.1password/agent.sock";
+  xdm = pkgs.fetchFromGitHub {
+    owner = "Diomeh";
+    repo = "nix-xdm";
+    rev = "0.0.1";
+    hash = "sha256-uME0V2thw0ANiqAgFHnSlPWG7Lg3iR1QLkcsFdQ0bT8=";
+  };
 in {
   # You can import other home-manager modules here
   imports = [
@@ -58,7 +64,23 @@ in {
     syncthingtray
     gnomeExtensions.appindicator
     discord
+    mpv
+    mpvScripts.thumbfast
+    mpvScripts.mpv-webm
+    kitty
+    (callPackage "${xdm}/derivation.nix" {inherit pkgs;})
   ];
+
+  # xdg.desktopEntries={
+  # xdm={
+  #    name = "XDM";
+  #     genericName = "download manager";
+  #     exec = "firefox %U";
+  #     terminal = false;
+  #     categories = [ "Application" "Network" "WebBrowser" ];
+  #     mimeType = [ "text/html" "text/xml" ];
+  # };
+  # };
 
   dconf.settings = {
     "org/gnome/shell" = {
