@@ -174,6 +174,7 @@
     rclone
     ripgrep
     chromium
+    slack
     rsync
     steam
     sysstat
