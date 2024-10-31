@@ -175,6 +175,7 @@
     ripgrep
     chromium
     slack
+    jdk
     rsync
     steam
     sysstat
