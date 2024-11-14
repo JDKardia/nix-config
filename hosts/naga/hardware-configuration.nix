@@ -36,9 +36,19 @@
   boot.extraModulePackages = [];
 
   hardware.trackpoint.device = "TPPS/2 Elan TrackPoint";
-  services.xserver.monitorSection = lib.mkDefault ''
-    DisplaySize 344 193
-  '';
+  services.xserver = {
+    enable = true;
+    videoDrivers = ["nvidia"];
+    resolutions = [
+      {
+        x = 2560;
+        y = 1440;
+      }
+    ];
+    monitorSection = lib.mkDefault ''
+      DisplaySize 344 193
+    '';
+  };
   hardware.graphics.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;

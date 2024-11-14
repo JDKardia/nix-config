@@ -12,13 +12,14 @@
 in {
   # You can import other home-manager modules here
   imports = [
-    # If you want to use home-manager modules from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModule
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
     #   inputs.nixvim.homeManagerModule
     ./modules/vim.nix
+    ./modules/dropbox.nix
+    ./modules/git.nix
+    ./modules/gnome.nix
+    ./modules/_1password.nix
+    ./modules/steam.nix
+    ./modules/syncthing.nix
   ];
 
   home = {
@@ -27,17 +28,15 @@ in {
   };
 
   # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
   home.packages = with pkgs; [
     nil
     alejandra
     firefox-beta
+    chromium
     reaper
     audacity
     yt-dlp
-    #  syncthing
-    #  syncthingtray
-    gnomeExtensions.appindicator
+    slack
     discord
     mpv
     mpvScripts.thumbfast
@@ -50,15 +49,6 @@ in {
 
   xdg.desktopEntries = {
   };
-
-  dconf.settings = {
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = [
-        "appindicatorsupport@rgcjonas.gmail.com"
-      ];
-    };
-  };
   # Enable home-manager and git
   programs.ssh = {
     enable = true;
@@ -68,20 +58,11 @@ in {
     '';
   };
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "Kardia";
-    userEmail = "joe@kardia.codes";
-  };
-  services.dropbox = {
-    enable = true;
-    path = "${config.home.homeDirectory}/Dropbox";
-  };
-  services.syncthing.enable = true;
-  services.syncthing.tray.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+
+  # prevent services requiring a tray from crashing
   systemd.user.targets.tray = {
     Unit = {
       Description = "Home Manager System Tray";

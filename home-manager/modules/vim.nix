@@ -24,6 +24,7 @@ in {
       settings.contrast = "hard";
     };
     plugins = {
+      blink-cmp.enable = true;
       treesitter.enable = true;
       treesitter-textobjects.enable = true;
       treesitter-context.enable = true;
@@ -82,7 +83,7 @@ in {
         # Automatically leave insert mode if idle for too long
         event = ["CursorHoldI"];
         pattern = ["*"];
-        command = "stopInsert";
+        command = "stopinsert";
       }
       {
         # set 'updatetime' to 15 seconds when in insert mode, preserve old update time

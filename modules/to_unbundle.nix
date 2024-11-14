@@ -95,6 +95,7 @@
   };
   time.timeZone = lib.mkDefault "America/Chicago";
 
+  programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
     dive # look into docker image layers
@@ -105,7 +106,6 @@
     fd
     ffmpeg
     gimp
-    gnome-tweaks
     grml-zsh-config
     hyperfine
     iotop
@@ -123,8 +123,6 @@
     pipewire
     rclone
     ripgrep
-    chromium
-    slack
     jdk
     rsync
     steam
@@ -139,34 +137,6 @@
     zsh
     htop
   ];
-
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["kardia"];
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    videoDrivers = ["nvidia"];
-    resolutions = [
-      {
-        x = 2560;
-        y = 1440;
-      }
-    ];
-    # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   # This option defines the first version of NixOS you have installed on this particular machine,
