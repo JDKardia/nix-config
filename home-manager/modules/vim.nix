@@ -19,7 +19,10 @@ in {
     vimAlias = true;
     viAlias = true;
 
-    colorschemes.gruvbox.enable = true;
+    colorschemes.gruvbox = {
+      enable = true;
+      settings.contrast = "hard";
+    };
     plugins = {
       treesitter.enable = true;
       treesitter-textobjects.enable = true;
@@ -81,13 +84,14 @@ in {
         pattern = ["*"];
         command = "stopInsert";
       }
-      # set 'updatetime' to 15 seconds when in insert mode, preserve old update time
       {
+        # set 'updatetime' to 15 seconds when in insert mode, preserve old update time
         event = ["InsertEnter"];
         pattern = ["*"];
         command = "let updaterestore=&updatetime | set updatetime=30000";
       }
       {
+        # set 'updatetime' to 15 seconds when in insert mode, preserve old update time
         event = ["InsertLeave"];
         pattern = ["*"];
         command = "let &updatetime=updaterestore";
@@ -118,7 +122,6 @@ in {
         pattern = ["python"];
         command = "set tabstop=4";
       }
-
       {
         event = ["Filetype"];
         pattern = ["python"];
