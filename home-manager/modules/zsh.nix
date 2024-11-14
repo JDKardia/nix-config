@@ -21,7 +21,6 @@
     dotDir = "${config.xdg.configHome}/zsh";
     autosuggestion.enable = true;
 
-    enableBashCompletion = true;
     enableCompletion = true;
 
     syntaxHighlighting.enable = true;
