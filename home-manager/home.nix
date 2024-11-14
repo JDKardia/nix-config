@@ -54,8 +54,8 @@ in {
     reaper
     audacity
     yt-dlp
-    syncthing
-    syncthingtray
+    #  syncthing
+    #  syncthingtray
     gnomeExtensions.appindicator
     discord
     mpv
@@ -96,7 +96,8 @@ in {
     enable = true;
     path = "${config.home.homeDirectory}/Dropbox";
   };
-  services.syncthing.tray.enable = true;
+  services.syncthing.enable = true;
+  #services.syncthing.tray.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
