@@ -67,7 +67,7 @@ in {
       suffixesadd = ".md,.py,.sh,.js";
     };
     extraConfigVim = ''
-      set whichwrap+=<,>,h,l,[,]; "allow cursor to wrap lines
+      set whichwrap+=<,>,h,l,[,] "allow cursor to wrap lines
     '';
     globals = {
       mapleader = " ";
