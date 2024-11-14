@@ -53,8 +53,8 @@
       n = "note";
       pbcopy = "xclip -selection clipboard";
       pbpaste = "xclip -selection clipboard -o";
-      tolower = "tr " "[:upper:]" " " "[:lower:]" "";
-      toupper = "tr " "[:lower:]" " " "[:upper:]" "";
+      tolower = "tr '[:upper:]' '[:lower:]'";
+      toupper = "tr '[:lower:]' '[:upper:]'";
       git-root = "cd $(git rev-parse --show-toplevel)";
 
       # Shortcut Aliases
@@ -68,8 +68,8 @@
       ll = "ls -l"; #long list
       lld = "ls -ld -- */"; # long list only dir
       ld = "ls -d -- */"; # only dir
-      lf = "ls -pA  | grep -v " " " "/" " " "";
-      llf = "ls -lpA  | grep -v " " " "/" " " "";
+      lf = "ls -pA  | grep -v '\"/\"'";
+      llf = "ls -lpA  | grep -v '\"/\"'";
 
       gr = "git-root";
       gitroot = "git-root";
