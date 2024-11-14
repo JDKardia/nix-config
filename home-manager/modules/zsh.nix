@@ -28,7 +28,7 @@
 
     historySubstringSearch.enable = true;
     history = {
-      path = "${config.xdg.dataHome}/zsh/.zsh_history.${osConfig.hostName}";
+      path = "${config.xdg.dataHome}/zsh/zsh_history";
       save = 1000000;
       extended = true;
       share = true;
