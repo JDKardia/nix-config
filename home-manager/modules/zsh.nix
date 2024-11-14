@@ -9,7 +9,7 @@
 }: {
   home.packages = [
     "zsh-z"
-    "powerlevel10k"
+    "zsh-powerlevel10k"
   ];
   programs.dircolors = {
     enable = true;
@@ -74,7 +74,6 @@
       gr = "git-root";
       gitroot = "git-root";
     };
-    promptInit = "source ''${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     initExtraBeforeCompInit = ''
       ## setup tab completion
         zstyle ':completion:*' matcher-list ''' 'm:{a-z}={A-Z}' 'm:{a-zA-Z-_}={A-Za-z-_}' 'r:|=*' 'l:|=* r:|=*'
@@ -94,6 +93,9 @@
     initExtraFirst = ''
       export TIME_STYLE="long-iso"
       export CLICOLOR=YES
+    '';
+    initExtra = ''
+      source "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     '';
   };
   programs.zellij.enableZshIntegration = true;
