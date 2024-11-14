@@ -21,31 +21,9 @@
   };
 
   #boot.loader.grub.devices = ["nodev"];
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   programs.command-not-found = {
     enable = true;
     #  dbPath = "${inputs.programs-db}/programs.sqlite";
-  };
-  hardware.trackpoint.device = "TPPS/2 Elan TrackPoint";
-  services.xserver.monitorSection = lib.mkDefault ''
-    DisplaySize 344 193
-  '';
-  hardware.graphics.enable = true;
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    prime = {
-      sync.enable = true;
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:2:0";
-    };
-    #forceFullCompositionPipeline = true;
   };
   nixpkgs = {
     # You can add overlays here
@@ -87,9 +65,6 @@
   };
 
   # FIXME: Add the rest of your current configuration
-
-  # TODO: Set your hostname
-  networking.hostName = "naga";
 
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
@@ -188,11 +163,10 @@
         y = 1440;
       }
     ];
+    # Enable the GNOME Desktop Environment.
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
-
-  # Enable the GNOME Desktop Environment.
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   # This option defines the first version of NixOS you have installed on this particular machine,
