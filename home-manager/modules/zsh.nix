@@ -7,9 +7,9 @@
   pkgs,
   ...
 }: {
-  home.packages = [
-    "zsh-z"
-    "zsh-powerlevel10k"
+  home.packages = with pkgs; [
+    zsh-z
+    zsh-powerlevel10k
   ];
   programs.dircolors = {
     enable = true;
