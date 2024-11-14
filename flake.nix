@@ -12,10 +12,10 @@
     utils.inputs.nixpkgs.follows = "nixpkgs";
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    #home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hardware.url = "github:NixOS/nixos-hardware/master";
-    hardware.inputs.nixpkgs.follows = "nixpkgs";
+    #hardware.inputs.nixpkgs.follows = "nixpkgs";
     #programs-db.url = "https://channels.nixos.org/nixos-22.05/nixexprs.tar.xz";
 
     nixvim.url = "github:nix-community/nixvim";
@@ -29,8 +29,8 @@
     home-manager,
     ...
   } @ inputs: let
-    pkgs = self.pkgs.x86_64-linux.nixpkgs;
-    mkApp = utils.lib.mkApp;
+    #pkgs = self.pkgs.x86_64-linux.nixpkgs;
+    #mkApp = utils.lib.mkApp;
     #suites = import ./suites.nix { inherit utils; };
     inherit (self) outputs;
   in {
