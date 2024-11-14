@@ -96,6 +96,7 @@
   time.timeZone = lib.mkDefault "America/Chicago";
 
   programs.zsh.enable = true;
+
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
     dive # look into docker image layers
@@ -137,6 +138,11 @@
     zsh
     htop
   ];
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = ["kardia"];
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   # This option defines the first version of NixOS you have installed on this particular machine,
