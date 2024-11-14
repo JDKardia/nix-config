@@ -319,6 +319,18 @@
         "type": "github"
       }
     },
+    "programs-db": {
+      "locked": {
+        "lastModified": 1731256755,
+        "narHash": "sha256-wzGs70BlIEsp32FfsuNipH3ISpeYDfpUihnE/nK6sTo=",
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -326,6 +338,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
+        "programs-db": "programs-db",
         "unstable": [
           "nixpkgs"
         ]

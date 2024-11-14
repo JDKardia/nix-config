@@ -23,7 +23,7 @@
   #boot.loader.grub.devices = ["nodev"];
   programs.command-not-found = {
     enable = true;
-    #  dbPath = "${inputs.programs-db}/programs.sqlite";
+    dbPath = "${inputs.programs-db}/programs.sqlite";
   };
   nixpkgs = {
     # You can add overlays here

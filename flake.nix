@@ -13,7 +13,7 @@
 
     hardware.url = "github:NixOS/nixos-hardware/master";
     #hardware.inputs.nixpkgs.follows = "nixpkgs";
-    #programs-db.url = "https://channels.nixos.org/nixos-22.05/nixexprs.tar.xz";
+    programs-db.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
