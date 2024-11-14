@@ -47,7 +47,7 @@
   services.xserver.monitorSection = lib.mkDefault ''
     DisplaySize 344 193
   '';
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
@@ -155,7 +155,7 @@
     fd
     ffmpeg
     gimp
-    gnome.gnome-tweaks
+    gnome-tweaks
     grml-zsh-config
     hyperfine
     iotop
