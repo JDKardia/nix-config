@@ -17,7 +17,6 @@ in {
     ./modules/dropbox.nix
     ./modules/git.nix
     ./modules/gnome.nix
-    ./modules/steam.nix
     ./modules/syncthing.nix
   ];
 
