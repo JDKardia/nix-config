@@ -69,8 +69,8 @@ in {
     extraConfigVim = ''
       set whichwrap+=<,>,h,l,[,]; "allow cursor to wrap lines
     '';
-    globals.mapleader = " ";
-    globalOpts = {
+    globals = {
+      mapleader = " ";
       do_filetype_lua = true; # -- use filetype.lua
       did_load_filetypes = false; # -- use filetype.lua
     };
