@@ -7,9 +7,6 @@
     # Disko: for disk setup
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    # better flake utils
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    #utils.inputs.nixpkgs.follows = "nixpkgs";
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -25,23 +22,31 @@
   outputs = {
     self,
     nixpkgs,
-    utils,
     home-manager,
     ...
   } @ inputs: let
-    #pkgs = self.pkgs.x86_64-linux.nixpkgs;
-    #mkApp = utils.lib.mkApp;
-    #suites = import ./suites.nix { inherit utils; };
     inherit (self) outputs;
   in {
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      naga = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        # > Our main nixos configuration file <
-        modules = [./nixos/configuration.nix];
-      };
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    nixosConfigurations.naga = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs outputs;};
+      system = "x86_64-linux";
+      modules = [
+        ./hosts/naga/hardware-configuration.nix
+        ./modules/to_unbundle.nix
+        ./home-manager/home.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          home-manager.extraSpecialArgs = {inherit inputs outputs;};
+          home-manager.users.kardia = import ./home-manager/home.nix;
+
+          # Optionally, use home-manager.extraSpecialArgs to pass
+          # arguments to home.nix
+        }
+      ];
     };
   };
 }
