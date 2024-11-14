@@ -34,6 +34,7 @@
       modules = [
         ./hosts/naga/hardware-configuration.nix
         ./modules/to_unbundle.nix
+        ./modules/gnome.nix
         ./modules/steam.nix
         home-manager.nixosModules.home-manager
         {

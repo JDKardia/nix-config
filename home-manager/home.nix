@@ -16,7 +16,6 @@ in {
     ./modules/vim.nix
     ./modules/dropbox.nix
     ./modules/git.nix
-    ./modules/gnome.nix
     ./modules/syncthing.nix
   ];
 
@@ -45,7 +44,9 @@ in {
     # keyd
   ];
 
-  xdg.desktopEntries = {
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
   };
   # Enable home-manager and git
   programs.ssh = {
