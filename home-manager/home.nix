@@ -42,6 +42,7 @@ in {
     alacritty
     zellij
     # keyd
+    gnomeExtensions.appindicator
   ];
 
   programs.nix-index = {
@@ -60,6 +61,15 @@ in {
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+
+  dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "appindicatorsupport@rgcjonas.gmail.com"
+      ];
+    };
+  };
 
   # prevent services requiring a tray from crashing
   systemd.user.targets.tray = {

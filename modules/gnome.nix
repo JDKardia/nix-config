@@ -8,7 +8,6 @@
 }: {
   environment.systemPackages = with pkgs; [
     gnome-tweaks
-    gnomeExtensions.appindicator
   ];
 
   services.xserver = {
@@ -26,14 +25,5 @@
         y = 1440;
       }
     ];
-  };
-
-  dconf.settings = {
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = [
-        "appindicatorsupport@rgcjonas.gmail.com"
-      ];
-    };
   };
 }
