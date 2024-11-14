@@ -101,6 +101,12 @@ in {
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+  systemd.user.targets.tray = {
+    Unit = {
+      Description = "Home Manager System Tray";
+      Requires = ["graphical-session-pre.target"];
+    };
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.05";
