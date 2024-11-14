@@ -61,7 +61,8 @@ in {
     mpv
     mpvScripts.thumbfast
     mpvScripts.mpv-webm
-    contour
+    #contour
+    alacritty
     zellij
     # keyd
   ];
