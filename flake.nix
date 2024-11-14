@@ -9,10 +9,10 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # better flake utils
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    utils.inputs.nixpkgs.follows = "nixpkgs";
+    #utils.inputs.nixpkgs.follows = "nixpkgs";
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
-    #home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hardware.url = "github:NixOS/nixos-hardware/master";
     #hardware.inputs.nixpkgs.follows = "nixpkgs";
