@@ -34,17 +34,12 @@
       modules = [
         ./hosts/naga/hardware-configuration.nix
         ./modules/to_unbundle.nix
-        ./home-manager/home.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-
           home-manager.extraSpecialArgs = {inherit inputs outputs;};
           home-manager.users.kardia = import ./home-manager/home.nix;
-
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
         }
       ];
     };
