@@ -25,6 +25,7 @@
   outputs = {
     self,
     nixpkgs,
+    utils,
     home-manager,
     ...
   } @ inputs: let
