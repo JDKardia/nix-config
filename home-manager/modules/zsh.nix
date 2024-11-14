@@ -68,8 +68,8 @@
       ll = "ls -l"; #long list
       lld = "ls -ld -- */"; # long list only dir
       ld = "ls -d -- */"; # only dir
-      lf = "ls -pA  | grep -v " "/" "";
-      llf = "ls -lpA  | grep -v " "/" "";
+      lf = "ls -pA  | grep -v " " " "/" " " "";
+      llf = "ls -lpA  | grep -v " " " "/" " " "";
 
       gr = "git-root";
       gitroot = "git-root";
