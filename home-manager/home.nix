@@ -61,7 +61,9 @@ in {
     mpv
     mpvScripts.thumbfast
     mpvScripts.mpv-webm
-    kitty
+    contour
+    zellij
+    # keyd
   ];
 
   xdg.desktopEntries = {

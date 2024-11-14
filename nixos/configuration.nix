@@ -41,7 +41,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   programs.command-not-found = {
     enable = true;
-    dbPath = "${inputs.programs-db}/programs.sqlite";
+    #  dbPath = "${inputs.programs-db}/programs.sqlite";
   };
   hardware.trackpoint.device = "TPPS/2 Elan TrackPoint";
   services.xserver.monitorSection = lib.mkDefault ''
