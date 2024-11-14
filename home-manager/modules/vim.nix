@@ -21,6 +21,14 @@ in {
 
     colorschemes.gruvbox.enable = true;
     plugins = {
+      treesitter.enable = true;
+      treesitter-textobjects.enable = true;
+      treesitter-context.enable = true;
+      treesitter-refactor.enable = true;
+      nvim-colorizer.enable = true;
+      illuminate.enable = true;
+      fidget.enable = true;
+
       lualine.enable = true;
       nix.enable = true;
       gitsigns.enable = true;
