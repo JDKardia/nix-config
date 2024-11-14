@@ -12,11 +12,11 @@
 in {
   # You can import other home-manager modules here
   imports = [
-    #   inputs.nixvim.homeManagerModule
     ./modules/vim.nix
     ./modules/dropbox.nix
     ./modules/git.nix
     ./modules/syncthing.nix
+    ./modules/zsh.nix
   ];
 
   home = {
@@ -43,6 +43,7 @@ in {
     zellij
     # keyd
     gnomeExtensions.appindicator
+    nerdfonts
   ];
 
   programs.nix-index = {

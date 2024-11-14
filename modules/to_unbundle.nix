@@ -95,8 +95,6 @@
   };
   time.timeZone = lib.mkDefault "America/Chicago";
 
-  programs.zsh.enable = true;
-
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
     dive # look into docker image layers

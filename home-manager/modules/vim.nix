@@ -24,7 +24,13 @@ in {
       settings.contrast = "hard";
     };
     plugins = {
-      blink-cmp.enable = true;
+      blink-cmp = {
+        enable = true;
+        settings = {
+          keymap.preset = "supertab";
+          windows.documentation.auto_show = true;
+        };
+      };
       treesitter.enable = true;
       treesitter-textobjects.enable = true;
       treesitter-context.enable = true;
