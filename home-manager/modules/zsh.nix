@@ -100,6 +100,9 @@
   };
   home.file = {
     ".local/bin/c" = {
+      enable = true;
+
+      target = "./.local/bin/c";
       source = config.lib.file.mkOutOfStoreSymlink ./scripts/c;
       executable = true;
     };

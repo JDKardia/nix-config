@@ -27,7 +27,7 @@ in {
       blink-cmp = {
         enable = true;
         settings = {
-          keymap.preset = "supertab";
+          keymap.preset = "super-tab";
           windows.documentation.auto_show = true;
         };
       };
