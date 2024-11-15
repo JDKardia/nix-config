@@ -27,6 +27,7 @@ in {
 
   # Add stuff for your user as you see fit:
   home.packages = with pkgs; [
+    vscode
     nil
     alejandra
     firefox-beta
@@ -45,7 +46,6 @@ in {
     # keyd
     gnomeExtensions.appindicator
     nerdfonts
-    fx-cast-bridge
   ];
 
   programs.nix-index = {
