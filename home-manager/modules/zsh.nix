@@ -98,15 +98,15 @@
       source "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     '';
   };
-  home.file = {
-    ".local/bin/c" = {
-      enable = true;
-
-      target = "./.local/bin/c";
-      source = config.lib.file.mkOutOfStoreSymlink ./scripts/c;
-      executable = true;
-    };
-  };
+  #  home.file = {
+  #    ".local/bin/c" = {
+  #      enable = true;
+  #
+  #      target = "./.local/bin/c";
+  #      source = config.lib.file.mkOutOfStoreSymlink ./scripts/c;
+  #      executable = true;
+  #    };
+  #  };
 
   programs.zellij.enableZshIntegration = true;
   programs.fzf.enableZshIntegration = true;
