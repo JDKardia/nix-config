@@ -10,6 +10,7 @@
 }: let
   onePassPath = "~/.1password/agent.sock";
 in {
+  # TODO: Rofi and greenclip and i3
   # You can import other home-manager modules here
   imports = [
     ./modules/vim.nix
@@ -44,6 +45,7 @@ in {
     # keyd
     gnomeExtensions.appindicator
     nerdfonts
+    fx-cast-bridge
   ];
 
   programs.nix-index = {
