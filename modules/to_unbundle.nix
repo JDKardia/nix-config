@@ -141,6 +141,10 @@
     enable = true;
     polkitPolicyOwners = ["kardia"];
   };
+  services.serviio = {
+    enable = true;
+    dataDir = "${config.users.users.kardia.home}/serviio";
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   # This option defines the first version of NixOS you have installed on this particular machine,
