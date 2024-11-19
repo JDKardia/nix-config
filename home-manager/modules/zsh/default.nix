@@ -98,9 +98,10 @@
       export CLICOLOR=YES
     '';
     initExtra = ''
-      source "${xdg.configHome}/zsh/p10k.zsh"
+      source "${config.xdg.configHome}/zsh/p10k.zsh"
     '';
   };
+
   xdg.configFile."zsh/p10k.zsh".source = config.lib.file.mkOutOfStoreSymlink ./p10k.zsh;
 
   home.file.".local/bin/c".source = config.lib.file.mkOutOfStoreSymlink .scripts/c;
