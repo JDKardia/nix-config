@@ -72,6 +72,7 @@
     kardia = {
       # skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change using `passwd` after rebooting!
+      shell = pkgs.zsh;
       initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [

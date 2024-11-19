@@ -9,7 +9,7 @@
 }: {
   home.packages = with pkgs; [
     zsh-z
-    zsh-powerlevel10k
+    #    zsh-powerlevel10k
   ];
   programs.dircolors = {
     enable = true;
@@ -98,6 +98,7 @@
       source "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     '';
   };
+
   #  home.file = {
   #    ".local/bin/c" = {
   #      enable = true;

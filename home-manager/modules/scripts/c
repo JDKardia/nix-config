@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 CUSTOM_IFS="$IFS"
-. "$HOME/bin/bash_lib/utils/preamble.bash"
+set -euo pipefail
+IFS=$'\n\t'
 
 USAGE='USAGE: $ c x [file]
 EXAMPLE:
