@@ -4,19 +4,21 @@
     # Nixpkgs: nixos-unstable head as of 2024-11-13
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     unstable.follows = "nixpkgs";
-    # Disko: for disk setup
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    programs-db.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    hardware.url = "github:NixOS/nixos-hardware/master";
-    #hardware.inputs.nixpkgs.follows = "nixpkgs";
-    programs-db.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    hardware.url = "github:NixOS/nixos-hardware/master";
+
+    # Disko: for disk setup
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {

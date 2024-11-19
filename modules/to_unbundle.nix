@@ -20,7 +20,6 @@
     };
   };
 
-  #boot.loader.grub.devices = ["nodev"];
   programs.command-not-found = {
     enable = true;
     dbPath = "${inputs.programs-db}/programs.sqlite";
@@ -50,12 +49,14 @@
   in {
     settings = {
       # Enable flakes and new 'nix' command
-      experimental-features = "nix-command flakes";
+      experimental-features = "nix-command flakes repl-flake";
       # Opinionated: disable global registry
       flake-registry = "";
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
     };
+    package = pkgs.nix;
+
     # Opinionated: disable channels
     channel.enable = false;
 
@@ -140,10 +141,6 @@
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = ["kardia"];
-  };
-  services.serviio = {
-    enable = true;
-    dataDir = "${config.users.users.kardia.home}/serviio";
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
