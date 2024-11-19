@@ -99,15 +99,7 @@
     '';
   };
 
-  #  home.file = {
-  #    ".local/bin/c" = {
-  #      enable = true;
-  #
-  #      target = "./.local/bin/c";
-  #      source = config.lib.file.mkOutOfStoreSymlink ./scripts/c;
-  #      executable = true;
-  #    };
-  #  };
+  home.file.".local/bin/c".source = config.lib.file.mkOutOfStoreSymlink .scripts/c;
 
   programs.zellij.enableZshIntegration = true;
   programs.fzf.enableZshIntegration = true;
