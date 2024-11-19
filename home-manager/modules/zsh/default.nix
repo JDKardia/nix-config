@@ -98,7 +98,7 @@
       export CLICOLOR=YES
     '';
     initExtra = ''
-      source "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      source ${xdg.configFile."zsh/p10k.zsh"}
     '';
   };
   xdg.configFile."zsh/p10k.zsh".source = config.lib.file.mkOutOfStoreSymlink ./p10k.zsh;
