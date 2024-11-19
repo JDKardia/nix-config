@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -uo pipefail
+IFS=$'\n\t'
+
+while clipnotify; do
+  entries=( $(xclip -selection clipboard -o | rg 'jpg|png|gif|webm|mp4|m4v') )
+  # entries=( $(xclip -selection clipboard -o | rg 'gif') )
+  for entry in "${entries[@]}"; do
+    echo "$entry"
+  done
+done

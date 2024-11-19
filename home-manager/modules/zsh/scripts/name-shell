@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+WINDOW_NAME="$*"
+xdotool set_window --name "$WINDOW_NAME" $(xdotool getactivewindow)

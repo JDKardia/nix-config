@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+pbpaste | "$HOME/bin/slack-thread-to-md" "$@" | pbcopy
+"$HOME/bin/md-to-rtf"

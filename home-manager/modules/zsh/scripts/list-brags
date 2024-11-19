@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+main() {
+  # example entry:
+  # * [2023-04-26 12:06:53 CDT] made script to make itemized list of accomplishments
+  grep '^-' < "$HOME/notes/stripe/brag-log.md" | tail -n10
+}
+
+main  "$@"

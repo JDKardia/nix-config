@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# no errexit, want to continue if git remote errors
+CUSTOM_SETTINGS=(
+	"set -o nounset"
+	"set -o pipefail"
+)
+set -euo pipefail
+IFS=$'\n\t'
+
+# Simple state machine, rotating through 1 of 3 states:
+enable_repo() {
+	mv "$HOME/.$1-gitignore" "$HOME/.gitignore"
+	mv "$HOME/.$1-git" "$HOME/.git"
+}
+disable_repo() {
+	mv "$HOME/.gitignore" "$HOME/.$1-gitignore"
+	mv "$HOME/.git" "$HOME/.$1-git"
+}
+
+CURRENT_REMOTE="$(git remote -v 2>&1)"
+case "$CURRENT_REMOTE" in
+	fatal*) enable_repo personal ;;
+	*github*) disable_repo personal && ([[ -d "$HOME/.work-git" ]] && enable_repo work) || true ;;
+	*git.corp*) disable_repo work ;;
+	*) echo "shouldnt reach" ;;
+esac

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+echo "currently watched directories"
+watchman watch-list | sed -E '
+	s/\[|\]|\{|\}//g
+  s/\s*"version": ".*//g;
+  s/\s*"roots":\s*//g;
+  /^\s*$/d;
+	s/^\s*"//g;
+	s/",?\s*$//g;
+	s/^/  /g'

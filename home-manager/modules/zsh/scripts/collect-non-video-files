@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -uo pipefail
+IFS=$'\n'
+
+main() {
+  local cores="$(nproc)"
+  IFS=$'\n' # redundant, but good practice
+  echo "$*" | xargs -P"$cores" -I{} bash -c 'mime="$(file -i "{}" | cut -d":" -f2 )"; [[ $mime != *"video"* ]] && echo "{}"'
+}
+
+main "$@"

@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+# #!/usr/bin/env ruby
+#
+# require 'pp'
+#
+# def usage
+#   puts <<~MSG
+
+USAGE='
+	$ slack-thread-format
+
+	Takes a Slack thread you selected and copied
+	and formats it to readable text on stdout.
+
+	Reads from stdin, puts the result back in your clipboard:
+
+		$ pbpaste | slack-thread-format | pbcopy
+
+	Read from a file:
+
+		$ cat /blah/file | slack-thread-format | pbcopy
+		'
+#PATTERNS
+EMOJI=":[_a-zA-Z0-9+-]+:"
+NUM="[0-9]"
+
+format() {
+  sed -E 's/(.)/\1/g' | # placeholder to allow any line in pipeline to be commented
+    sed -Ez 's/\t/  /g' | # tabs to spaces
+    sed -E '/^[0-9]+ repl/d' | # remove reply count line
+    sed -Ez 's/\n\n\n+/\n\n\n/g' | # minimize gaps between messages to 3 line breaks
+    sed -Ez "s/\n($EMOJI)?\s*(<\s*)?($NUM+ \w+ ago)/  \2\3/g" | # remove user status emoji and line break between name and reply time
+    sed -Ez "s/\n($EMOJI)\n($NUM+)/\n| \2 \1/g;" | # normalize emoji counts
+    sed -Ez "s/[|]\s+($NUM+ $EMOJI)\n/| \1 /g" | # move emoji counts to single line
+    sed -Ez "s/\n\|\s+($NUM+ $EMOJI)/\n  reactji=> \1 /g" | # label reactji
+    sed -E '/reactji/a '$'\n' | # add space after reactji line
+    sed -E 's/(.)/\1/g' # placeholder to allow any line in pipeline to be commented
+}
+
+main() {
+  # if pipe, format stdin
+  term-is-pipe && format && exit
+  # if no pipe and no args, print help and exit
+  has-no-args && printf "%s" "$USAGE" && exit
+
+  # otherwise, try to format passed files
+  local filename
+  for filename in "${@}"; do
+    echo "$filename"
+    format < "$filename"
+  done
+}
+main "$@"
+printf "\n%s\n" "-----------------------------"

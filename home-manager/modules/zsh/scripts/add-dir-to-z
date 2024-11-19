@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+find $(pwd) -maxdepth 1 -type d | xargs -i echo '{}|1|1' >>"$HOME/.z"
+cat $HOME/.z | sort -u -t'|' -k1,1 | sponge $HOME/.z

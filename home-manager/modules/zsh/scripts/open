@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+is-darwin && {
+  /usr/bin/open "$@"
+  exit
+}
+
+main() {
+  verify "$@"
+  local filename
+  for filename in "$@"; do
+    case "$(file "$filename" | tr '[:upper:]' '[:lower:]')" in
+      *"pdf document"*)
+        echo pdf
+        ;;
+      *"epub document"*)
+        echo epub
+        ;;
+      *"mobipocket e-book"*)
+        echo mobi
+        ;;
+      *"image data,"*)
+        echo image
+        ;;
+      *"shell script,"*) ;&
+      *"unicode text"*) ;&
+      *"utf-8 text"*) ;&
+      *"empty"*) ;&
+      *"ascii text"*)
+        echo vimmable
+        ;;
+      *"truetype font data"*) ;&
+      *"opentype font data"*)
+        echo font
+        ;;
+      *"microsoft word 2007+") ;&
+      *"composite document file v2 document"*)
+        echo word doc
+        ;;
+      *"directory")
+        echo directory
+        ;;
+      *"zlib compressed data") ;&
+      *"zip archive data"*) ;&
+      *"gzip compressed data"*)
+        try-by-filename "$filename" || {
+          echo compressed archive
+        }
+        ;;
+      *"git index"*)
+        try-by-filename "$filename" || {
+          echo compressed archive
+        }
+        ;;
+
+      *)
+        try-by-filename "$filename" || {
+          echo "no method to open '$filename'"
+          file "$filename"
+        } >&2
+        ;;
+    esac
+  done
+}
+verify() {
+  local can_open_all_files=0
+  local filename
+  for filename in "$@"; do
+    if [[ ! -r $filename ]]; then
+      echo "cannot open '$filename'"
+      can_open_all_files=1
+      break
+    fi
+  done
+  if ((can_open_all_files == 1)); then
+    exit 1
+  fi
+}
+
+try-by-filename() {
+  local filename="$1"
+  case "$filename" in
+    # we don't trust all file extensions, but there are some common mistakes,
+    # like where a certain file-extension actually indicates zip file or sqlite
+    # database for a given app
+    *.epub)
+      echo from filename: Epub
+      ;;
+    *.txt)
+      echo from filename: vimmable
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+main "$@"

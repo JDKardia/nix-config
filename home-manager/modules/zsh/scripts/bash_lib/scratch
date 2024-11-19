@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# set -euo pipefail
+# IFS=$'\n\t'
+#
+SET="set"
+SET_EMPTY=""
+MAYBE_UNSET=
+bash  --version
+[[ -z $UNSET ]] && echo 'true' || echo 'false'
+[[ -z $SET ]] && echo 'true' || echo 'false'
+[[ -z $SET_EMPTY ]] && echo 'true' || echo 'false'
+[[ -z $MAYBE_UNSET ]] && echo 'true' || echo 'false'
+echo
+[[ -z ${UNSET+x} ]] && echo 'true' || echo 'false'
+[[ -z ${SET+x} ]] && echo 'true' || echo 'false'
+[[ -z ${SET_EMPTY+x} ]] && echo 'true' || echo 'false'
+[[ -z ${MAYBE_UNSET+x} ]] && echo 'true' || echo 'false'
+echo ${UNSET+x}
+echo ${SET+x}
+echo ${SET_EMPTY+x}
+echo ${MAYBE_UNSET+x}

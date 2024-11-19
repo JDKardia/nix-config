@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+main() {
+  sudo ip link set wlan0 down
+  sudo ip link set wlan0 up
+}
+
+main

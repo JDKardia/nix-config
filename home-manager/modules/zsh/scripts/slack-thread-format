@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+# #!/usr/bin/env ruby
+#
+# require 'pp'
+#
+# def usage
+#   puts <<~MSG
+
+USAGE='
+	$ slack-thread-format
+
+	Takes a Slack thread you selected and copied
+	and formats it to readable text on stdout.
+
+	Reads from stdin, puts the result back in your clipboard:
+
+		$ pbpaste | slack-thread-format | pbcopy
+
+	Read from a file:
+
+		$ cat /blah/file | slack-thread-format | pbcopy
+		'
+#PATTERNS
+EMOJI=":[_a-zA-Z0-9+-]+:"
+NUM="[0-9]"
+
+format() {
+	sed -Ez 's/\t/  /g' | # tabs to spaces
+		sed -E '/^[0-9]+ repl/d' | # remove reply count line
+		sed -Ez 's/\n\n\n+/\n\n\n/g' | # minimize gaps between messages to 3 line breaks
+		sed -Ez 's/\n\n\n(\S+)/\n\n\n*\1*/g' | # minimize gaps between messages to 3 line breaks
+		sed -Ez "s/\n($EMOJI)?\s*(<\s*)?($NUM+ \w+ ago)/  \2\3/g" | # remove user status emoji and line break between name and reply time
+		sed -Ez "s/\n($EMOJI)\n($NUM+)/\n| \2 \1/g;" | # normalize emoji counts
+		sed -Ez "s/[|]\s+($NUM+ $EMOJI)\n/| \1 /g" | # move emoji counts to single line
+		sed -Ez "s/\n\|\s+($NUM+ $EMOJI)/\n  reactji=> \1 /g" | # label reactji
+		sed -E 's/(\s+)(reactji=>.*)(\s+)/\1_\2_\3/g' | # italicize reactji line
+		sed -E '/reactji/a '$'\n' | # add space after reactji line
+		sed -E 's/(.)/\1/g' # placeholder to allow any above line to be commented out
+
+	# echo "done"
+}
+
+format-to(){
+  if [[ $# == 0 ]]; then
+    txt
+  fi
+}
+
+#   emit reactions as COUNT :EMOJINAME: | repeating
+main() {
+  {has-no-args && !term-is-pipe; } && printf "%s" "$USAGE"
+	if [[ -t 0 ]]; then
+		# No pipe/stdin
+    case "$#" in
+      0)
+    1) if [[ $1 =~ !(txt|md|rtf) ||]]; then
+      format_with text $@
+    fi
+      ;;
+      2|3) echo 2 or 3
+      ;;
+      *) echo default
+      ;;
+    esac
+		if [[ $# -eq 0 ]]; then
+    elif [[ $# -eq]]
+			local filename
+			for filename in "${@}"; do
+				echo "$filename"
+				format <"$filename"
+			done
+		fi
+	else
+		# has pipe/stdin
+		format
+	fi
+  term-is-pipe && format-to "txt"
+}
+main "$@"
+printf "\n%s\n" "-----------------------------"

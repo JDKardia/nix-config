@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+SCRIPT="/tmp/node-edu.mjs"
+echo "import repl from 'node:repl';
+repl.start({ preview: false });" >"$SCRIPT"
+
+node "$SCRIPT"

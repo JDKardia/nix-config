@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+# Dependencies: tesseract-ocr imagemagick scrot xsel
+#
+
+mkdir -p "$HOME/Pictures/SCREENSHOTS"
+
+mac() {
+  local scr_img=~/Pictures/SCREENSHOTS/SCREENSHOT__$(date -Iseconds | sed -E 's/:/./g; s/T/__/g; s/-[0-9]{2}\.[0-9]{2}$//g').png
+  echo "$scr_img"
+  screencapture -s "$scr_img"
+  # osascript -e "
+  #   on run
+  # 		set the clipboard to POSIX file $scr_img
+  #    end"
+}
+linux() {
+
+  local recent_file=~/.local/share/recently-used.xbel
+  local scr_img=~/Pictures/SCREENSHOT_$(date --iso-8601=seconds).png
+  _date="$(date -u -Ins | sed -E 's/,/./g;s/.{9}$/Z/g')"
+  scrot -s "$scr_img" -q 80
+
+  new_entry=$(
+    cat << NEWIMAGEENTRY
+  <bookmark href="file://$scr_img" added="$_date" modified="$_date" visited="$_date">
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <mime:mime-type type="image/png"/>
+        <bookmark:applications>
+          <bookmark:application name="GNOME Screenshot" exec="&apos;eog %u&apos;" modified="$__date" count="1"/>
+          <bookmark:application name="xdg-desktop-portal-gtk" exec="&apos;xdg-desktop-portal-gtk %u&apos;" modified="$_date" count="2"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+</xbel>
+NEWIMAGEENTRY
+  )
+
+  (
+    cat "$recent_file" | head --lines=-1
+    echo "$new_entry"
+  ) | sponge "$recent_file"
+}
+
+capture_shot() {
+  os_impl="$(uname -s)"
+  if [[ $os_impl == 'Darwin' ]]; then
+    mac
+  else
+    linux
+  fi
+}
+
+capture_shot
+
+# xclip -selection clipboard -t image/png -i $SCR_IMG

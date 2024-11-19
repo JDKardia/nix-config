@@ -1,0 +1,3 @@
+note::completion() {
+	_files -W $1
+}

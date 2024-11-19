@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+CUSTOM_IFS="$IFS"
+set -euo pipefail
+IFS=$'\n\t'
+
+USAGE='USAGE: $ c x [file]
+EXAMPLE:
+  To edit vim plugins:
+  $ c v plugins/init.lua
+
+  To enter vim config directory:
+  $ c v'
+
+main() {
+  if [[ -z $* ]]; then
+    echo "$USAGE"
+  else
+    case $1 in
+      i | i3)
+        pushd "$HOME/.config/regolith/i3/" > /dev/null 2>&1
+        ;;
+      p | polybar)
+        pushd "$HOME/.config/polybar/" > /dev/null 2>&1
+        ;;
+      z | zsh)
+        pushd "$HOME/.config/zsh/zshrc.d" > /dev/null 2>&1
+        ;;
+      g | git)
+        pushd "$HOME/.config/git/" > /dev/null 2>&1
+        ;;
+      v | vim)
+        pushd "$HOME/.config/nvim/lua/" > /dev/null 2>&1
+        ;;
+      k | kitty)
+        pushd "$HOME/.config/kitty/" > /dev/null 2>&1
+        ;;
+      h | hammerspoon)
+        pushd "$HOME/.hammerspoon/" > /dev/null 2>&1
+        ;;
+      s | skhd)
+        pushd "$HOME/.config/skhd/" > /dev/null 2>&1
+        ;;
+      y | yabai)
+        pushd "$HOME/.config/yabai/" > /dev/null 2>&1
+        ;;
+      *)
+        echo "could not open config for $1"
+        ;;
+    esac
+    shift 1
+    if [[ -z $* ]]; then
+      exec "$SHELL"
+    else
+      nvim "$@"
+    fi
+  fi
+}
+
+main "$@"

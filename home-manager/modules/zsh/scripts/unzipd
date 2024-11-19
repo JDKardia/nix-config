@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+alias wait-for-job-slot='while [[ $(jobs -p | wc -w) -ge $(nproc) ]]; do wait -n; done;'
+
+unzip-to-eponymous-directory() {
+  zipfile="$1"
+  zipdir=$(basename "$zipfile" '.zip')
+  7z x "$zipfile" -o"$zipdir"
+}
+
+main() {
+  local file
+  for file in "$@"; do
+    [[ $file == *".zip" ]] || continue
+    wait-for-job-slot
+    unzip-to-eponymous-directory "$file" &
+  done
+  wait
+}
+
+main "$@"

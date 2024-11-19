@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# arbitrarily prepend provided string to stdout with a sane indent as default
+# ex: > source somescript.sh | prepend "    "
+#     > ./somescript.sh | prepend "`hostname` "
+
+sed "s¶^¶${1:-"  "}¶g"

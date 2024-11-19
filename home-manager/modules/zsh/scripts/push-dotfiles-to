@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+alias dotsync="rsync -avzR --progress" # R is relative
+
+main() {
+  local DEST="$USER@$1:/home/$USER/"
+
+  cd "$HOME" || exit 1
+
+  dotsync \
+    ".config/tmux/tmux.conf" \
+    ".config/zsh/.zshrc" \
+    ".config/zsh/zshrc.d/01_system_context.zsh" \
+    ".config/zsh/zshrc.d/02_path_config.zsh" \
+    ".config/zsh/zshrc.d/03_zsh_config.zsh" \
+    ".config/zsh/zshrc.d/10_functions.zsh" \
+    ".config/zsh/zshrc.d/20_aliases.zsh" \
+    ".config/zsh/zshrc.d/40_prompt_functions.zsh" \
+    ".config/zsh/zshrc.d/41_p10k_configuration.zsh" \
+    ".config/zsh/zshrc.d/60_plugins.zsh" \
+    ".config/zsh/zshrc.d/61_vim_emulation.zsh" \
+    ".config/zsh/zshrc.d/70_completions.zsh" \
+    ".zshenv" \
+    ".zshrc" "$DEST"
+
+  # dotsync "$HOME/.config/zsh/.zshrc"   --relative ".config/zsh/.zshrc"   "$DEST"
+  # dotsync "$HOME/.config/zsh/zshrc.d/" --relative ".config/zsh/zshrc.d"  "$DEST"
+  # # dotsync "$HOME/.config/zsh/plugins/" --relative ".config/zsh/plugins/" "$DEST:/home/$USER/"
+  #
+  # dotsync "$HOME/.zshenv" --relative ".zshenv" "$DEST"
+  # dotsync "$HOME/.zshrc"  --relative ".zshrc"  "$DEST"
+
+  # dotsync "$HOME/KEY" "$DEST:/home/$USER/KEY"
+}
+
+has-no-args && {
+  echo "need an address to sync to"
+  exit 1
+}
+
+has-args && main "$@"
