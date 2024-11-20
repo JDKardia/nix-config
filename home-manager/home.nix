@@ -17,7 +17,7 @@ in {
     ./modules/dropbox.nix
     ./modules/git.nix
     ./modules/syncthing.nix
-    ./modules/zsh
+    ./modules/zsh/default.nix
   ];
 
   home = {
