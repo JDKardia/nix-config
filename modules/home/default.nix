@@ -3,67 +3,60 @@
 {
   home-manager.users.kardia = {
     inputs,
-    outputs,
     lib,
-    config,
     pkgs,
     my,
-    this,
     ...
   }: let
     onePassPath = "~/.1password/agent.sock";
+    np = inputs.nixpkgs.lib;
   in {
-    imports = inputs.nixpkgs.lib.attrValues (my.lib.modulesIn ./modules);
-    # imports = [
-    #
-    #   ./modules/vim.nix
-    #   ./modules/dropbox.nix
-    #   ./modules/git.nix
-    #   ./modules/syncthing.nix
-    #   ./modules/zsh
-    # ];
+    imports = np.attrValues (my.lib.modulesIn ./submodules);
+
     home = {
       username = "kardia";
       homeDirectory = "/home/kardia";
+      packages = with pkgs; [
+        vscode
+        nil
+        alejandra
+        firefox-beta
+        statix
+        deadnix
+        chromium
+        reaper
+        audacity
+        yt-dlp
+        slack
+        discord
+        mpv
+        mpvScripts.thumbfast
+        mpvScripts.mpv-webm
+        #contour
+        alacritty
+        zellij
+        # keyd
+        gnomeExtensions.appindicator
+        nerdfonts
+      ];
+      stateVersion = "24.05";
     };
 
-    # Add stuff for your user as you see fit:
-    home.packages = with pkgs; [
-      vscode
-      nil
-      alejandra
-      firefox-beta
-      chromium
-      reaper
-      audacity
-      yt-dlp
-      slack
-      discord
-      mpv
-      mpvScripts.thumbfast
-      mpvScripts.mpv-webm
-      #contour
-      alacritty
-      zellij
-      # keyd
-      gnomeExtensions.appindicator
-      nerdfonts
-    ];
-
-    programs.nix-index = {
-      enable = true;
-      enableZshIntegration = true;
+    programs = {
+      nix-index = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+      # Enable home-manager and git
+      ssh = {
+        enable = true;
+        extraConfig = ''
+          Host *
+              IdentityAgent ${onePassPath}
+        '';
+      };
+      home-manager.enable = true;
     };
-    # Enable home-manager and git
-    programs.ssh = {
-      enable = true;
-      extraConfig = ''
-        Host *
-            IdentityAgent ${onePassPath}
-      '';
-    };
-    programs.home-manager.enable = true;
-
     # Nicely reload system units when changing configs
     systemd.user.startServices = "sd-switch";
 
@@ -85,6 +78,5 @@
     };
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    home.stateVersion = "24.05";
   };
 }

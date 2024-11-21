@@ -29,33 +29,32 @@
   } @ inputs: let
     my = import ./lib nixpkgs.lib machines;
     machines = my.lib.exprsIn ./machines;
-    np = nixpkgs.lib;
     system = "x86_64-linux";
     inherit (self) outputs;
   in {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
-    nixosConfigurations = np.mapAttrs (
+    nixosConfigurations = nixpkgs.lib.mapAttrs (
       host: hardware-config: let
         this = my.machines.${host};
       in
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules =
-            (np.attrValues (my.lib.modulesIn ./modules))
+            (nixpkgs.lib.attrValues (my.lib.modulesIn ./modules))
             ++ [
               hardware-config
               home-manager.nixosModules.home-manager
               {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = {inherit inputs outputs this my;};
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = {inherit inputs outputs this my;};
+                };
               }
-              #   home-manager.users.kardia = import ./home-manager/home.nix;
-              # }
             ];
           specialArgs = {
-            inherit inputs outputs this;
+            inherit inputs outputs this my;
             myModulesPath = toString ./modules;
             # hardware = nixpkgs.nixosModules // inputs.nixos-hardware.nixosModules;
             # pkgsBase = pkgs; # for use in imports without infinite recursion

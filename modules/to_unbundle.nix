@@ -2,7 +2,6 @@
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
-  outputs,
   lib,
   config,
   pkgs,
@@ -20,10 +19,6 @@
     };
   };
 
-  programs.command-not-found = {
-    enable = true;
-    dbPath = "${inputs.programs-db}/programs.sqlite";
-  };
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -67,7 +62,6 @@
 
   # FIXME: Add the rest of your current configuration
 
-  programs.zsh.enable = true;
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     kardia = {
@@ -138,10 +132,17 @@
     zsh
     htop
   ];
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["kardia"];
+  programs = {
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = ["kardia"];
+    };
+    command-not-found = {
+      enable = true;
+      dbPath = "${inputs.programs-db}/sqlite";
+    };
+    zsh.enable = true;
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

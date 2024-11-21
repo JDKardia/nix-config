@@ -1,11 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   services.syncthing.enable = true;
   services.syncthing.tray.enable = true;
 }

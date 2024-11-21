@@ -1,13 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
-  helpers = config.lib.nixvim;
-in {
+{inputs, ...}: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
   ];
