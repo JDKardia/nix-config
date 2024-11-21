@@ -127,7 +127,6 @@
     ripgrep
     jdk
     rsync
-    steam
     sysstat
     tree
     unzip

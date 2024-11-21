@@ -27,25 +27,39 @@
     home-manager,
     ...
   } @ inputs: let
+    my = import ./lib nixpkgs.lib machines;
+    machines = my.lib.exprsIn ./machines;
+    np = nixpkgs.lib;
+    system = "x86_64-linux";
     inherit (self) outputs;
   in {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-    nixosConfigurations.naga = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs outputs;};
-      system = "x86_64-linux";
-      modules = [
-        ./hosts/naga/hardware-configuration.nix
-        ./modules/to_unbundle.nix
-        ./modules/gnome.nix
-        ./modules/steam.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs outputs;};
-          home-manager.users.kardia = import ./home-manager/home.nix;
+
+    nixosConfigurations = np.mapAttrs (
+      host: hardware-config: let
+        this = my.machines.${host};
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules =
+            (np.attrValues (my.lib.modulesIn ./modules))
+            ++ [
+              hardware-config
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = {inherit inputs outputs;};
+                home-manager.users.kardia = import ./home-manager/home.nix;
+              }
+            ];
+          specialArgs = {
+            inherit inputs outputs this;
+            myModulesPath = toString ./modules;
+            # hardware = nixpkgs.nixosModules // inputs.nixos-hardware.nixosModules;
+            # pkgsBase = pkgs; # for use in imports without infinite recursion
+          };
         }
-      ];
-    };
+    ) (my.lib.catLowerAttrs "hardware-config" machines);
   };
 }

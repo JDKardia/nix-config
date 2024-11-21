@@ -102,12 +102,13 @@
     '';
   };
 
-  xdg.configFile."zsh/p10k.zsh".source = config.lib.file.mkOutOfStoreSymlink ./p10k.zsh;
+  xdg.configFile."zsh/p10k.zsh".source = ./p10k.zsh;
 
-  home.file.".local/bin/c".source = config.lib.file.mkOutOfStoreSymlink .scripts/c;
-  home.file.".local/bin/c".executable = true;
-  home.file.".local/bin/isotime".source = config.lib.file.mkOutOfStoreSymlink .scripts/isotime;
-  home.file.".local/bin/isotime".executable = true;
+  # TODO fix mutable symlinks with ncfavier helper function
+  # home.file.".local/bin/c".source = config.lib.file.mkOutOfStoreSymlink .scripts/c;
+  # home.file.".local/bin/c".executable = true;
+  # home.file.".local/bin/isotime".source = config.lib.file.mkOutOfStoreSymlink .scripts/isotime;
+  # home.file.".local/bin/isotime".executable = true;
 
   programs.zellij.enableZshIntegration = true;
   programs.fzf.enableZshIntegration = true;
