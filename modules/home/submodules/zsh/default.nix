@@ -19,6 +19,12 @@
   pkg_to_zsh_plugin = p: {
     name = p.pname;
     inherit (p) src;
+    ${ # null keys are not set, allowing conditional tweaks
+      if p.pname == "zsh-powerlevel10k"
+      then "file"
+      else null
+    } =
+      p.src + "/powerlevel10k.zsh-theme";
   };
 in {
   home = {
@@ -122,7 +128,7 @@ in {
         export CLICOLOR=YES
       '';
       initExtra = ''
-        source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
+        # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
         source "${config.xdg.configHome}/zsh/p10k.zsh"
       '';
     };
