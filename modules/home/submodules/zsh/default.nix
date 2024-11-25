@@ -1,9 +1,11 @@
 {
   lib,
   config,
+  nixpkgs,
   pkgs,
   ...
 }: let
+  np = nixpkgs.lib;
   plugins = with pkgs; [
     zsh-z
     zsh-powerlevel10k
@@ -22,6 +24,7 @@ in {
   home = {
     packages = plugins;
     sessionPath = [
+      "\$HOME/bin"
       "\$HOME/.local/bin"
     ];
     shellAliases = {
@@ -63,6 +66,13 @@ in {
       gr = "git-root";
       gitroot = "git-root";
     };
+    file = lib.mapAttrs' (name: _: {
+      name = ".local/bin/${name}";
+      value = {
+        source = ./scripts + "/${name}";
+        executable = true;
+      };
+    }) (builtins.readDir ./scripts);
   };
 
   programs = {
