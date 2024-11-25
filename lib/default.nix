@@ -71,5 +71,4 @@ np: machine_list: rec {
       imports = [({config, ...}: {config = np.mkIf (np.getAttrFromPath name config).enable cfg;})];
     };
   };
-
 }

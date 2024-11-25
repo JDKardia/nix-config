@@ -112,6 +112,7 @@
     neovim
     netcat
     nettools
+    entr
     nvtopPackages.full
     obs-studio
     osquery

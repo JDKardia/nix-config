@@ -3,20 +3,24 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  plugins = with pkgs; [
+    zsh-z
+    zsh-powerlevel10k
+    zsh-zhooks
+    zsh-you-should-use
+    zsh-nix-shell
+    zsh-fzf-history-search
+    jq-zsh-plugin
+    zsh-defer
+  ];
+  pkg_to_zsh_plugin = p: {
+    name = p.pname;
+    inherit (p) src;
+  };
+in {
   home = {
-    # file.".local/bin/c".source = config.lib.file.mkOutOfStoreSymlink "/home/kardia/.config/nix/modules/home/modules/zsh/scripts/c";
-    # file.".local/bin/c".executable = true;
-    # file.".local/bin/isotime".source = config.lib.file.mkOutOfStoreSymlink "/home/kardia/.config/nix/modules/home/modules/zsh/scripts/isotime";
-    # file.".local/bin/isotime".source = config.lib.file.mkOutOfStoreSymlink "/home/kardia/.config/nix/modules/home/modules/zsh/scripts/isotime";
-
-    file.".local/bin/isotime".enable=true;
-    file.".local/bin/isotime".text = "DEADBEEF";
-    file.".local/bin/isotime".executable = true;
-    packages = with pkgs; [
-      zsh-z
-      zsh-powerlevel10k
-    ];
+    packages = plugins;
     sessionPath = [
       "\$HOME/.local/bin"
     ];
@@ -60,6 +64,7 @@
       gitroot = "git-root";
     };
   };
+
   programs = {
     dircolors = {
       enable = true;
@@ -85,6 +90,7 @@
         expireDuplicatesFirst = true;
         ignoreSpace = true;
       };
+      plugins = builtins.map pkg_to_zsh_plugin plugins;
       initExtraBeforeCompInit = ''
         ## setup tab completion
           zstyle ':completion:*' matcher-list ''' 'm:{a-z}={A-Z}' 'm:{a-zA-Z-_}={A-Za-z-_}' 'r:|=*' 'l:|=* r:|=*'
@@ -109,12 +115,12 @@
         source "${config.xdg.configHome}/zsh/p10k.zsh"
       '';
     };
+
+    zellij.enableZshIntegration = true;
+    fzf.enableZshIntegration = true;
   };
 
   xdg.configFile."zsh/p10k.zsh".source = ./p10k.zsh;
 
   # TODO fix mutable symlinks with ncfavier helper function
-
-  programs.zellij.enableZshIntegration = true;
-  programs.fzf.enableZshIntegration = true;
 }

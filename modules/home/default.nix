@@ -43,6 +43,7 @@
     };
 
     programs = {
+      home-manager.enable = true;
       nix-index = {
         enable = true;
         enableZshIntegration = true;
@@ -55,7 +56,6 @@
               IdentityAgent ${onePassPath}
         '';
       };
-      home-manager.enable = true;
     };
     # Nicely reload system units when changing configs
     systemd.user.startServices = "sd-switch";
