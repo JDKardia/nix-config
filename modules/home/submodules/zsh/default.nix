@@ -121,7 +121,12 @@ in {
           #zstyle ":completion:*" list-colors “''${(s.:.)LS_COLORS}”
 
         ## zsh-z menus
-            zstyle ':completion:*' menu selectzs
+          zstyle ':completion:*' menu selectzs
+
+        ## completions
+          source ${xdg.configFile."zsh/completions/_c"}
+          compdef _c c
+
       '';
       initExtraFirst = ''
         export TIME_STYLE="long-iso"
@@ -129,7 +134,7 @@ in {
       '';
       initExtra = ''
         # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
-        source "${config.xdg.configHome}/zsh/p10k.zsh"
+        source "${xdg.configFile."zsh/p10k.zsh"}
       '';
     };
 
@@ -138,6 +143,7 @@ in {
   };
 
   xdg.configFile."zsh/p10k.zsh".source = ./p10k.zsh;
+  xdg.configFile."zsh/completions/_c".source = ./completions/_c;
 
   # TODO fix mutable symlinks with ncfavier helper function
 }
