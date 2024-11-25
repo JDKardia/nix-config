@@ -122,6 +122,7 @@ in {
         export CLICOLOR=YES
       '';
       initExtra = ''
+        source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
         source "${config.xdg.configHome}/zsh/p10k.zsh"
       '';
     };
