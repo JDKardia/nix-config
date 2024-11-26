@@ -1,0 +1,67 @@
+_c() {
+  local -a commands
+
+  commands=(
+    "zsh:configure zsh"
+    "z:configure zsh"
+    "git:configure git"
+    "g:configure git"
+    "vim:configure neovim"
+    "v:configure neovim"
+    "hammerspoon:configure hammerspoon"
+    "hs:configure hammerspoon"
+    "kitty:configure kitty"
+    "k:configure kitty"
+    "skhd:configure skhd"
+    "yabai:configure yabai"
+  )
+
+  local curcontext="$curcontext" state line
+  local -A opt_args
+
+  _arguments -C \
+    ':command:->command' \
+    '*::files:->files'
+
+  case "$state" in
+    command)
+      _describe -t commands 'commands' commands
+      ;;
+    files)
+      case $line[1] in
+        i | i3)
+          _path_files -W "$HOME/.config/regolith/i3/"
+          ;;
+        p | polybar)
+          _path_files -W "$HOME/.config/polybar/"
+          ;;
+        z | zsh)
+          _path_files -W "$HOME/.config/zsh/zshrc.d"
+          ;;
+        g | git)
+          _path_files -W "$HOME/.config/git/"
+          ;;
+        v | vim)
+          _path_files -W "$HOME/.config/nvim/lua"
+          ;;
+        k | kitty)
+          _path_files -W "$HOME/.config/kitty/"
+          ;;
+        h | hammerspoon)
+          _path_files -W "$HOME/.hammerspoon/"
+          ;;
+        s | skhd)
+          _path_files -W "$HOME/.config/skhd/"
+          ;;
+        y | yabai)
+          _path_files -W "$HOME/.config/yabai/"
+          ;;
+        *)
+          _message "command not supported $@"
+          ;;
+      esac
+      ;;
+    *) ;;
+  esac
+  return 0
+}
