@@ -125,7 +125,7 @@ in {
           zstyle ':completion:*' menu selectzs
 
         ## completions
-          source "${homeDir}/${config.xdg.configFile."zsh/completions/_c".target}
+          source "${homeDir}/${config.xdg.configFile."zsh/completions/_c".target}"
           compdef _c c
 
       '';
