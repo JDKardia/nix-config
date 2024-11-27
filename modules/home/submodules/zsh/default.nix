@@ -6,6 +6,7 @@
   ...
 }: let
   np = nixpkgs.lib;
+  homeDir = config.home.homeDirectory;
   plugins = with pkgs; [
     zsh-z
     zsh-powerlevel10k
@@ -124,7 +125,7 @@ in {
           zstyle ':completion:*' menu selectzs
 
         ## completions
-          source ${config.xdg.configFile."zsh/completions/_c".target}
+          source "${homeDir}/${config.xdg.configFile."zsh/completions/_c".target}
           compdef _c c
 
       '';
@@ -134,7 +135,7 @@ in {
       '';
       initExtra = ''
         # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
-        source "${config.xdg.configFile."zsh/p10k.zsh".target}
+        source "${homeDir}/${config.xdg.configFile."zsh/p10k.zsh".target}"
       '';
     };
 
