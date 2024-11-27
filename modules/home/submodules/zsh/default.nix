@@ -56,7 +56,6 @@ in {
       git-root = "cd $(git rev-parse --show-toplevel)";
 
       # Shortcut Aliases
-      g = "git";
       gs = "git status -sb";
       k = "kubectl";
       l = "ls -lFh"; #size,show type,human readable
