@@ -124,17 +124,20 @@ in {
           zstyle ':completion:*' menu selectzs
 
         ## completions
-          source ${config.xdg.configFile."zsh/completions/_c".target}
+          source ./completions/_c
           compdef _c c
 
       '';
-      initExtraFirst = ''
-        export TIME_STYLE="long-iso"
-        export CLICOLOR=YES
-      '';
+      initExtraFirst =
+        ''
+          export TIME_STYLE="long-iso"
+          export CLICOLOR=YES
+        ''
+        .target;
       initExtra = ''
         # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
-        source "${config.xdg.configFile."zsh/p10k.zsh".target}
+        # source "${config.xdg.configFile."zsh/p10k.zsh".target}"
+        source ./p10k.zsh
       '';
     };
 
