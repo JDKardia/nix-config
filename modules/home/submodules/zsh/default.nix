@@ -21,7 +21,7 @@
     name = p.pname;
     inherit (p) src;
     ${ # null keys are not set, allowing conditional tweaks
-      if p.pname == "zsh-powerlevel10k"
+      if p.pname == "powerlevel10k"
       then "file"
       else null
     } =
