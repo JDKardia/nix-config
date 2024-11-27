@@ -128,12 +128,10 @@ in {
           compdef _c c
 
       '';
-      initExtraFirst =
-        ''
-          export TIME_STYLE="long-iso"
-          export CLICOLOR=YES
-        ''
-        .target;
+      initExtraFirst = ''
+        export TIME_STYLE="long-iso"
+        export CLICOLOR=YES
+      '';
       initExtra = ''
         # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
         # source "${config.xdg.configFile."zsh/p10k.zsh".target}"
