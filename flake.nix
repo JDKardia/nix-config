@@ -5,6 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     unstable.follows = "nixpkgs";
 
+    lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module?ref=main";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+
     programs-db.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
     # Home manager
@@ -24,6 +27,7 @@
   outputs = {
     self,
     nixpkgs,
+    lix-module,
     home-manager,
     ...
   } @ inputs: let
@@ -41,8 +45,8 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules =
-            (nixpkgs.lib.attrValues (my.lib.modulesIn ./modules))
-            ++ [
+            [
+              lix-module.nixosModules.default
               hardware-config
               home-manager.nixosModules.home-manager
               {
@@ -52,12 +56,10 @@
                   extraSpecialArgs = {inherit inputs outputs this my;};
                 };
               }
-            ];
+            ]
+            ++ (nixpkgs.lib.attrValues (my.lib.modulesIn ./modules));
           specialArgs = {
             inherit inputs outputs this my;
-            myModulesPath = toString ./modules;
-            # hardware = nixpkgs.nixosModules // inputs.nixos-hardware.nixosModules;
-            # pkgsBase = pkgs; # for use in imports without infinite recursion
           };
         }
     ) (my.lib.catLowerAttrs "hardware-config" machines);
