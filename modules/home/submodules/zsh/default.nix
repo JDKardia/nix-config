@@ -24,8 +24,7 @@
       if p.pname == "powerlevel10k"
       then "file"
       else null
-    } =
-      p.src + "/powerlevel10k.zsh-theme";
+    } = "powerlevel10k.zsh-theme";
   };
 in {
   home = {
