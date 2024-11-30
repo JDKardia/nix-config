@@ -32,7 +32,7 @@
           mpv
           mpvScripts.mpv-webm
           mpvScripts.thumbfast
-          nerdfonts
+          nerd-fonts
           nil
           obs-studio
           reaper
