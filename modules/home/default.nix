@@ -19,7 +19,6 @@
       packages = with pkgs; [
         # keyd
         #contour
-        devenv
         alacritty
         audacity
         chromium
