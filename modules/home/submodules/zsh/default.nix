@@ -41,14 +41,12 @@ in {
       mv = "mv -i";
       df = "df -h"; # Human-readable sizes
       du = "du -h"; # Human-readable sizes
-      fd = "fd --hidden";
+
       free = "free -m"; # Show sizes in MB
       ls = "ls --color=auto";
-      e = "exa";
       grep = "grep --color";
 
       # Make My Own Command Aliases
-      n = "note";
       pbcopy = "xclip -selection clipboard";
       pbpaste = "xclip -selection clipboard -o";
       tolower = "tr '[:upper:]' '[:lower:]'";
@@ -57,7 +55,6 @@ in {
 
       # Shortcut Aliases
       gs = "git status -sb";
-      k = "kubectl";
       l = "ls -lFh"; #size,show type,human readable
       la = "ls -lAFh"; #long list,show almost all,show type,human readable
       lr = "ls -tRFh"; #sorted by date,recursive,show type,human readable
@@ -67,9 +64,6 @@ in {
       ld = "ls -d -- */"; # only dir
       lf = "ls -pA  | grep -v '\"/\"'";
       llf = "ls -lpA  | grep -v '\"/\"'";
-
-      gr = "git-root";
-      gitroot = "git-root";
     };
     file = lib.mapAttrs' (name: _: {
       name = ".local/bin/${name}";

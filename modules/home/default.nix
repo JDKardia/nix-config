@@ -17,27 +17,28 @@
       username = "kardia";
       homeDirectory = "/home/kardia";
       packages = with pkgs; [
-        vscode
-        nil
-        alejandra
-        firefox-beta
-        statix
-        deadnix
-        chromium
-        reaper
-        audacity
-        yt-dlp
-        slack
-        discord
-        mpv
-        mpvScripts.thumbfast
-        mpvScripts.mpv-webm
-        #contour
-        alacritty
-        zellij
         # keyd
+        #contour
+        devenv
+        alacritty
+        audacity
+        chromium
+        discord
+        firefox-beta
+        gimp
         gnomeExtensions.appindicator
+        mpv
+        mpvScripts.mpv-webm
+        mpvScripts.thumbfast
         nerdfonts
+        nil
+        obs-studio
+        reaper
+        slack
+        vlc
+        vscode
+        yt-dlp
+        zellij
       ];
       stateVersion = "24.05";
     };
