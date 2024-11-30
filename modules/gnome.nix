@@ -1,7 +1,6 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    gnome-tweaks
-  ];
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [ gnome-tweaks ];
 
   services.xserver = {
     enable = true;
@@ -11,7 +10,7 @@
     desktopManager.gnome.enable = true;
 
     # resolution and graphics setup
-    videoDrivers = ["nvidia"];
+    videoDrivers = [ "nvidia" ];
     resolutions = [
       {
         x = 2560;

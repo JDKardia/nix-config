@@ -5,7 +5,7 @@ statix check;
 echo ;
 sleep 0.5;
 echo autoformatting;
-alejandra --quiet .;
+nixfmt --strict .;
 echo; 
 echo build:;
 nixos-rebuild build --show-trace --flake .#naga;

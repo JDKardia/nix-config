@@ -4,7 +4,8 @@
   nixpkgs,
   pkgs,
   ...
-}: let
+}:
+let
   np = nixpkgs.lib;
   homeDir = config.home.homeDirectory;
   plugins = with pkgs; [
@@ -20,13 +21,13 @@
   pkg_to_zsh_plugin = p: {
     name = p.pname;
     inherit (p) src;
-    ${ # null keys are not set, allowing conditional tweaks
-      if p.pname == "powerlevel10k"
-      then "file"
-      else null
+    ${
+      # null keys are not set, allowing conditional tweaks
+      if p.pname == "powerlevel10k" then "file" else null
     } = "powerlevel10k.zsh-theme";
   };
-in {
+in
+{
   home = {
     packages = plugins;
     sessionPath = [
@@ -55,11 +56,11 @@ in {
 
       # Shortcut Aliases
       gs = "git status -sb";
-      l = "ls -lFh"; #size,show type,human readable
-      la = "ls -lAFh"; #long list,show almost all,show type,human readable
-      lr = "ls -tRFh"; #sorted by date,recursive,show type,human readable
-      lt = "ls -ltFh"; #long list,sorted by date,show type,human readable
-      ll = "ls -l"; #long list
+      l = "ls -lFh"; # size,show type,human readable
+      la = "ls -lAFh"; # long list,show almost all,show type,human readable
+      lr = "ls -tRFh"; # sorted by date,recursive,show type,human readable
+      lt = "ls -ltFh"; # long list,sorted by date,show type,human readable
+      ll = "ls -l"; # long list
       lld = "ls -ld -- */"; # long list only dir
       ld = "ls -d -- */"; # only dir
       lf = "ls -pA  | grep -v '\"/\"'";
@@ -88,7 +89,13 @@ in {
       enableCompletion = true;
 
       syntaxHighlighting.enable = true;
-      syntaxHighlighting.highlighters = ["main" "brackets" "pattern" "root" "line"];
+      syntaxHighlighting.highlighters = [
+        "main"
+        "brackets"
+        "pattern"
+        "root"
+        "line"
+      ];
 
       historySubstringSearch.enable = true;
       history = {

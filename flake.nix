@@ -24,44 +24,58 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    lix-module,
-    home-manager,
-    ...
-  } @ inputs: let
-    my = import ./lib nixpkgs.lib machines;
-    machines = my.lib.exprsIn ./machines;
-    system = "x86_64-linux";
-    inherit (self) outputs;
-  in {
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      lix-module,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      my = import ./lib nixpkgs.lib machines;
+      machines = my.lib.exprsIn ./machines;
+      system = "x86_64-linux";
+      inherit (self) outputs;
+    in
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
-    nixosConfigurations = nixpkgs.lib.mapAttrs (
-      host: hardware-config: let
-        this = my.machines.${host};
-      in
+      nixosConfigurations = nixpkgs.lib.mapAttrs (
+        host: hardware-config:
+        let
+          this = my.machines.${host};
+        in
         nixpkgs.lib.nixosSystem {
           inherit system;
-          modules =
-            [
-              lix-module.nixosModules.default
-              hardware-config
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = {inherit inputs outputs this my;};
+          modules = [
+            lix-module.nixosModules.default
+            hardware-config
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  inherit
+                    inputs
+                    outputs
+                    this
+                    my
+                    ;
                 };
-              }
-            ]
-            ++ (nixpkgs.lib.attrValues (my.lib.modulesIn ./modules));
+              };
+            }
+          ] ++ (nixpkgs.lib.attrValues (my.lib.modulesIn ./modules));
           specialArgs = {
-            inherit inputs outputs this my;
+            inherit
+              inputs
+              outputs
+              this
+              my
+              ;
           };
         }
-    ) (my.lib.catLowerAttrs "hardware-config" machines);
-  };
+      ) (my.lib.catLowerAttrs "hardware-config" machines);
+    };
 }

@@ -4,7 +4,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   time.timeZone = lib.mkDefault "America/Chicago";
   services.openssh = {
     enable = true;

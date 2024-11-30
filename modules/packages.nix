@@ -4,7 +4,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
 
@@ -34,7 +35,7 @@
     pipewire
 
     # nix related
-    alejandra
+    nixfmt-rfc-style
     deadnix
     comma
     manix
