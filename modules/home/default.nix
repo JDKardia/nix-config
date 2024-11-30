@@ -19,29 +19,32 @@
       home = {
         username = "kardia";
         homeDirectory = "/home/kardia";
-        packages = with pkgs; [
-          # keyd
-          #contour
-          alacritty
-          audacity
-          chromium
-          discord
-          firefox-beta
-          gimp
-          gnomeExtensions.appindicator
-          mpv
-          mpvScripts.mpv-webm
-          mpvScripts.thumbfast
-          nerd-fonts
-          nil
-          obs-studio
-          reaper
-          slack
-          vlc
-          vscode
-          yt-dlp
-          zellij
-        ];
+        packages =
+          with pkgs;
+          [
+            # keyd
+            #contour
+            alacritty
+            audacity
+            chromium
+            discord
+            firefox-beta
+            gimp
+            gnomeExtensions.appindicator
+            mpv
+            mpvScripts.mpv-webm
+            mpvScripts.thumbfast
+            nil
+            obs-studio
+            reaper
+            slack
+            vlc
+            vscode
+            yt-dlp
+            zellij
+
+          ]
+          ++ (with pkgs.nerd-fonts; (attrNames pkgs.nerd-fonts));
         stateVersion = "24.05";
       };
 
