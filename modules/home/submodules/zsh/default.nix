@@ -1,12 +1,5 @@
-{
-  lib,
-  config,
-  nixpkgs,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 let
-  np = nixpkgs.lib;
   homeDir = config.home.homeDirectory;
   plugins = with pkgs; [
     zsh-z
@@ -30,10 +23,11 @@ in
 {
   home = {
     packages = plugins;
-    sessionPath = [
-      "\$HOME/bin"
-      "\$HOME/.local/bin"
-    ];
+    sessionPath = [ "\$HOME/.config/nix/modules/home/submodules/zsh/scripts" ];
+    # #TODO; make this work
+    # sessionVariables={
+    #
+    # };
     shellAliases = {
       # Default Arg Aliases
       rg = "rg --smart-case";
@@ -66,13 +60,13 @@ in
       lf = "ls -pA  | grep -v '\"/\"'";
       llf = "ls -lpA  | grep -v '\"/\"'";
     };
-    file = lib.mapAttrs' (name: _: {
-      name = ".local/bin/${name}";
-      value = {
-        source = ./scripts + "/${name}";
-        executable = true;
-      };
-    }) (builtins.readDir ./scripts);
+    # file = lib.mapAttrs' (name: _: {
+    #   name = ".local/bin/${name}";
+    #   value = {
+    #     source = ./scripts + "/${name}";
+    #     executable = true;
+    #   };
+    # }) (builtins.readDir ./scripts);
   };
 
   programs = {
@@ -124,8 +118,9 @@ in
           zstyle ':completion:*' menu selectzs
 
         ## completions
-          source "${homeDir}/${config.xdg.configFile."zsh/completions/_c".target}"
-          compdef _c c
+          # source "${homeDir}/${config.xdg.configFile."zsh/completions/_c".target}"
+          # compdef _c c
+        fpath+=($HOME/.config/nix/modules/home/submodules/zsh/completions)
 
       '';
       initExtraFirst = ''
@@ -135,7 +130,11 @@ in
       initExtra = ''
         # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
         source "${homeDir}/${config.xdg.configFile."zsh/p10k.zsh".target}"
+        bindkey '^[[A' history-substring-search-up # or '\eOA'
+        bindkey '^[[B' history-substring-search-down # or '\eOB'
+        HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
       '';
+
     };
 
     zellij.enableZshIntegration = true;

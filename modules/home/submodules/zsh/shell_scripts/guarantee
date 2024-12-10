@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -uo pipefail
+IFS=$'\n\t'
+
+# guarantees that a file exists, acts like the bastard lovechild of touch and mkdir -p.
+
+# USAGE:
+# to create the file 'bar' and directory 'baz' in a shared directory 'foo' in a directory 'foo':
+# $ guarantee foo/bar foo/baz/
+#
+# errors if the paths passed guaranteed to exist as declared.
+# This means that if a file path is passed, but the path points to a directory,
+# then this util will error.
+#
+# This script does not fast-fail, it will attempt and emit every error on stderr
+# in a roughly greppable format so that automated responses can be taken if necessary.
+#
+
+RET=0 # fine by default
+
+cannot() {
+  local path="$1"
+  local reason="$2"
+  echo "guarantee: cannot guarantee '$path': $reason"
+  RET=1
+}
+
+make_dir() {
+  local path result
+  path="$1"
+  result="$(mkdir -p "$path" 2>&1)"
+  [[ $result == *'Permission denied' ]] && cannot "$path" "Permission denied "
+}
+
+make_file() {
+  local path result
+  path="$1"
+  result="$(mkdir -p "$(dirname "$path")" && touch "$path" 2>&1)"
+  [[ $result == *'Permission denied' ]] && cannot "$path" "Permission denied "
+}
+
+main() {
+  local dirty_path
+  for dirty_path in "$@"; do
+    local is_dir='false'
+    local is_rel='true'
+    [[ '/' == "${dirty_path:0-1}" ]] && is_dir='true'
+    [[ '/' == "${dirty_path:0:1}" ]] && is_rel='false'
+
+    [[ $is_rel == 'true' ]] && clean_path="./${dirty_path#\./}"
+    clean_path="${dirty_path%/}"
+
+    if [[ $is_dir == 'true' ]]; then
+      [[ -d $clean_path ]] && continue # already exists
+      [[ -e $clean_path ]] && cannot "$clean_path" "Exists-But-Not-Directory" && continue
+      make_dir "$clean_path" # doesn't exist, attempt to guarantee
+    else
+      [[ -f $clean_path ]] && continue # already exists
+      [[ -e $clean_path ]] && cannot "$clean_path" "Exists-But-Not-File" && continue
+      make_file "$clean_path" # doesn't exist, attempt to guarantee
+    fi
+  done
+}
+
+main "$@" >&2
+exit "$RET"

@@ -1,11 +1,4 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
-{
+_: {
   # Enable common container config files in /etc/containers
   programs = {
     _1password.enable = true;

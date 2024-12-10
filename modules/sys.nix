@@ -1,10 +1,4 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ inputs, lib, ... }:
 {
   time.timeZone = lib.mkDefault "America/Chicago";
   services.openssh = {

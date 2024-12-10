@@ -1,0 +1,7 @@
+#compdef _note note
+
+_note() {
+  _files -W "$HOME/notes"
+}
+
+_note

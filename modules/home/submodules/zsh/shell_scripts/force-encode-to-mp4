@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+set -uo pipefail
+IFS=$'\n\t'
+
+encode() {
+  local vid temp
+  vid="$1"
+  new_vid="$(echo "$vid" | sed -E 's/\.(mp4|m4v|webm|3gp|mov|mkv)$//g')_reenc.mp4"
+  temp="/tmp/temp-${new_vid//\//_}"
+
+  printf "%s -> %s\n" "$vid" "$(basename "$new_vid")"
+  # -b_ref_mode disables b frame support
+  # explanation from stackoverflow
+  # -rc constqp :
+  #   Keeps the quality constant. In your case, there should be no artifacts if the source has none.
+  # -qcmin and -qcmax :
+  #   Possibly redundant as there is a fixed qp defined and used.
+  # -preset p7 and -tune hq :
+  #   These are possibly the most important parameters, better quality at better bitrate.
+  # -rc-lookahead 4 -keyint_min 1 -qdiff 20 -qcomp 0.9 :
+  #   I dont mind KFs being close together if the encoder feels it should place
+  #   them so, this helps motion estimation vectors, 'resetting' if the frames
+  #   differ considerably at any point.
+  #   Lookahead 4 for rate change combined with -qdiff, -qcomp set to these
+  #   values gives a free hand to quickly go up and down bitrates as the frame
+  #   demands.
+  #   Since '-keyint_min 1' is set, I dont mind setting KF intervel to a max of 300.
+  # -b:v 0 :
+  #   Bframes are excluded, this is a personal choice and i think works better for archiving.
+  #   also the GTX 1650 Ti doesn't support them.
+  ffmpeg -y -hide_banner -loglevel error -stats \
+    -vsync 0 \
+    -hwaccel cuda \
+    -i "$vid" \
+    -movflags +faststart \
+    -c:v h264_nvenc -c:a copy \
+    -rc constqp -rc-lookahead 4 \
+    -qmin 17 -qmax 51 -qp 24 -qdiff 20 -qcomp 0.9 -subq 9 \
+    -preset p7 -tune hq -pix_fmt yuv420p -profile:v high \
+    -bf 0 \
+    -keyint_min 1 \
+    -me_range 36 \
+    -b:v 0 \
+    -g 300 \
+    "$temp" || {
+    echo "failed to encode '$vid'"
+    return
+  }
+
+  size_vid="$(wc -c <"$vid")"
+  size_temp="$(wc -c <"$temp")"
+
+  percent=$((100 - (100 * size_temp / size_vid)))
+  delta=$((size_vid - size_temp))
+  saved=$(echo "$delta" | numfmt --to=iec-i --suffix=B)
+  printf "filesize change of %02d%s, delta: %-6s\n" "$percent" "%" "$saved"
+
+  if ((size_vid < size_temp)); then
+    echo "new file size larger than original, not replacing, just renaming"
+    rm -f "$temp"        # clean up temp
+    mv "$vid" "$new_vid" # keep us from trying to re encode this one again
+  else
+    # guarantee that only one remains
+    {
+      mv "$temp" "$vid"
+      mv "$vid" "$new_vid"
+    } >/dev/null 2>&1
+  fi
+}
+
+main() {
+  local file
+  local not_first_file=""
+  for file in "$@"; do
+    # only linebreak after first file is complete
+    [[ -n $not_first_file ]] && echo
+
+    [[ $file == *_reenc.mp4 ]] && echo "skipping force-encoded file: '$file'" && continue
+
+    mime="$(file -i "$file" | cut -d':' -f2 | sed 's|/.*||g;s/\s*//g')"
+    [[ $mime != "video" ]] && echo "skipping non-video file: '$file'" && continue
+
+    # if we make it here, time to encode
+    encode "$file"
+
+    not_first_file='first file done!'
+  done
+}
+
+main "$@"

@@ -1,11 +1,4 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
-{
+_: {
   # Enable common container config files in /etc/containers
   virtualisation.containers.enable = true;
   virtualisation = {

@@ -179,7 +179,7 @@ RPROMPT='$(git_prompt_string)'
   # To enable default icons for all segments, don't set POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION
   # or set it to '${P9K_VISUAL_IDENTIFIER}'.
   #
-  # When a segment is displaying its default icon, in addition to being able to chage it with
+  # When a segment is displaying its default icon, in addition to being able to change it with
   # VISUAL_IDENTIFIER_EXPANSION as described above, you can also change it with an override
   # such as POWERLEVEL9K_LOCK_ICON='⭐'. This will change the icon in every segment that uses
   # LOCK_ICON as default icon.

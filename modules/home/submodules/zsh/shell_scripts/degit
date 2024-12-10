@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# cleanup() {
+# 	:
+# }
+# trap "cleanup" EXIT
+#
+# help() {
+# 	"usage: TODO"
+# }
+#
+# clone() {
+#
+# 	local last_arg="${@: -1}"
+#   local repo_location
+#
+#   echo "$last_arg"
+# 	if [[ $last_arg == git@*  ||  $last_arg == https://* ]]; then
+#     repo_location="$PWD/$(basename "$last_arg")"
+# 	else
+#     repo_location="$last_arg"
+# 	fi
+#
+# 	git clone "$@"
+#
+#   cd $repo_location || {echo "could not enter repo at $repo_location" ; exit ;}
+#
+#   $0 locally
+#
+# }
+
+locally() {
+  local repo_root toggle_script
+  repo_root="$(git rev-parse --show-toplevel)"
+  toggle_script="$repo_root/.toggle-repo.sh"
+
+  mv "$repo_root/.git" "$repo_root/.disabled-git"
+  mv "$repo_root/.gitignore" "$repo_root/.disabled-gitignore"
+
+  cat <<EOF >"$toggle_script"
+#!/usr/bin/env bash
+repo_root="\$(dirname \$0)"
+enable-repo() {
+  mv "\$repo_root/.disabled-gitignore" "\$repo_root/.gitignore"
+  mv "\$repo_root/.disabled-git" "\$repo_root/.git"
+}
+disable-repo() {
+  mv "\$repo_root/.gitignore" "\$repo_root/.disabled-gitignore"
+  mv "\$repo_root/.git" "\$repo_root/.disabled-git"
+}
+
+if [[ -f "\$repo_root/.disabled-gitignore" ]] && [[ -f "\$repo_root/.disabled-git" ]]; then
+  enable-repo
+elif [[ -f "\$repo_root/.gitignore" ]] && [[ -f "\$repo_root/.git" ]]; then
+  disable-repo
+else
+  echo "could not safely toggle repo state, make sure .gitignore and .git are either both enabled or both disabled."
+fi
+EOF
+  chmod +x "$toggle_script"
+
+}
+
+# # main "$@"
+# if has-no-args; then
+# 	help
+# else
+"$@"
+# fi

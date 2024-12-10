@@ -411,6 +411,7 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "programs-db": "programs-db",
+        "treefmt-nix": "treefmt-nix_2",
         "unstable": [
           "nixpkgs"
         ]
@@ -459,6 +460,26 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "rev": "6209c381904cab55796c5d7350e89681d3b2a8ef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "treefmt-nix_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1733761991,
+        "narHash": "sha256-s4DalCDepD22jtKL5Nw6f4LP5UwoMcPzPZgHWjAfqbQ=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "0ce9d149d99bc383d1f2d85f31f6ebd146e46085",
         "type": "github"
       },
       "original": {

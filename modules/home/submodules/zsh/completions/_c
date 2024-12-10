@@ -1,4 +1,8 @@
+#compdef _c c
+
 _c() {
+  local nix_base="$HOME/.config/nix"
+  local home_base="${nix_base}/modules/home"
   local -a commands
 
   commands=(
@@ -8,12 +12,15 @@ _c() {
     "g:configure git"
     "vim:configure neovim"
     "v:configure neovim"
-    "hammerspoon:configure hammerspoon"
-    "hs:configure hammerspoon"
-    "kitty:configure kitty"
-    "k:configure kitty"
-    "skhd:configure skhd"
-    "yabai:configure yabai"
+    "nix:configure nix"
+    "n:configure nix"
+    "home_manager:configure home_manager"
+    "hm:configure home_manager"
+    "h:configure home_manager"
+    "scripts: edit scripts"
+    "s: edit scripts"
+    "completions: edit completions"
+    "c: edit completions"
   )
 
   local curcontext="$curcontext" state line
@@ -29,32 +36,26 @@ _c() {
       ;;
     files)
       case $line[1] in
-        i | i3)
-          _path_files -W "$HOME/.config/regolith/i3/"
+        n | nix)
+          _path_files -W "${nix_base}"
           ;;
-        p | polybar)
-          _path_files -W "$HOME/.config/polybar/"
+        h | hm | home_manager)
+          _path_files -W "${home_base}"
           ;;
         z | zsh)
-          _path_files -W "$HOME/.config/zsh/zshrc.d"
+          _path_files -W "${home_base}/submodules/zsh"
           ;;
         g | git)
-          _path_files -W "$HOME/.config/git/"
+          _path_files -W "${home_base}/submodules/git"
           ;;
         v | vim)
-          _path_files -W "$HOME/.config/nvim/lua"
+          _path_files -W "${home_base}/submodules/vim"
           ;;
-        k | kitty)
-          _path_files -W "$HOME/.config/kitty/"
+        s | scripts)
+          _path_files -W "${home_base}/submodules/zsh/scripts"
           ;;
-        h | hammerspoon)
-          _path_files -W "$HOME/.hammerspoon/"
-          ;;
-        s | skhd)
-          _path_files -W "$HOME/.config/skhd/"
-          ;;
-        y | yabai)
-          _path_files -W "$HOME/.config/yabai/"
+        c | completions)
+          _path_files -W "${home_base}/submodules/zsh/completions"
           ;;
         *)
           _message "command not supported $@"
@@ -65,3 +66,4 @@ _c() {
   esac
   return 0
 }
+_c

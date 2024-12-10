@@ -1,10 +1,4 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ inputs, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
@@ -57,5 +51,6 @@
     wget
     xclip
     zip
+
   ];
 }

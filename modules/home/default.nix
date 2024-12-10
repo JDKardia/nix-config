@@ -7,6 +7,7 @@
       lib,
       pkgs,
       my,
+      config,
       ...
     }:
     let
@@ -19,6 +20,9 @@
       home = {
         username = "kardia";
         homeDirectory = "/home/kardia";
+        sessionVariables = {
+          NIX_CONFIG = "${config.xdg.configHome}/nix";
+        };
         packages =
           with pkgs;
           [

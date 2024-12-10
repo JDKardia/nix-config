@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-IFS=$'\n\t'
-
-if [ "$#" -gt 1 ]; then
-	echo "What are you doing? weather takes none or one params."
-fi
-
-curl "https://wttr.in/${1:-""}"

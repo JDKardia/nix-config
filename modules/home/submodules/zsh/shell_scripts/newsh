@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+__FILENAME=${1:-"scratch.sh"}
+
+cat <<EOM >>"$__FILENAME"
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+main() {
+  "\$@"
+}
+
+main "\$@"
+
+EOM
+chmod +x "$__FILENAME"

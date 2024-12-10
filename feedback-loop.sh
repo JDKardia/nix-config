@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cmd="echo fix and check files;
-statix check;
+cmd="echo format, fix, and check files;
+nix fmt
 echo ;
 sleep 0.5;
-echo autoformatting;
-nixfmt --strict .;
 echo; 
 echo build:;
 nixos-rebuild build --show-trace --flake .#naga;

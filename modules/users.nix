@@ -1,10 +1,4 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
