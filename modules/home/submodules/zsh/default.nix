@@ -23,7 +23,10 @@ in
 {
   home = {
     packages = plugins;
-    sessionPath = [ "\$HOME/.config/nix/modules/home/submodules/zsh/scripts" ];
+    sessionPath = [
+      "\$HOME/.config/nix/modules/home/submodules/zsh/python_scripts"
+      "\$HOME/.config/nix/modules/home/submodules/zsh/shell_scripts"
+    ];
     # #TODO; make this work
     # sessionVariables={
     #

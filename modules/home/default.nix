@@ -21,7 +21,7 @@
         username = "kardia";
         homeDirectory = "/home/kardia";
         sessionVariables = {
-          NIX_CONFIG = "${config.xdg.configHome}/nix";
+          SYSTEM_FLAKE = "${config.xdg.configHome}/nix";
         };
         packages =
           with pkgs;
