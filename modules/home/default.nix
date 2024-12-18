@@ -45,6 +45,10 @@
             vlc
             vscode
             yt-dlp
+            yubikey-manager
+            yubikey-manager-qt
+            yubikey-personalization
+            yubikey-personalization-gui
             zellij
 
             nerd-fonts._0xproto

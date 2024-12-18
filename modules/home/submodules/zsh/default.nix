@@ -8,6 +8,7 @@ let
     zsh-you-should-use
     zsh-nix-shell
     zsh-fzf-history-search
+    zsh-history-substring-search
     jq-zsh-plugin
     zsh-defer
   ];
