@@ -134,8 +134,9 @@ in
       initExtra = ''
         # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
         source "${homeDir}/${config.xdg.configFile."zsh/p10k.zsh".target}"
-        bindkey '^[[A' history-substring-search-up # or '\eOA'
-        bindkey '^[[B' history-substring-search-down # or '\eOB'
+        # up and down keys are already bound 
+        bindkey -M vicmd 'k' history-substring-search-up
+        bindkey -M vicmd 'j' history-substring-search-down
         HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
       '';
 

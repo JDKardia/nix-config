@@ -36,6 +36,7 @@
             gimp
             gnomeExtensions.appindicator
             mpv
+            obsidian
             mpvScripts.mpv-webm
             mpvScripts.thumbfast
             nil
