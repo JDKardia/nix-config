@@ -22,6 +22,7 @@
     osquery
     pciutils
     sysstat
+    file
 
     # general tools/deps
     ffmpeg

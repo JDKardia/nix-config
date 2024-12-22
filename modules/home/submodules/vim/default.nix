@@ -17,8 +17,27 @@
       blink-cmp = {
         enable = true;
         settings = {
-          keymap.preset = "super-tab";
-          windows.documentation.auto_show = true;
+          keymap = {
+            preset = "enter";
+            "<Tab>" = [
+              "select_next"
+              "snippet_forward"
+              "fallback"
+            ];
+            "<S-Tab>" = [
+              "select_prev"
+              "snippet_backward"
+              "fallback"
+            ];
+          };
+          windows = {
+            autocomplete.selection = "auto_insert";
+            ghost_text.enable = true;
+            documentation = {
+              auto_show = true;
+              auto_show_delay_ms = 0;
+            };
+          };
         };
       };
       treesitter.enable = true;
@@ -33,6 +52,7 @@
       nix.enable = true;
       gitsigns.enable = true;
       rainbow-delimiters.enable = true;
+      nvim-surround.enable = true;
     };
 
     opts = {
