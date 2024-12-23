@@ -52,6 +52,9 @@
     wget
     xclip
     zip
+    nordvpn
+    wireguard-tools
+    wireguard-ui
 
   ];
 }
