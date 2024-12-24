@@ -54,6 +54,7 @@
     zip
     wireguard-tools
     wireguard-ui
+    transcrypt
 
   ];
 }

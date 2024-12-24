@@ -7,6 +7,10 @@
     isLinux = true;
     # system = "x86_64-linux";
     syncthing.id = "SDYW25Q-XXVPJEI-4HHPGEQ-KDYRWLC-WI6BCHB-2WH2SBQ-HU4HGKH-5FZZ6QM";
+    wireguard = {
+      ipv4 = "10.10.1.1";
+      ipv6 = "fd00::1:1";
+    };
   };
 
   hardware-config =
