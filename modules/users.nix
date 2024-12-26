@@ -19,4 +19,13 @@
       ];
     };
   };
+  systemd.extraConfig = "DefaultLimitNOFILE=524288";
+  security.pam.loginLimits = [
+    {
+      domain = "kardia";
+      type = "hard";
+      item = "nofile";
+      value = "524288";
+    }
+  ];
 }
