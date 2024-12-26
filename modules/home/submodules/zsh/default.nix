@@ -18,7 +18,8 @@ let
     ${
       # null keys are not set, allowing conditional tweaks
       if p.pname == "powerlevel10k" then "file" else null
-    } = "powerlevel10k.zsh-theme";
+    } =
+      "powerlevel10k.zsh-theme";
   };
 in
 {
