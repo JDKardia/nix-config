@@ -55,6 +55,7 @@
     wireguard-tools
     wireguard-ui
     transcrypt
+    python312
 
   ];
 }
