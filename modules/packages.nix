@@ -28,6 +28,8 @@
     ffmpeg
     jdk
     pipewire
+    jack2
+    libjack2
     pavucontrol
 
     # nix related
@@ -59,5 +61,29 @@
     python312
 
   ];
-  services.pipewire.jack.enable = true;
+
+  # enable jack2
+  services.jack = {
+    jackd.enable = true;
+    # device depends on your audiocard (cat /proc/asound/cards)
+    jackd.extraOptions = [
+      "-dalsa"
+      "--device"
+      "hw:1"
+      "--period"
+      "128"
+      "--nperiods"
+      "2"
+      "--rate"
+      "48000"
+    ];
+    alsa.enable = false;
+    loopback = {
+      enable = true;
+      dmixConfig = ''
+        period_size 2048
+      '';
+    };
+  };
+
 }
