@@ -28,6 +28,7 @@
     ffmpeg
     jdk
     pipewire
+    pavucontrol
 
     # nix related
     nixfmt-rfc-style
@@ -58,4 +59,5 @@
     python312
 
   ];
+  services.pipewire.jack.enable = true;
 }
