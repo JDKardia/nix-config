@@ -59,6 +59,8 @@
     wireguard-ui
     transcrypt
     python312
+    rmlint
+    czkawka-full
 
   ];
 
