@@ -24,7 +24,7 @@
     sysstat
     file
 
-    # general tools/deps
+    # general deps
     ffmpeg
     jdk
     pipewire
@@ -41,6 +41,7 @@
     nix-diff
 
     # general tools
+    gparted
     entr
     fd
     hyperfine
