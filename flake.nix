@@ -27,6 +27,9 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    twdesktop.url = "github:TiddlyWiki/TiddlyDesktop";
+    twdesktop.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs =

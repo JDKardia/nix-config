@@ -412,6 +412,7 @@
         "nixvim": "nixvim",
         "programs-db": "programs-db",
         "treefmt-nix": "treefmt-nix_2",
+        "twdesktop": "twdesktop",
         "unstable": [
           "nixpkgs"
         ]
@@ -485,6 +486,26 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "twdesktop": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734892891,
+        "narHash": "sha256-WqHQ+PFlLYqjbUFkjO8NBmkHS+SQo02lFA58IlSfiDo=",
+        "owner": "TiddlyWiki",
+        "repo": "TiddlyDesktop",
+        "rev": "60f44414a49b9c0807a14403949be6ebaa53424f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TiddlyWiki",
+        "repo": "TiddlyDesktop",
         "type": "github"
       }
     }
