@@ -45,7 +45,6 @@
             slack
             vlc
             vscode
-            twdesktop
             yt-dlp
             yubikey-manager
             yubikey-manager-qt
