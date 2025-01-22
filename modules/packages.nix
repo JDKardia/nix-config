@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
-    inputs.twdesktop.tiddlydesktop
+    # inputs.twdesktop.tiddlydesktop
 
     # virtualisation
     dive # look into docker image layers
