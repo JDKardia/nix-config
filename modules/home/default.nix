@@ -28,6 +28,7 @@
           [
             # keyd
             #contour
+            zoom-us
             alacritty
             audacity
             chromium
