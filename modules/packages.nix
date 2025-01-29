@@ -63,6 +63,8 @@
     python312
     rmlint
     czkawka-full
+    clojure
+    clojure-lsp
 
   ];
 
