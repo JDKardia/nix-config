@@ -65,6 +65,7 @@
     czkawka-full
     clojure
     clojure-lsp
+    leiningen
 
   ];
 
