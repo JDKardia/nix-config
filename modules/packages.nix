@@ -24,6 +24,8 @@
     pciutils
     sysstat
     file
+    7
+    z
 
     # general deps
     ffmpeg
@@ -66,6 +68,9 @@
     clojure
     clojure-lsp
     leiningen
+    clj-kondo
+    joker
+    babashka
 
   ];
 

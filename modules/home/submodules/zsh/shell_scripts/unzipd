@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 IFS=$'\n\t'
+shopt -s expand_aliases
 
 alias wait-for-job-slot='while [[ $(jobs -p | wc -w) -ge $(nproc) ]]; do wait -n; done;'
 

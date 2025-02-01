@@ -14,6 +14,17 @@
       settings.contrast = "hard";
     };
     plugins = {
+      conjure.enable = true;
+      lint = {
+        enable = true;
+        lintersByFt = {
+          clojure = [
+            "clj-kondo"
+            "joker"
+          ];
+
+        };
+      };
       blink-cmp = {
         enable = true;
         settings = {
@@ -44,7 +55,7 @@
       treesitter-textobjects.enable = true;
       treesitter-context.enable = true;
       treesitter-refactor.enable = true;
-      nvim-colorizer.enable = true;
+      colorizer.enable = true;
       illuminate.enable = true;
       fidget.enable = true;
 
