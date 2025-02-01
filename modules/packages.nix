@@ -24,8 +24,7 @@
     pciutils
     sysstat
     file
-    7
-    z
+    p7zip
 
     # general deps
     ffmpeg
