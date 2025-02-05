@@ -5,18 +5,18 @@ shopt -s expand_aliases
 
 alias wait-for-job-slot='while [[ $(jobs -p | wc -w) -ge $(nproc) ]]; do wait -n; done;'
 
-unzip-to-eponymous-directory() {
+unwrap-to-eponymous-directory() {
   zipfile="$1"
-  zipdir=$(basename "$zipfile" '.zip')
-  7z x "$zipfile" -o"$zipdir"
+  zipdir=$(basename "${zipfile%.*}")
+  7z x "$zipfile" -o"$zipdir" -y
 }
 
 main() {
   local file
   for file in "$@"; do
-    [[ $file == *".zip" ]] || continue
+    [[ $file =~ \.(zip|rar|7z)$ ]] || continue
     wait-for-job-slot
-    unzip-to-eponymous-directory "$file" &
+    unwrap-to-eponymous-directory "$file" &
   done
   wait
 }

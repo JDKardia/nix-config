@@ -33,6 +33,8 @@
     jack2
     libjack2
     pavucontrol
+    wineWowPackages.stable
+    winetricks
 
     # nix related
     nixfmt-rfc-style
