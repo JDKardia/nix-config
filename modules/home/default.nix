@@ -53,6 +53,7 @@
             yubikey-personalization-gui
             zellij
             lutris
+            syncthingtray
           ]
           ++ (with pkgs.nerd-fonts; [
             _0xproto
