@@ -42,7 +42,7 @@
             ];
           };
           completion = {
-            autocomplete.selection = "auto_insert";
+            list.selection.auto_insert = true;
             ghost_text.enable = true;
             documentation = {
               auto_show = true;
