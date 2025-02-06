@@ -74,6 +74,7 @@
     joker
     babashka
 
+    ghostty
   ];
 
   # enable jack2
