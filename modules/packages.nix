@@ -35,6 +35,7 @@
     pavucontrol
     wineWowPackages.stable
     winetricks
+    ristretto
 
     # nix related
     nixfmt-rfc-style
