@@ -11,6 +11,7 @@ let
     zsh-history-substring-search
     jq-zsh-plugin
     zsh-defer
+    zsh-vi-mode
   ];
   pkg_to_zsh_plugin = p: {
     name = p.pname;
@@ -138,6 +139,11 @@ in
         # up and down keys are already bound 
         bindkey -M vicmd 'k' history-substring-search-up
         bindkey -M vicmd 'j' history-substring-search-down
+        bindkey "$terminfo[kcuu1]" history-substring-search-up
+        bindkey "$terminfo[kcud1]" history-substring-search-down
+        bindkey '^[[A' history-substring-search-up
+        bindkey '^[[B' history-substring-search-down
+
         HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
       '';
 
