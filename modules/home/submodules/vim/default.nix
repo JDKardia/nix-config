@@ -41,7 +41,7 @@
               "fallback"
             ];
           };
-          windows = {
+          completion = {
             autocomplete.selection = "auto_insert";
             ghost_text.enable = true;
             documentation = {
