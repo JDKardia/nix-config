@@ -41,6 +41,8 @@
 
       # Use the systemd-boot EFI boot loader.
       boot = {
+        kernelPackages = pkgs.linuxPackages_6_1;
+
         loader.systemd-boot.enable = true;
         loader.efi.canTouchEfiVariables = true;
         initrd.availableKernelModules = [
