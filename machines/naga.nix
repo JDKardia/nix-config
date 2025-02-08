@@ -61,6 +61,7 @@
       };
 
       hardware = {
+        enableAllFirmware = true;
         trackpoint.device = "TPPS/2 Elan TrackPoint";
 
         graphics.enable = true;
