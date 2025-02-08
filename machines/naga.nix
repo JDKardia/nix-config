@@ -53,7 +53,10 @@
           "sdhci_pci"
         ];
         initrd.kernelModules = [ "dm-snapshot" ];
-        kernelModules = [ "kvm-intel" ];
+        kernelModules = [
+          "kvm-intel"
+          "snd_hda_intel"
+        ];
         extraModulePackages = [ ];
       };
 
