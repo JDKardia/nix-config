@@ -2,8 +2,8 @@
   description = "kardia's nix config";
   inputs = {
     # Nixpkgs: nixos-unstable head as of 2024-11-13
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     unstable.follows = "nixpkgs";
 
     lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module?ref=main";
