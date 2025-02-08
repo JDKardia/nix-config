@@ -16,6 +16,7 @@
   hardware-config =
     {
       inputs,
+      pkgs,
       lib,
       config,
       modulesPath,
