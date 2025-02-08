@@ -43,8 +43,8 @@
           };
           completion = {
             list.selection = {
+              preselect = false;
               auto_insert = true;
-              auto_select = true;
             };
             ghost_text.enabled = true;
             documentation = {

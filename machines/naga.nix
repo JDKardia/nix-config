@@ -16,7 +16,6 @@
   hardware-config =
     {
       inputs,
-      pkgs,
       lib,
       config,
       modulesPath,
@@ -42,7 +41,7 @@
 
       # Use the systemd-boot EFI boot loader.
       boot = {
-        kernelPackages = pkgs.linuxPackages_6_1;
+        boot.kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
 
         loader.systemd-boot.enable = true;
         loader.efi.canTouchEfiVariables = true;
