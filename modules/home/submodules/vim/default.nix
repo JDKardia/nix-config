@@ -42,7 +42,10 @@
             ];
           };
           completion = {
-            list.selection.auto_insert = true;
+            list.selection = {
+              auto_insert = true;
+              auto_select = true;
+            };
             ghost_text.enabled = true;
             documentation = {
               auto_show = true;
