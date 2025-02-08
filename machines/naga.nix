@@ -41,7 +41,7 @@
 
       # Use the systemd-boot EFI boot loader.
       boot = {
-        boot.kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
+        kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
 
         loader.systemd-boot.enable = true;
         loader.efi.canTouchEfiVariables = true;
