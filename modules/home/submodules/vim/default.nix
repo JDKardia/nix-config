@@ -13,25 +13,37 @@
         key = "<leader>p";
         action = ''"+p'';
         options.remap = false;
-        mode = "nv";
+        mode = [
+          "n"
+          "v"
+        ];
       }
       {
         key = "<leader>y";
         action = ''"+y'';
         options.remap = false;
-        mode = "nv";
+        mode = [
+          "n"
+          "v"
+        ];
       }
       {
         key = "<leader>y";
         action = ''"*y'';
         options.remap = false;
-        mode = "nv";
+        mode = [
+          "n"
+          "v"
+        ];
       }
       {
         key = "<leader>P";
         action = ''"*p'';
         options.remap = false;
-        mode = "nv";
+        mode = [
+          "n"
+          "v"
+        ];
       }
     ];
 
