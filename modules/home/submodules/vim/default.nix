@@ -52,6 +52,7 @@
       settings.contrast = "hard";
     };
     plugins = {
+      plenary.enable = true;
       which-key = {
         enable = true;
         settings = {
