@@ -24,7 +24,21 @@
       settings.contrast = "hard";
     };
     plugins = {
-      which-key.enable = true;
+      which-key = {
+        enable = true;
+        settings = {
+          triggers = [
+            {
+              __unkeyed-1 = "<auto>";
+              mode = "nixsoc";
+            }
+            {
+              __unkeyed-1 = "<leader>";
+              mode = "nv";
+            }
+          ];
+        };
+      };
       nvim-autopairs.enable = true;
       conjure.enable = true;
       treesitter.enable = true;
