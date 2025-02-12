@@ -28,7 +28,7 @@
         ];
       }
       {
-        key = "<leader>y";
+        key = "<leader>Y";
         action = ''"*y'';
         options.remap = false;
         mode = [
