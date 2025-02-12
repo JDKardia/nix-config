@@ -24,8 +24,7 @@
       settings.contrast = "hard";
     };
     plugins = {
-      nvim-autopairs = true;
-
+      nvim-autopairs.enable = true;
       conjure.enable = true;
       treesitter.enable = true;
       treesitter-textobjects.enable = true;
