@@ -9,14 +9,14 @@
     vimAlias = true;
     viAlias = true;
     keymaps = [
-      # {
-      #   key = "<Space>";
-      #   action = "<NOP>";
-      #   options = {
-      #     noremap = true;
-      #   };
-      #
-      # }
+      {
+        key = "<Space>";
+        action = "<NOP>";
+        options = {
+          silent = true;
+          remap = false;
+        };
+      }
     ];
 
     colorschemes.gruvbox = {
@@ -116,8 +116,8 @@
       set whichwrap+=<,>,h,l,[,] "allow cursor to wrap lines
     '';
     globals = {
-      mapleader = " ";
-      maplocalleader = " ";
+      mapleader = "\\<Space>";
+      maplocalleader = "\\<Space>";
       do_filetype_lua = true; # -- use filetype.lua
       did_load_filetypes = false; # -- use filetype.lua
     };
