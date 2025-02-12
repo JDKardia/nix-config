@@ -15,6 +15,19 @@
     };
     plugins = {
       conjure.enable = true;
+      treesitter.enable = true;
+      treesitter-textobjects.enable = true;
+      treesitter-context.enable = true;
+      treesitter-refactor.enable = true;
+      colorizer.enable = true;
+      illuminate.enable = true;
+      fidget.enable = true;
+
+      lualine.enable = true;
+      nix.enable = true;
+      gitsigns.enable = true;
+      rainbow-delimiters.enable = true;
+      nvim-surround.enable = true;
       lint = {
         enable = true;
         lintersByFt = {
@@ -54,19 +67,6 @@
           };
         };
       };
-      treesitter.enable = true;
-      treesitter-textobjects.enable = true;
-      treesitter-context.enable = true;
-      treesitter-refactor.enable = true;
-      colorizer.enable = true;
-      illuminate.enable = true;
-      fidget.enable = true;
-
-      lualine.enable = true;
-      nix.enable = true;
-      gitsigns.enable = true;
-      rainbow-delimiters.enable = true;
-      nvim-surround.enable = true;
     };
 
     opts = {
@@ -105,6 +105,7 @@
     '';
     globals = {
       mapleader = " ";
+      localleader = " ";
       do_filetype_lua = true; # -- use filetype.lua
       did_load_filetypes = false; # -- use filetype.lua
     };
