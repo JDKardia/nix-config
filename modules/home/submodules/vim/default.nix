@@ -24,6 +24,7 @@
       settings.contrast = "hard";
     };
     plugins = {
+      which-key.enable = true;
       nvim-autopairs.enable = true;
       conjure.enable = true;
       treesitter.enable = true;
