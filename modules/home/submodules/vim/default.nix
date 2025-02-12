@@ -69,8 +69,91 @@
               mode = "nv";
             }
           ];
+
+          # Customize section names (prefixed mappings)
+          spec = [
+            {
+              __unkeyed-1 = "<leader>b";
+              icon = icons.Tab;
+              group = "Buffers";
+            }
+            {
+              __unkeyed-1 = "<leader>bs";
+              icon = icons.Sort;
+              group = "Sort Buffers";
+            }
+            {
+              __unkeyed-1 = "<leader>d";
+              icon = icons.Debugger;
+              group = "Debugger";
+            }
+            {
+              __unkeyed-1 = "<leader>f";
+              icon = icons.Search;
+              group = "Find";
+            }
+            {
+              __unkeyed-1 = "<leader>g";
+              icon = icons.ArrowRight;
+              group = "Go";
+            }
+            {
+              __unkeyed-1 = "<leader>l";
+              icon = icons.ActiveLSP;
+              group = "Language Tools";
+            }
+            {
+              __unkeyed-1 = "<leader>s";
+              icon = icons.Session;
+              group = "Session";
+            }
+            {
+              __unkeyed-1 = "<leader>t";
+              icon = icons.Terminal;
+              group = "Terminal";
+            }
+            {
+              __unkeyed-1 = "<leader>u";
+              icon = icons.Window;
+              group = "UI/UX";
+            }
+            {
+              __unkeyed-1 = "<localleader>c";
+              group = "Connect";
+            }
+            {
+              __unkeyed-1 = "<localleader>e";
+              group = "Evaluate";
+            }
+            {
+              __unkeyed-1 = "<localleader>g";
+              group = "Go";
+            }
+            {
+              __unkeyed-1 = "<localleader>l";
+              group = "Log";
+            }
+            {
+              __unkeyed-1 = "<localleader>r";
+              group = "Refresh";
+            }
+            {
+              __unkeyed-1 = "<localleader>s";
+              group = "Session";
+            }
+            {
+              __unkeyed-1 = "<localleader>t";
+              group = "Test";
+            }
+            {
+              __unkeyed-1 = "<localleader>v";
+              group = "Values";
+            }
+          ];
         };
       };
+
+      web-devicons.enable = true;
       nvim-autopairs.enable = true;
       conjure.enable = true;
       treesitter.enable = true;
