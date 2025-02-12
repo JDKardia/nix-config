@@ -9,14 +9,30 @@
     vimAlias = true;
     viAlias = true;
     keymaps = [
-      # {
-      #   key = "<Space>";
-      #   action = "<NOP>";
-      #   options = {
-      #     silent = true;
-      #     remap = false;
-      #   };
-      # }
+      {
+        key = "<leader>p";
+        action = ''"+p'';
+        options.remap = false;
+        mode = "nv";
+      }
+      {
+        key = "<leader>y";
+        action = ''"+y'';
+        options.remap = false;
+        mode = "nv";
+      }
+      {
+        key = "<leader>y";
+        action = ''"*y'';
+        options.remap = false;
+        mode = "nv";
+      }
+      {
+        key = "<leader>P";
+        action = ''"*p'';
+        options.remap = false;
+        mode = "nv";
+      }
     ];
 
     colorschemes.gruvbox = {
