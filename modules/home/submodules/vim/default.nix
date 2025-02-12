@@ -8,12 +8,24 @@
     vimdiffAlias = true;
     vimAlias = true;
     viAlias = true;
+    keymaps = [
+      {
+        key = "<Space>";
+        action = "<NOP>";
+        options = {
+          noremap = true;
+        };
+
+      }
+    ];
 
     colorschemes.gruvbox = {
       enable = true;
       settings.contrast = "hard";
     };
     plugins = {
+      nvim-autopairs = true;
+
       conjure.enable = true;
       treesitter.enable = true;
       treesitter-textobjects.enable = true;
