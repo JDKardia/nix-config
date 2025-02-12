@@ -65,6 +65,10 @@
               __unkeyed-1 = "<leader>";
               mode = "nv";
             }
+            {
+              __unkeyed-1 = "<localleader>";
+              mode = "nv";
+            }
           ];
         };
       };
@@ -160,7 +164,7 @@
     '';
     globals = {
       mapleader = " ";
-      maplocalleader = " ";
+      maplocalleader = ",";
       do_filetype_lua = true; # -- use filetype.lua
       did_load_filetypes = false; # -- use filetype.lua
     };
