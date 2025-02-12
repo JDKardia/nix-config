@@ -9,14 +9,14 @@
     vimAlias = true;
     viAlias = true;
     keymaps = [
-      {
-        key = "<Space>";
-        action = "<NOP>";
-        options = {
-          silent = true;
-          remap = false;
-        };
-      }
+      # {
+      #   key = "<Space>";
+      #   action = "<NOP>";
+      #   options = {
+      #     silent = true;
+      #     remap = false;
+      #   };
+      # }
     ];
 
     colorschemes.gruvbox = {
