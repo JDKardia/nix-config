@@ -105,7 +105,7 @@
     '';
     globals = {
       mapleader = " ";
-      localleader = " ";
+      maplocalleader = " ";
       do_filetype_lua = true; # -- use filetype.lua
       did_load_filetypes = false; # -- use filetype.lua
     };
