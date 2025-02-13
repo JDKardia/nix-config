@@ -144,7 +144,7 @@
         };
       };
 
-      nvim-autopairs.enable = true;
+      parinfer-rust.enable = true;
       conjure.enable = true;
       treesitter.enable = true;
       treesitter-textobjects.enable = true;

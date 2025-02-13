@@ -42,6 +42,7 @@
       # Use the systemd-boot EFI boot loader.
       boot = {
         kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
+        supportedFilesystems = [ "ntfs" ];
 
         loader.systemd-boot.enable = true;
         loader.efi.canTouchEfiVariables = true;
