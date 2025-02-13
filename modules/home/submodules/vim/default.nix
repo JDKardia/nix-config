@@ -52,6 +52,7 @@
       settings.contrast = "hard";
     };
     plugins = {
+      nvim-autopairs.enable = false;
       which-key = {
         enable = true;
         settings = {
