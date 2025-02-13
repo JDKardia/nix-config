@@ -52,7 +52,7 @@
       settings.contrast = "hard";
     };
     plugins = {
-      nvim-autopairs.enable = false;
+      web-devicons.enable = true;
       which-key = {
         enable = true;
         settings = {
