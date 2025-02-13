@@ -160,6 +160,7 @@
       gitsigns.enable = true;
       rainbow-delimiters.enable = true;
       nvim-surround.enable = true;
+      trouble.enable = true;
       lint = {
         enable = true;
         lintersByFt = {
@@ -170,6 +171,7 @@
 
         };
       };
+
       blink-cmp = {
         enable = true;
         settings = {
