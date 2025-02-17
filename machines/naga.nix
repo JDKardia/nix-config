@@ -56,6 +56,7 @@
         supportedFilesystems = [ "ntfs" ];
         # initrd.luks.devices."luks-89bdf912-9d69-4357-b5c7-7f898375178d".device =
         #   "/dev/disk/by-uuid/89bdf912-9d69-4357-b5c7-7f898375178d";
+        loader.systemd-boot.configurationLimit = 100;
 
         loader.systemd-boot.enable = true;
         loader.efi.canTouchEfiVariables = true;
