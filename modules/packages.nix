@@ -79,7 +79,6 @@
 
     ghostty
 
-    (callPackage ../derivations/nordvpn { })
   ];
 
   # enable jack2

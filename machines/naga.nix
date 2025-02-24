@@ -30,6 +30,11 @@
         # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
         useDHCP = lib.mkDefault true;
         interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+        wireguard.enable = true;
+        # Open ports in the firewall.
+        firewall.checkReversePath = false;
+        firewall.allowedTCPPorts = [ 443 ];
+        firewall.allowedUDPPorts = [ 1194 ];
       };
       imports = [
         (modulesPath + "/installer/scan/not-detected.nix")

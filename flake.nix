@@ -28,9 +28,9 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    twdesktop.url = "github:TiddlyWiki/TiddlyDesktop";
-    twdesktop.inputs.nixpkgs.follows = "nixpkgs";
-
+    # Nix User Repository
+    nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -47,7 +47,11 @@
       my = import ./lib nixpkgs.lib machines;
       machines = my.lib.exprsIn ./machines;
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ (_self: _super: { nordvpn = import ./pkgs/nordvpn { }; }) ];
+      };
       treefmt = treefmt-nix.lib.evalModule pkgs (_pkgs: {
         projectRootFile = "flake.nix";
         programs = {
@@ -81,6 +85,7 @@
     in
     {
       formatter.${system} = treefmt.config.build.wrapper;
+      packages = pkgs;
 
       nixosConfigurations = nixpkgs.lib.mapAttrs (
         host: hardware-config:
