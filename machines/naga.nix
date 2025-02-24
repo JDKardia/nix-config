@@ -44,18 +44,11 @@
         fileSystems = [ "/" ];
       };
       services.hardware.bolt.enable = true;
-      # swapDevices = [
-      #   {
-      #     device = "/dev/disk/by-uuid/89bdf912-9d69-4357-b5c7-7f898375178d";
-      #   }
-      # ];
 
       # Use the systemd-boot EFI boot loader.
       boot = {
         kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
         supportedFilesystems = [ "ntfs" ];
-        # initrd.luks.devices."luks-89bdf912-9d69-4357-b5c7-7f898375178d".device =
-        #   "/dev/disk/by-uuid/89bdf912-9d69-4357-b5c7-7f898375178d";
         loader.systemd-boot.configurationLimit = 100;
 
         loader.systemd-boot.enable = true;

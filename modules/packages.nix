@@ -4,6 +4,9 @@
     inputs.home-manager.packages.${pkgs.system}.default
     # inputs.twdesktop.tiddlydesktop
 
+    atkinson-hyperlegible
+    atkinson-monolegible
+
     # virtualisation
     dive # look into docker image layers
     podman-tui # status of containers in the terminal
@@ -75,6 +78,8 @@
     babashka
 
     ghostty
+
+    (callPackage ../derivations/nordvpn { })
   ];
 
   # enable jack2
