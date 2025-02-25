@@ -76,6 +76,7 @@
     clj-kondo
     joker
     babashka
+    handbrake
 
     ghostty
 
