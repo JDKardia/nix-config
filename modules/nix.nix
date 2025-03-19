@@ -6,7 +6,7 @@
   ...
 }:
 {
-  programs.nixld.enable = true;
+  programs.nix-ld.enable = true;
   nix =
     let
       flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
