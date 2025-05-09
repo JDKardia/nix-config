@@ -48,7 +48,7 @@
             vscode
             yt-dlp
             yubikey-manager
-            yubikey-manager-qt
+            yubioath-flutter
             yubikey-personalization
             yubikey-personalization-gui
             zellij
