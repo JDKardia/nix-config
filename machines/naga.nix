@@ -22,6 +22,11 @@
       ...
     }:
     {
+      systemd.services."systemd-suspend" = {
+        serviceConfig = {
+          Environment = ''"SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"'';
+        };
+      };
       networking = {
         hostName = "naga";
         # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
