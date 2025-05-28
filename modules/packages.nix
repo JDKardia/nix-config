@@ -89,6 +89,8 @@
     handbrake
 
     ghostty
+    zig
+    libgcc
 
   ];
 

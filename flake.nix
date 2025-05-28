@@ -11,6 +11,8 @@
 
     programs-db.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
+    niri.url = "github:sodiboo/niri-flake";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

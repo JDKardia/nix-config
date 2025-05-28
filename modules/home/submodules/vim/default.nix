@@ -185,6 +185,7 @@
       gitsigns.enable = true;
       rainbow-delimiters.enable = true;
       nvim-surround.enable = true;
+      nvim-autopairs.enable = true;
       trouble.enable = true;
       lint = {
         enable = true;
