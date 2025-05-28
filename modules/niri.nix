@@ -15,10 +15,10 @@
     enable = true;
   };
 
-  home-manager.users.kardia = {
-    programs.niri.settings = {
-      input.keyboard.xkb.options = "caps:escape";
-    };
-  };
+  #  home-manager.users.kardia = {
+  #    programs.niri.settings = {
+  #      input.keyboard.xkb.options = "caps:escape";
+  #    };
+  #  };
 
 }
