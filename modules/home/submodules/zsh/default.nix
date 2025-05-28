@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   homeDir = config.home.homeDirectory;
   plugins = with pkgs; [
@@ -65,6 +70,11 @@ in
       ld = "ls -d -- */"; # only dir
       lf = "ls -pA  | grep -v '\"/\"'";
       llf = "ls -lpA  | grep -v '\"/\"'";
+      gp = "gtrash put"; # gtrash put
+      gm = "gtrash put"; # gtrash move (easy to change to rm)
+      tp = "gtrash put"; # trash put
+      tm = "gtrash put"; # trash move (easy to change to rm)
+      tt = "gtrash put"; # to trash
     };
     # file = lib.mapAttrs' (name: _: {
     #   name = ".local/bin/${name}";
@@ -107,45 +117,51 @@ in
         ignoreSpace = true;
       };
       plugins = builtins.map pkg_to_zsh_plugin plugins;
-      initExtraBeforeCompInit = ''
-        ## setup tab completion
-          zstyle ':completion:*' matcher-list ''' 'm:{a-z}={A-Z}' 'm:{a-zA-Z-_}={A-Za-z-_}' 'r:|=*' 'l:|=* r:|=*'
-          zstyle ':completion:*' rehash true # automatically find new executables in path
+      initContent = lib.mkMerge [
+        # first
+        (lib.mkOrder 500 ''
+          export TIME_STYLE="long-iso"
+          export CLICOLOR=YES
+        '')
 
-        ## Speed up completions
-          zstyle ':completion:*' accept-exact '*(N)'
-          # Don't consider certain characters part of the word
-          zstyle ':completion:*' use-cache on zstyle ':completion:*' cache-path ~/.zsh/cache WORDCHARS=''${WORDCHARS//\/[&.;]/}
+        # before comp init
+        (lib.mkOrder 550 ''
+          ## setup tab completion
+            zstyle ':completion:*' matcher-list ''' 'm:{a-z}={A-Z}' 'm:{a-zA-Z-_}={A-Za-z-_}' 'r:|=*' 'l:|=* r:|=*'
+            zstyle ':completion:*' rehash true # automatically find new executables in path
 
-        ## set up colors
-          #zstyle ":completion:*" list-colors “''${(s.:.)LS_COLORS}”
+          ## Speed up completions
+            zstyle ':completion:*' accept-exact '*(N)'
+            # Don't consider certain characters part of the word
+            zstyle ':completion:*' use-cache on zstyle ':completion:*' cache-path ~/.zsh/cache WORDCHARS=''${WORDCHARS//\/[&.;]/}
 
-        ## zsh-z menus
-          zstyle ':completion:*' menu selectzs
+          ## set up colors
+            #zstyle ":completion:*" list-colors “''${(s.:.)LS_COLORS}”
 
-        ## completions
-          # source "${homeDir}/${config.xdg.configFile."zsh/completions/_c".target}"
-          # compdef _c c
-        fpath+=($HOME/.config/nix/modules/home/submodules/zsh/completions)
+          ## zsh-z menus
+            zstyle ':completion:*' menu selectzs
 
-      '';
-      initExtraFirst = ''
-        export TIME_STYLE="long-iso"
-        export CLICOLOR=YES
-      '';
-      initExtra = ''
-        # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
-        source "${homeDir}/${config.xdg.configFile."zsh/p10k.zsh".target}"
-        # up and down keys are already bound 
-        bindkey -M vicmd 'k' history-substring-search-up
-        bindkey -M vicmd 'j' history-substring-search-down
-        bindkey "$terminfo[kcuu1]" history-substring-search-up
-        bindkey "$terminfo[kcud1]" history-substring-search-down
-        bindkey '^[[A' history-substring-search-up
-        bindkey '^[[B' history-substring-search-down
+          ## completions
+            # source "${homeDir}/${config.xdg.configFile."zsh/completions/_c".target}"
+            # compdef _c c
+          fpath+=($HOME/.config/nix/modules/home/submodules/zsh/completions)
 
-        HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
-      '';
+        '')
+        # extra after
+        ''
+          # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
+          source "${homeDir}/${config.xdg.configFile."zsh/p10k.zsh".target}"
+          # up and down keys are already bound 
+          bindkey -M vicmd 'k' history-substring-search-up
+          bindkey -M vicmd 'j' history-substring-search-down
+          bindkey "$terminfo[kcuu1]" history-substring-search-up
+          bindkey "$terminfo[kcud1]" history-substring-search-down
+          bindkey '^[[A' history-substring-search-up
+          bindkey '^[[B' history-substring-search-down
+
+          HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+        ''
+      ];
 
     };
 

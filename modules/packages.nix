@@ -28,6 +28,7 @@
     sysstat
     file
     p7zip
+    gtrash
 
     # general deps
     ffmpeg
@@ -47,6 +48,8 @@
     manix
     statix
     nix-diff
+    nixd
+    nil
 
     # general tools
     gparted
@@ -67,7 +70,14 @@
     wireguard-tools
     wireguard-ui
     transcrypt
-    python312
+    ruff
+    (python312.withPackages (
+      p:
+      (with p; [
+        python-lsp-ruff
+        python-lsp-server
+      ])
+    ))
     rmlint
     czkawka-full
     clojure

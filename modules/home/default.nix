@@ -28,6 +28,7 @@
           [
             # keyd
             #contour
+            gthumb
             zoom-us
             alacritty
             audacity
