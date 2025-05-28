@@ -1,6 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, niri, ... }:
 {
-  # imports = [ inputs.niri.homeModules.niri ];
 
   environment.systemPackages = with pkgs; [
 
@@ -19,7 +18,7 @@
 
   home-manager.users.kardia = {
     programs.niri = {
-      enable = true;
+      # enable = true;
       settings = {
         input.keyboard.xkb.options = "caps:escape";
       };
