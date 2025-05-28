@@ -53,11 +53,11 @@
 
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ (_self: _super: { nordvpn = import ./pkgs/nordvpn { }; }) ];
+        overlays = [
+          (_self: _super: { nordvpn = import ./pkgs/nordvpn { }; })
+          niri.overlays.niri
+        ];
       };
-      overlays = [
-        inputs.niri.overlays.niri
-      ];
       treefmt = treefmt-nix.lib.evalModule pkgs (_pkgs: {
         projectRootFile = "flake.nix";
         programs = {

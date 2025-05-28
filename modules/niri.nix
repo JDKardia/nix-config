@@ -1,6 +1,5 @@
 { pkgs, niri, ... }:
 {
-
   environment.systemPackages = with pkgs; [
 
     xdg-desktop-portal-gtk # implements most of the basic functionality, this is the "default fallback portal".
@@ -14,7 +13,7 @@
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri-stable;
+    # package = pkgs.niri-stable;
   };
 
   home-manager.users.kardia = {
