@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  # imports = [ inputs.niri.homeModules.niri ];
+
   environment.systemPackages = with pkgs; [
 
     xdg-desktop-portal-gtk # implements most of the basic functionality, this is the "default fallback portal".
@@ -15,10 +17,13 @@
     enable = true;
   };
 
-  #  home-manager.users.kardia = {
-  #    programs.niri.settings = {
-  #      input.keyboard.xkb.options = "caps:escape";
-  #    };
-  #  };
+  home-manager.users.kardia = {
+    programs.niri = {
+      enable = true;
+      settings = {
+        input.keyboard.xkb.options = "caps:escape";
+      };
+    };
+  };
 
 }

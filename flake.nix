@@ -41,6 +41,7 @@
       nixpkgs,
       lix-module,
       home-manager,
+      niri,
       treefmt-nix,
 
       ...
@@ -54,6 +55,9 @@
         inherit system;
         overlays = [ (_self: _super: { nordvpn = import ./pkgs/nordvpn { }; }) ];
       };
+      overlays = [
+        inputs.niri.overlays.niri
+      ];
       treefmt = treefmt-nix.lib.evalModule pkgs (_pkgs: {
         projectRootFile = "flake.nix";
         programs = {
@@ -100,6 +104,7 @@
             lix-module.nixosModules.default
             hardware-config
             home-manager.nixosModules.home-manager
+            niri.nixosModules.niri
             {
               home-manager = {
                 useGlobalPkgs = true;
