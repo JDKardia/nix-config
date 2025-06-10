@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+mkdir -p "$CACHE_HOME"
+
+send-terminfo() {
+  local host
+  terminfo_sent_cache="${CACHE_HOME}/sent-terminfo"
+  host="$(echo "$@" | sed 's/.*@//g; s/:.*//g')"
+  echo "${host=}"
+  {
+    mkdir -p "$terminfo_sent_cache"
+    if [[ ! -f "$terminfo_sent_cache/$host" ]]; then
+      echo "sending terminfo" >&2
+      infocmp | sc-ssh-wrapper "$@" tic - 2>&1
+
+      if sc-ssh-wrapper "$@" -- 'env TERM='"$TERM"' infocmp -x 2>&1'; then
+        mkdir -p "$terminfo_sent_cache"
+        touch "$terminfo_sent_cache/$host"
+      else
+        echo "ERROR: Failed to send the TERM '${TERM}'." >&2
+        exit 1
+      fi
+    fi
+  } 1>/dev/null
+}
+
+send-terminfo "$@"

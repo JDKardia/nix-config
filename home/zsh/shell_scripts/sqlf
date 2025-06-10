@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cleanup() {
+  :
+}
+trap "cleanup" EXIT
+
+main() {
+  [[ "$(command -v sql-formatter)" ]] && {
+    local cmd
+    if [[ $IS_DARWIN == "true" ]]; then
+      cmd="gsed"
+    else
+      cmd="sed"
+    fi
+
+    "$cmd" -E '
+		s/(@|#|\$)/FUCK\1FUCK/g;
+		s/^\.([a-zA-Z])/--FUCK\1/g;' |
+      sql-formatter -c "$XDG_CONFIG_HOME/sql-formatter/config.json" |
+      grep -vE '^\s*--' | # comment on line
+      "$cmd" -zE '
+				s/ - > / -> /g;
+				s/ \| \| / || /g;
+				s/ \! = / \!= /g;
+				s/ -> > / ->> /g;
+				s/:: /::/g;
+				s/^--FUCK\././g;
+				s/FUCK(.)FUCK/\1/g;
+				s/FUCK (.) FUCK/\1/g;
+
+				s/(INSERT INTO)(\n\s*)/\1 /g;
+				s/(CREATE TABLE)(\n\s*)/\1 /g;
+				s/(CREATE TEMP TABLE)(\n\s*)/\1 /g;
+
+				s/(\n\s*)(DISTINCT) / \2\1/g;
+				s/(SELECT|SELECT DISTINCT)(\n\s*)(\*)/\1 \3/g;
+				s/(SELECT|SELECT DISTINCT)(\n\s*)([a-zA-Z_])/\1\2\3/g;
+				s/,(\n\s*)  /\1, /g;
+
+				s/(FROM)\n\s*/\1 /g;
+				s/(SELECT|SELECT DISTINCT)(\s*)(\*|[a-zA-Z_])(\n\s*)(FROM)(\s*)/\1 \3 \5 /g;'
+    #' | perl -pe 's/\(.*(\n\s*,\s*\S*)*\)//g'
+
+  }
+}
+
+main "$@"

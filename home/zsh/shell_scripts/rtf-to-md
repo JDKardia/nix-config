@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# osascript -e 'the clipboard as «class RTF»'
+
+is-darwin &&
+  {
+    osascript -e 'the clipboard as «class HTML»' 2>/dev/null |
+      perl -ne 'print chr foreach unpack("C*",pack("H*",substr($_,11,-3)))' |
+      pandoc --wrap=none -f HTML -t gfm-raw_html | pbcopy
+    pbpaste
+  }
+is-linux && {
+  xclip -o -t text/html |
+    pandoc --wrap=none -f HTML -t gfm-raw_html |
+    xclip
+}

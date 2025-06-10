@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -uo pipefail
+IFS=$'\n\t'
+
+encode() {
+  local vid temp
+  vid="$1"
+  new_vid="$(echo "$vid" | sed -E 's/\.(mp4|m4v|webm|3gp|mov|mkv)$//g').mp4"
+  temp="/tmp/temp-${new_vid//\//_}"
+
+  printf "%s -> %s\n" "$vid" "$(basename "$new_vid")"
+  # -b_ref_mode disables b frame support as the GTX 1650 Ti doesn't support them
+  ffmpeg -y -hide_banner -loglevel error -stats \
+    -i "$vid" \
+    -movflags +faststart \
+    -c:v h264_nvenc \
+    -pix_fmt yuv420p \
+    -preset 18 \
+    -b_ref_mode 0 \
+    "$temp" || return
+
+  size_vid="$(wc -c <"$vid")"
+  size_temp="$(wc -c <"$temp")"
+
+  percent=$((100 - (100 * size_temp / size_vid)))
+  delta=$((size_vid - size_temp))
+  saved=$(echo "$delta" | numfmt --to=iec-i --suffix=B)
+  printf "filesize change of %02d%s, delta: %-6s\n" "$percent" "%" "$saved"
+
+  # guarantee that only one remains
+  {
+    mv "$temp" "$vid"
+    mv "$vid" "$new_vid"
+  } >/dev/null 2>&1
+
+}
+
+main() {
+  local file
+  local not_first_file=""
+  for file in "$@"; do
+    # only linebreak after first file is complete
+    [[ -n $not_first_file ]] && echo
+
+    # don't encode non-video
+    mime="$(file -i "$file" | cut -d':' -f2 | sed 's|/.*||g;s/\s*//g')"
+    [[ $mime != "video" ]] && echo "skipping non-video file: '$file'" && continue
+
+    # don't encode if file is already hevc encoded
+    encoding="$(
+      ffprobe -v error -select_streams v:0 -show_entries \
+        stream=codec_name -of default=nokey=1:noprint_wrappers=1 "$file"
+    )"
+    [[ $encoding == 'h264' ]] && echo "skipping h264 encoded file: '$file'" && continue
+
+    # if we make it here, time to encode
+    encode "$file"
+
+    not_first_file='first file done!'
+  done
+}
+
+main "$@"

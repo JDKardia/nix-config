@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$' '
+
+for i in "$@"; do
+  epoch="$(echo "$i" | cut -d. -f1)"
+  extent="$(echo "$i" | cut -d. -f2)"
+  readabledate="$(date -d"@$epoch" -Iseconds)"
+  mv "$i" "$readabledate.$extent"
+done

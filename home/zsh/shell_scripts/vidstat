@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+IFS=$'\n\t'
+
+shopt -s expand_aliases
+
+alias wait-for-job-slot='while [[ $(jobs -p | wc -w) -ge $(nproc) ]]; do wait -n; done;'
+alias has-args='[[ $# != 0 ]]'
+
+get-vid-stats() {
+  local vid
+  vid="$1"
+  trap "failed to stat file: '\$vid'" ERR
+
+  ffp_vars="$(
+    ffprobe -v quiet -i "$vid" \
+      -show_entries 'format=duration,size,bit_rate' \
+      -select_streams v:0 \
+      -show_entries 'stream=width,height,codec_name' \
+      -of compact='p=0' |
+      sed -Ez 's/\n|\|/; /g'
+  )"
+  local duration size bit_rate width height codec_name # populated by eval
+  eval "$ffp_vars"
+
+  local size_human bit_rate_human duration_human
+  size_human="$(numfmt --to=iec-i --suffix=B "$size")"
+  bit_rate_human="$(numfmt --to=iec-i --suffix=B "$bit_rate")"
+  duration_human="$(date -d@"$duration" -u "+%H:%M:%S")"
+
+  printf "%6s %8s %9s %6s/s %5s <- %s\n" "$size_human" "$duration_human" "${width}x${height}" "$bit_rate_human" "$codec_name" "$vid"
+}
+
+main() {
+  local file
+  printf "%6s %8s %9s %8s %5s <- %s\n" "size" "duration" "WxH" "bitrate" "codec" "filename"
+  for file in "$@"; do
+    [[ $(file -i "$file" | cut -d':' -f2 | sed 's|/.*||g;s/\s*//g') == "video" ]] || continue
+    wait-for-job-slot
+    get-vid-stats "$file" &
+  done
+  wait
+}
+has-args && main "$@"

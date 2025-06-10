@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+REPO="$(git rev-parse --show-toplevel)"
+
+cp "$HOME/.config/git/optional_hooks/fsmonitor-watchmanv2" "$REPO/.git/hooks/fsmonitor-watchmanv2"
+git config core.fsmonitor "$REPO/.git/hooks/fsmonitor-watchmanv2"

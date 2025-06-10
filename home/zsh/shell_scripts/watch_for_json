@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -uo pipefail
+IFS=$'\n\t'
+
+while clipnotify; do
+  # shellcheck disable=SC2207
+  entries=("$(xclip -selection clipboard -o | rg '^entity|^.*?\{')")
+  for entry in "${entries[@]}"; do
+    echo "$entry" | sed -E 's/.*\| \{/{/g;' | jq
+  done
+  echo '-----------------------------------------------'
+done

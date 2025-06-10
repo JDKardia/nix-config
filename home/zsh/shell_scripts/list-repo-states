@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# Show different symbols as appropriate for various Git repository states
+# Compose this value via multiple conditional appends.
+list() {
+  REPO_DIRS=("$(fd --type=d | column -t)")
+  OUTPUT=("")
+  for VAR in "${REPO_DIRS[@]}"; do
+    # echo "$VAR.git/HEAD"
+    IFS=$'/'
+    ref=("$(cat "$VAR.git/HEAD")")
+    IFS=$'\n\t'
+
+    OUTPUT+=("$VAR ${ref[2]}")
+  done
+  return "${OUTPUT[@]}"
+}
+list | column -t

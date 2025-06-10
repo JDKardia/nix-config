@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+USAGE='USAGE: $ c x [file]
+EXAMPLE:
+  To edit vim plugins:
+  $ c v plugins/init.lua
+
+  To enter vim config directory:
+  $ c v'
+
+main() {
+  local nix_base="$HOME/.config/nix"
+  local home_base="${nix_base}/modules/home"
+
+  if [[ -z $* ]]; then
+    echo "$USAGE"
+  else
+    local dest
+    case $1 in
+      n | nix)
+        dest="$nix_base"
+        ;;
+      h | hm | home_manager)
+        dest="$home_base"
+        ;;
+      z | zsh)
+        dest="${home_base}/submodules/zsh"
+        ;;
+      g | git)
+        dest="${home_base}/submodules/git"
+        ;;
+      v | vim)
+        dest="${home_base}/submodules/vim"
+        ;;
+      s | scripts)
+        dest="${home_base}/submodules/zsh/scripts"
+        ;;
+      c | completions)
+        dest="${home_base}/submodules/zsh/completions"
+        ;;
+      *)
+        echo "could not open config for $1"
+        ;;
+    esac
+    shift 1
+    pushd "$dest" >/dev/null 2>&1
+    if [[ -z $* ]]; then
+      exec "$SHELL"
+    else
+      nvim "$@"
+    fi
+  fi
+}
+
+main "$@"

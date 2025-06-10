@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+INDENT="" # only for indenting execution in help
+
+function shutdown() {
+  tput cnorm # reset cursor
+}
+trap shutdown EXIT
+
+help() {
+  cat <<USAGEDOC
+spinner:
+  a script to provide a progress spinner and timer for commands and jobs
+
+Usage:
+  \$ spinner \$FOR-COMMAND
+
+Commands:
+  'help'     - show this menu.
+
+For-Commands:
+  'for-cmd \$CMD' - accepts a command and arguments to execute and spin until completion
+  'for-pid \$PID' - spin and count until process with \$PID completes.
+  'for-pids \$PID_1 ... \$PID_N' - spin and count until \$PID_1 through \$PID_N complete.
+  'for-script "\$SCRIPT_TEXT"'   - accepts text for bash script, executes it via
+                                    'bash -c' and spins until completion.
+USAGEDOC
+  printf '%s:\n  %s\n' 'Example' '$ spin for-cmd sleep 1'
+  INDENT="  " for-cmd sleep 1
+}
+_any_pids_alive() {
+  for pid in "$@"; do
+    if kill -0 "$pid" >/dev/null 2>&1; then
+      return 0
+    fi
+  done
+  return 1
+}
+for-pids() {
+  local i animation
+  i=1
+  # make sure we use non-unicode character type locale
+  # (that way it works for any locale as long as the font supports the characters)
+  local LC_CTYPE=C
+  local animation='-\|/'
+  # local charwidth=1
+  # echo "${@}"
+  tput civis # cursor invisible
+  while _any_pids_alive "$@"; do
+    printf "%s%s %3s\r" "$INDENT" "${animation:i++%${#animation}:1}" "${SECONDS}s"
+    sleep .1
+  done
+  tput cnorm
+}
+for-pid() {
+  local i animation
+  i=1 # make sure we use non-unicode character type locale
+  local LC_CTYPE=C
+  local animation='-\|/'
+  tput civis # cursor invisible
+  while kill -0 "$pid" >/dev/null 2>&1; do
+    printf "%s%s %3s\r" "$INDENT" "${animation:i++%${#animation}:1}" "${SECONDS}s"
+    sleep .1
+  done
+  printf '\n'
+  tput cnorm
+}
+for-cmd() {
+  {
+    "$@"
+  } &
+  pid=$!
+  for-pid "$pid"
+  wait "$pid" #capture exit code
+  return $?
+}
+for-script() {
+  {
+    bash -c "$@" >/dev/null 2>&1 &
+  }
+  pid=$!
+  for-pid "$pid"
+  wait "$pid" #capture exit code
+  return $?
+}
+
+if [[ $# == 0 ]]; then
+  help
+else
+  "$@"
+fi

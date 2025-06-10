@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script is fucking dangerous, do NOT ever use it for something destructive like RM or redirecting into a file.
+
+if [[ -z $1 ]] || [[ $1 == "-" ]]; then
+  input=$(mktemp)
+  trap 'rm -f "$input"' EXIT
+  cat /dev/stdin >"$input"
+else
+  input=$1
+fi
+
+echo '' |
+  fzf --phony \
+    --preview-window='up:90%' \
+    --print-query \
+    --preview "{q} $input"
