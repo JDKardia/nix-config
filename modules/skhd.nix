@@ -1,4 +1,4 @@
-_: {
+{...}: {
   services.skhd = {
     enable = true;
     skhdConfig = ''
@@ -173,7 +173,7 @@ _: {
 
       # quick start commands
       # ctrl + alt + cmd - return : bash ~/.config/skhd/new-term.sh
-      ctrl + alt + cmd - return : kitty --single-instance -d ~
+      ctrl + alt + cmd - return : osascript -e 'tell application "iTerm2" to create window with default profile'
       #ctrl + alt + cmd - return : open -na kitty
 
       ctrl + alt + cmd + shift - return : open -na "Google Chrome" --args --new-window

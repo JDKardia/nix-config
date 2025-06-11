@@ -146,9 +146,7 @@
                 zstyle ':completion:*' menu selectzs
 
               ## completions
-                # source "${homeDir}/${config.xdg.configFile."zsh/completions/_c".target}"
-                # compdef _c c
-              fpath+=($HOME/.config/nix/modules/home/submodules/zsh/completions)
+              fpath+=($HOME/.config/zsh/completions)
 
             '')
             # extra after

@@ -1,7 +1,6 @@
-_:
-{
+{...}: {
   services.yabai = {
-    enable = false;
+    enable = true;
     enableScriptingAddition = false;
     config = {
       mouse_follows_focus = "off";
