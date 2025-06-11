@@ -1,9 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   ##########################################################################
   #
   #  Install all apps and packages here.
   #
-  # TODO Feel free to modify this file to fit your needs.
   #
   ##########################################################################
 
@@ -15,7 +15,43 @@
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   environment.systemPackages = with pkgs; [
   ];
-  environment.variables.EDITOR = "nvim";
+  home-manager.users.kardia = {
+
+    home.packages = with pkgs; [
+      monitorcontrol
+      yubikey-manager
+      ## archives
+      zip
+      xz
+      unzip
+      p7zip
+      #slack
+      #iterm2
+      just
+      tree
+      gnused
+      gnutar
+      gnugrep
+      gawk
+      gnupg
+      which
+      file
+      glow
+      #_1password
+
+      ## utils
+      ripgrep # recursively searches directories for a regex pattern
+      jq # A lightweight and flexible command-line JSON processor
+      yq-go # yaml processer https://github.com/mikefarah/yq
+      fzf # A command-line fuzzy finder
+      fd # file finder
+
+      nmap # A utility for network discovery and security auditing
+      coreutils
+      moreutils
+
+    ];
+  };
 
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   #
@@ -35,21 +71,21 @@
     # You need to install all these Apps manually first so that your apple account have records for them.
     # otherwise Apple Store will refuse to install them.
     # For details, see https://github.com/mas-cli/mas
-    masApps = {
-      # TODO Feel free to add your favorite apps here.
+    # masApps = {
+    #   # TODO Feel free to add your favorite apps here.
 
-      Xcode = 497799835;
-      # Wechat = 836500024;
-      # NeteaseCloudMusic = 944848654;
-      # QQ = 451108668;
-      # WeCom = 1189898970;  # Wechat for Work
-      # TecentMetting = 1484048379;
-      # QQMusic = 595615424;
-    };
+    #   Xcode = 497799835;
+    #   # Wechat = 836500024;
+    #   # NeteaseCloudMusic = 944848654;
+    #   # QQ = 451108668;
+    #   # WeCom = 1189898970;  # Wechat for Work
+    #   # TecentMetting = 1484048379;
+    #   # QQMusic = 595615424;
+    # };
 
     taps = [
-      "homebrew/services"
       "nikitabobko/tap"
+      "koekeishiya/formulae"
     ];
 
     # `brew install`
@@ -57,31 +93,27 @@
     brews = [
       "wget" # download tool
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
+      "yabai"
+      "skhd"
     ];
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
-      "aerospace"
       "firefox"
-      "firefox@beta"
+      "firefox@developer-edition"
       "google-chrome"
       "visual-studio-code"
 
-      "discord"
-      "slack"
-      "bat"
-      "fd"
-      "ripgrep"
       "font-atkynson-mono-nerd-font"
       "font-fira-mono-nerd-font"
       "anki"
       "stats"
-      "neovim"
-      "just"
-      "git"
-      "bash"
-      "zsh"
+      "slack"
+      "iterm2"
+      # "zoom" # Managed by datavant
+      "1password"
+      "karabiner-elements"
     ];
   };
 }
