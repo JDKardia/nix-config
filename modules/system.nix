@@ -55,10 +55,19 @@
       #   https://github.com/yannbertrand/macos-defaults
       NSGlobalDomain = {
         # `defaults read NSGlobalDomain "xxx"`
-        "com.apple.swipescrolldirection" = false; # enable natural scrolling(default to true)
+        AppleICUForce24HourTime = true; # 24 hour time is superior
+        AppleScrollerPagingBehavior = true; # jump to scroll bar position clicked
+        "com.apple.swipescrolldirection" = false; # disable natural scrolling(defaults to true)
         "com.apple.sound.beep.feedback" = 0; # disable beep sound when pressing volume up/down key
-        AppleKeyboardUIMode = 3; # Mode 3 enables full keyboard control.
-        ApplePressAndHoldEnabled = true; # enable press and hold
+        AppleKeyboardUIMode = 2; # Mode 3 enables full keyboard control.
+        ApplePressAndHoldEnabled = false; # enable press and hold
+        # AppleICUDateFormatStrings = {
+        #     # uses: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
+        #     "1" = "yyyy-MM-dd"; # Short date format
+        #     "2" = "yyyy-MM-dd"; # Medium date format
+        #     "3" = "dd MMM y"; # Long date format
+        #     "4" = "EEEE, dd MMMM y"; # Extra long date format
+        #   };
 
         # If you press and hold certain keyboard keys when in a text area, the key’s character begins to repeat.
         # This is very useful for vim users, they use `hjkl` to move cursor.
@@ -153,9 +162,6 @@
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  # this is required if you want to use darwin's default shell - zsh
-  programs.zsh.enable = true;
 
   environment.shells = [
     pkgs.zsh

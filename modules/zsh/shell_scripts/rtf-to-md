@@ -5,7 +5,6 @@ IFS=$'\n\t'
 
 # osascript -e 'the clipboard as «class RTF»'
 
-
 [[ $OSTYPE == "darwin"* ]] && alias is-darwin="true" && alias is-linux="false"
 [[ $OSTYPE == "linux"*  ]] && alias is-darwin="false" && alias is-linux="true"
 

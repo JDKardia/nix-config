@@ -15,7 +15,7 @@
         };
       home.file."${config.xdg.configHome}/karabiner/karabiner.json" = {
         enable = true;
-        force = true;
+        #  force = true;
         source = ./karabiner.json;
       };
     };

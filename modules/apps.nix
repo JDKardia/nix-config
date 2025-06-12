@@ -114,6 +114,8 @@
       # "zoom" # Managed by datavant
       "1password"
       "karabiner-elements"
+      "deezer"
+      "gimp"
     ];
   };
 }

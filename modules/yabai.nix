@@ -1,4 +1,5 @@
-{...}: {
+_:
+{
   services.yabai = {
     enable = true;
     enableScriptingAddition = false;
@@ -34,9 +35,6 @@
 
     };
     extraConfig = ''
-      # Space specific settings
-      yabai -m config --space 1 layout stack
-
       # Don't Manage These
       yabai -m rule --add app="^GIMP$" manage=off
       yabai -m rule --add app="^System Preferences$" manage=off
@@ -44,13 +42,6 @@
       yabai -m rule --add app="^Finder$" manage=off
       yabai -m rule --add app="^MeetingBar$" manage=off
       yabai -m rule --add app="^Bartender$" manage=off
-
-      # workspace management
-      yabai -m space 1  --label todo
-      yabai -m space 2  --label productive
-      yabai -m space 3  --label chat
-      yabai -m space 4  --label utils
-      yabai -m space 5  --label code
     '';
   };
 }
