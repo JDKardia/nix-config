@@ -2,7 +2,9 @@
 {
   environment.variables.EDITOR = "nvim";
   # prevents uber slow /etc/zshrc
-  programs.zsh={ enable=false; };
+  programs.zsh = {
+    enable = false;
+  };
   home-manager.users.${username} =
     {
       config,
@@ -103,30 +105,30 @@
           autosuggestion.enable = true;
 
           enableCompletion = true;
-          completionInit=''
-                ## setup tab completion
-                  zstyle ':completion:*' matcher-list ''' 'm:{a-z}={A-Z}' 'm:{a-zA-Z-_}={A-Za-z-_}' 'r:|=*' 'l:|=* r:|=*'
-                  zstyle ':completion:*' rehash true # automatically find new executables in path
+          completionInit = ''
+            ## setup tab completion
+              zstyle ':completion:*' matcher-list ''' 'm:{a-z}={A-Z}' 'm:{a-zA-Z-_}={A-Za-z-_}' 'r:|=*' 'l:|=* r:|=*'
+              zstyle ':completion:*' rehash true # automatically find new executables in path
 
-                ## Speed up completions
-                  zstyle ':completion:*' accept-exact '*(N)'
-                  # Don't consider certain characters part of the word
-                  zstyle ':completion:*' use-cache on zstyle ':completion:*' cache-path ~/.zsh/cache WORDCHARS=''${WORDCHARS//\/[&.;]/}
+            ## Speed up completions
+              zstyle ':completion:*' accept-exact '*(N)'
+              # Don't consider certain characters part of the word
+              zstyle ':completion:*' use-cache on zstyle ':completion:*' cache-path ~/.zsh/cache WORDCHARS=''${WORDCHARS//\/[&.;]/}
 
-                ## set up colors
-                  #zstyle ":completion:*" list-colors “''${(s.:.)LS_COLORS}”
+            ## set up colors
+              #zstyle ":completion:*" list-colors “''${(s.:.)LS_COLORS}”
 
-                ## zsh-z menus
-                  zstyle ':completion:*' menu selectzs
+            ## zsh-z menus
+              zstyle ':completion:*' menu selectzs
 
-                ## completions
-                fpath+=($HOME/.config/zsh/completions)
-                autoload -Uz compinit 
-                if [[ -n ''${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-                	compinit;
-                else
-                	compinit -C;
-                fi;
+            ## completions
+            fpath+=($HOME/.config/zsh/completions)
+            autoload -Uz compinit 
+            if [[ -n ''${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+            	compinit;
+            else
+            	compinit -C;
+            fi;
           '';
 
           syntaxHighlighting.enable = true;
@@ -142,7 +144,7 @@
           history = {
             path = "${config.xdg.dataHome}/zsh/zsh_history";
             save = 1000000;
-            size=1000000;
+            size = 1000000;
             extended = true;
             share = true;
             expireDuplicatesFirst = true;
@@ -151,8 +153,6 @@
           plugins = builtins.map pkg_to_zsh_plugin plugins;
           initContent =
             let
-              profile_start = lib.mkOrder 0 "zmodload zsh/zprof";
-              profile_end = lib.mkOrder 2000 "zprof";
               # first
               early_preferences = lib.mkOrder 500 ''
                 export TIME_STYLE="long-iso"
@@ -183,9 +183,6 @@
 
                 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
               '';
-  ssh_agent= lib.mkOrder 1500 ''
-     [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
-  '';
             in
             lib.mkMerge [
               # profile_start

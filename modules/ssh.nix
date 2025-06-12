@@ -1,8 +1,8 @@
-{...}:{
-  programs.ssh.extraConfig=''
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_ed25519
+_: {
+  programs.ssh.extraConfig = ''
+    Host *
+      AddKeysToAgent yes
+      UseKeychain yes
+      IdentityFile ~/.ssh/id_ed25519
   '';
 }
