@@ -39,6 +39,7 @@ _:
       yabai -m rule --add app="^GIMP$" manage=off
       yabai -m rule --add app="^System Preferences$" manage=off
       yabai -m rule --add app="^System Settings$" manage=off
+      yabai -m rule --add app="^Self-Service$" manage=off
       yabai -m rule --add app="^Finder$" manage=off
       yabai -m rule --add app="^MeetingBar$" manage=off
       yabai -m rule --add app="^Bartender$" manage=off

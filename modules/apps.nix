@@ -18,8 +18,6 @@
   home-manager.users.kardia = {
 
     home.packages = with pkgs; [
-      monitorcontrol
-      yubikey-manager
       ## archives
       zip
       xz
@@ -32,13 +30,17 @@
       gnused
       gnutar
       gnugrep
+      findutils
       gawk
       gnupg
+      coreutils
+      moreutils
+      nmap # A utility for network discovery and security auditing
       which
       file
       glow
-      #_1password
-
+      direnv
+      
       ## utils
       ripgrep # recursively searches directories for a regex pattern
       jq # A lightweight and flexible command-line JSON processor
@@ -46,9 +48,6 @@
       fzf # A command-line fuzzy finder
       fd # file finder
 
-      nmap # A utility for network discovery and security auditing
-      coreutils
-      moreutils
 
     ];
   };
@@ -95,28 +94,29 @@
       "curl" # no not install curl via nixpkgs, it's not working well on macOS!
       "yabai"
       "skhd"
-      "obsidian"
+      "python"
     ];
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
+      "1password"
+      "anki"
+      "deezer"
       "firefox"
       "firefox@developer-edition"
-      "google-chrome"
-      "visual-studio-code"
-
       "font-atkynson-mono-nerd-font"
       "font-fira-mono-nerd-font"
-      "anki"
-      "stats"
-      "slack"
-      "iterm2"
-      # "zoom" # Managed by datavant
-      "1password"
-      "karabiner-elements"
-      "deezer"
       "gimp"
+      "google-chrome"
+      "iterm2"
+      "karabiner-elements"
+      "obsidian"
+      "pycharm"
+      "slack"
+      "stats"
+      "visual-studio-code"
+      "monitorcontrol"
     ];
   };
 }

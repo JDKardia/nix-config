@@ -27,10 +27,10 @@
         show-recents = false; # disable recent apps
 
         # customize Hot Corners()
-        # wvous-tl-corner = 2;  # top-left - Mission Control
-        # wvous-tr-corner = 13;  # top-right - Lock Screen
-        # wvous-bl-corner = 3;  # bottom-left - Application Windows
-        # wvous-br-corner = 4;  # bottom-right - Desktop
+        wvous-tl-corner = 1; # top-left - disabled
+        wvous-tr-corner = 1; # top-right - disabled
+        wvous-bl-corner = 5; # bottom-left - Start Screensaver
+        wvous-br-corner = 1; # bottom-right - disabled
       };
 
       # customize finder
@@ -47,7 +47,6 @@
       trackpad = {
         Clicking = true; # enable tap to click
         TrackpadRightClick = true; # enable two finger right click
-        TrackpadThreeFingerDrag = true; # enable three finger drag
       };
 
       # customize settings that not supported by nix-darwin directly
