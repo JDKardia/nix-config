@@ -37,6 +37,7 @@
       moreutils
       nmap # A utility for network discovery and security auditing
       which
+      shellcheck
       file
       glow
       direnv
@@ -95,6 +96,9 @@
       "yabai"
       "skhd"
       "python"
+      "awscli"
+      "docker"
+      "transcrypt"
     ];
 
     # `brew install --cask`
