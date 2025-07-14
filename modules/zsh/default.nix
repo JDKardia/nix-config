@@ -165,62 +165,29 @@
                 export TIME_STYLE="long-iso"
                 export CLICOLOR=YES
               '';
-              # before compinit
-              homebrew = lib.mkOrder 551 ''
-                export HOMEBREW_PREFIX="/opt/homebrew";
-                export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-                export HOMEBREW_REPOSITORY="/opt/homebrew";
-                fpath[1,0]="/opt/homebrew/share/zsh/site-functions";
-                [ -z "''${MANPATH-}" ] || export MANPATH=":''${MANPATH#:}";
-                export INFOPATH="/opt/homebrew/share/info:''${INFOPATH:-}";
+              zsh_completion_fix = lib.mkOrder 501 ''
+                fpath+=(
+                  "${config.home.profileDirectory}"/share/zsh/site-functions 
+                  "${config.home.profileDirectory}"/share/zsh/$ZSH_VERSION/functions
+                  "${config.home.profileDirectory}"/share/zsh/vendor-completions
+                )
               '';
+              # before compinit
+              homebrew_integration = lib.mkOrder 551 (builtins.readFile ./homebrew.zsh);
               # extra after
-              vim_controls = lib.mkOrder 1500 ''
-                # ## Keybindings section
-                bindkey -v
-                # 
-                #smash sudo to prepend or un-prepend line with sudo
-                for combo in \
-                  "sudo" "usdo" "dsuo" "sduo" "udso" "duso" "ousd" "uosd" \
-                  "soud" "osud" "usod" "suod" "sdou" "dsou" "osdu" "sodu" \
-                  "dosu" "odsu" "odus" "dous" "uods" "ouds" "duos" "udos"; do
-                  bindkey -M viins "$combo" sudo-command-line
-                  bindkey -M vicmd "$combo" sudo-command-line
-                done
-                # 
-                bindkey '^P' up-history
-                bindkey '^N' down-history
-                bindkey '^?' backward-delete-char
-                bindkey '^h' backward-delete-char
-                bindkey '^w' backward-kill-word
-                bindkey '^r' history-incremental-search-backward
-                export KEYTIMEOUT=8
-
-                # # bind UP and DOWN arrow keys to history substring search
-                # #zmodload zsh/terminfo
-                # source "${config.xdg.configHome}/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme"
+              vim_controls = lib.mkOrder 1500 (builtins.readFile ./vim_controls.zsh);
+              p10k_config = lib.mkOrder 1501 ''
                 source "${homeDir}/${config.xdg.configFile."zsh/p10k.zsh".target}"
-                # up and down keys are already bound
-                # bindkey "$terminfo[kcuu1]" history-substring-search-up
-                # bindkey "$terminfo[kcud1]" history-substring-search-down
-                # bindkey '^[[A' history-substring-search-up
-                # bindkey '^[[B' history-substring-search-down
-                bindkey -M vicmd 'k' history-substring-search-up
-                bindkey -M vicmd 'j' history-substring-search-down
-                bindkey "$terminfo[kcuu1]" history-substring-search-up
-                bindkey "$terminfo[kcud1]" history-substring-search-down
-                bindkey '^[[A' history-substring-search-up
-                bindkey '^[[B' history-substring-search-down
-
-                HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
               '';
             in
             lib.mkMerge [
               # profile_start
               # profile_end
               early_preferences
-              homebrew
+              homebrew_integration
               vim_controls
+              zsh_completion_fix
+              p10k_config
             ];
         };
 

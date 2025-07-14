@@ -107,7 +107,6 @@
       "1password"
       "anki"
       "deezer"
-      "firefox"
       "firefox@developer-edition"
       "font-atkynson-mono-nerd-font"
       "font-fira-mono-nerd-font"
