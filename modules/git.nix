@@ -87,7 +87,7 @@
           o = "checkout";
           om = ''!git checkout "$(git print-head)"'';
           nb = "checkout -b";
-          nbm = ''!nbm(){local _head=$(git print-head); git checkout "$_head" && git pull && git checkout -b \"$1\"; }; nbm'';
+          nbm = ''!nbm(){ local _head=$(git print-head); git checkout "$_head" && git pull && git checkout -b \"$1\"; }; nbm'';
           opr = ''!opr(){ git fetch-remote \"$1\" && git checkout \"$1\"; }; opr'';
           #############
           pu = "push -u";
