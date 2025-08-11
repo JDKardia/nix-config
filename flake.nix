@@ -119,7 +119,8 @@
                 };
               };
             }
-          ] ++ (nixpkgs.lib.attrValues (my.lib.modulesIn ./modules));
+          ]
+          ++ (nixpkgs.lib.attrValues (my.lib.modulesIn ./modules));
           specialArgs = {
             inherit
               inputs
