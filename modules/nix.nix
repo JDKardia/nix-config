@@ -7,11 +7,18 @@
 }:
 {
   programs.nix-ld.enable = true;
+
   nix =
     let
       flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
     in
     {
+      gc = {
+        automatic = true;
+        randomizedDelaySec = "14m";
+        # very conservative, but my config isn't super dynamic and I update intermittently
+        options = "--delete-older-than 90d";
+      };
       settings = {
         # Enable flakes and new 'nix' command
         experimental-features = "nix-command flakes";
