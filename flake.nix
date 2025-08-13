@@ -2,12 +2,16 @@
   description = "kardia's nix config";
   inputs = {
     # Nixpkgs: nixos-unstable head as of 2024-11-13
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     unstable.follows = "nixpkgs";
 
+    lix.url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+    lix.flake = false;
     lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module?ref=main";
+    # lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
+    lix-module.inputs.lix.follows = "lix";
 
     programs-db.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 

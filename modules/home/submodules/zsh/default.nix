@@ -6,6 +6,7 @@
 }:
 let
   homeDir = config.home.homeDirectory;
+  nixCfgDir = "${config.xdg.configHome}/nix";
   plugins = with pkgs; [
     zsh-z
     zsh-powerlevel10k
@@ -32,8 +33,8 @@ in
   home = {
     packages = plugins;
     sessionPath = [
-      "\$HOME/.config/nix/modules/home/submodules/zsh/python_scripts"
-      "\$HOME/.config/nix/modules/home/submodules/zsh/shell_scripts"
+      "${nixCfgDir}/modules/home/submodules/zsh/python_scripts"
+      "${nixCfgDir}/modules/home/submodules/zsh/shell_scripts"
     ];
     # #TODO; make this work
     # sessionVariables={
@@ -93,7 +94,7 @@ in
     zsh = {
       enable = true;
 
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       autosuggestion.enable = true;
 
       enableCompletion = true;

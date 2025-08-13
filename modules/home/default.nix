@@ -51,7 +51,6 @@
             yubikey-manager
             yubioath-flutter
             yubikey-personalization
-            yubikey-personalization-gui
             zellij
             lutris
             syncthingtray
