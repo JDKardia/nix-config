@@ -25,6 +25,9 @@
             status = "auto";
             ui = "auto";
           };
+          rebase={
+            update-refs = true;
+          };
 
           fetch = {
             recurseSubmodules = true;
@@ -68,10 +71,27 @@
           #{{{
           repo-root="rev-parse --show-toplevel";
           print-head=''!cat "$(git repo-root)/.git/refs/remotes/origin/HEAD" | cut -d'/' -f4'';
-          fetch-remote = ''!fr() { git fetch origin +$1:$1; }; fr'';
-          remote-fetch = ''!rf() { git config --add remote.origin.fetch +refs/heads/$1:refs/remotes/origin/$1; git fetch origin +$1:refs/remotes/origin/$1; }; rf'';
-          remote-purge = ''!rp() { git config --unset remote.origin.fetch \".*$1.*\"; git update-ref -d refs/remotes/origin/$1; }; rp'';
-          super-prune = ''!sp() { local _head=$(git print-head); local failed=\"$(mktemp)\"; git branch --merged "$_head"" | grep -v '^[ *]*'"$_head"'$' | xargs -n1 git branch -d 2>\"''${failed}\"; echo \"the following branches were not pruned:\"; cat \"''${failed}\" | grep 'error:' | sed \"s/.* '/  /g;s/' .*//g;\";  }; sp 2>/dev/null'';
+          fetch-remote = ''!fr() { \
+                              git fetch origin +$1:$1; \
+                            }; \
+                            fr'';
+          remote-fetch = ''!rf() { \
+                              git config --add remote.origin.fetch +refs/heads/$1:refs/remotes/origin/$1; \
+                              git fetch origin +$1:refs/remotes/origin/$1; \
+                            }; \
+                            rf'';
+          remote-purge = ''!rp() { \
+                              git config --unset remote.origin.fetch ".*$1.*"; \
+                              git update-ref -d refs/remotes/origin/$1; \
+                            }; \
+                            rp'';
+          super-prune = ''!sp() { local _head=$(git print-head); \
+                            local _failed="$(mktemp)"; \
+                            git branch --merged "$_head"" | grep -v '^[ *]*'"$_head"'$' | xargs -n1 git branch -d 2>"$_failed"; \
+                            echo "the following branches were not pruned:"; \
+                            cat "$_failed" | grep 'error:' | sed "s/.* '/  /g;s/' .*//g;"; \
+                           }; \
+                           sp 2>/dev/null'';
 
           #############
           s = "status";
@@ -87,8 +107,15 @@
           o = "checkout";
           om = ''!git checkout "$(git print-head)"'';
           nb = "checkout -b";
-          nbm = ''!nbm(){ local _head=$(git print-head); git checkout "$_head" && git pull && git checkout -b \"$1\"; }; nbm'';
-          opr = ''!opr(){ git fetch-remote \"$1\" && git checkout \"$1\"; }; opr'';
+          nbm = ''!nbm(){ \
+                     local _head=$(git print-head); \
+                     git checkout "$_head" && git pull && git checkout -b "$1"; \
+                   }; \
+                   nbm'';
+          opr = ''!opr(){ \
+                     git fetch-remote "$1" && git checkout "$1"; \
+                   }; \
+                   opr'';
           #############
           pu = "push -u";
           #############

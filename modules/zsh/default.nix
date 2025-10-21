@@ -90,6 +90,7 @@
           tp = "gtrash put"; # trash put
           tm = "gtrash put"; # trash move (easy to change to rm)
           tt = "gtrash put"; # to trash
+          k="kubectl";
         };
         # file = lib.mapAttrs' (name: _: {
         #   name = ".local/bin/${name}";

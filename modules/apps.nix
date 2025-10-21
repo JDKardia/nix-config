@@ -86,6 +86,7 @@
     taps = [
       "nikitabobko/tap"
       "koekeishiya/formulae"
+      "FelixKratz/formulae"
     ];
 
     # `brew install`
@@ -96,14 +97,22 @@
       "yabai"
       "skhd"
       "python"
+      "ipython"
       "awscli"
-      "docker"
       "transcrypt"
+      "sf"
+      "borders"
+      "pgcli"
+      "kubectx"
+      "entr"
+      "python3"
+      #      "docker"
     ];
 
     # `brew install --cask`
     # TODO Feel free to add your favorite apps here.
     casks = [
+      "docker-desktop"
       "1password"
       "anki"
       "deezer"
@@ -120,6 +129,8 @@
       "stats"
       "visual-studio-code"
       "monitorcontrol"
+      "audacity"
+      "openlens"
     ];
   };
 }

@@ -43,6 +43,8 @@ _:
       yabai -m rule --add app="^Finder$" manage=off
       yabai -m rule --add app="^MeetingBar$" manage=off
       yabai -m rule --add app="^Bartender$" manage=off
+
+      borders active_color=0xffd65d0e inactive_color=0xff1d2021 width=3.0 style=round ax_focus=true &
     '';
   };
 }
