@@ -27,8 +27,8 @@
 
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+    #lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+    #lix-module.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # The `outputs` function will return all the build results of the flake.
@@ -43,7 +43,7 @@
       nix-darwin,
       home-manager,
       nixvim,
-      lix-module,
+      #lix-module,
       treefmt-nix,
       ...
     }:
@@ -148,7 +148,7 @@
                 ;
             };
             modules = [
-              lix-module.nixosModules.default
+              #lix-module.nixosModules.default
               home-manager.darwinModules.home-manager
               {
                 home-manager.useGlobalPkgs = true;

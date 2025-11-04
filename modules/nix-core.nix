@@ -13,7 +13,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nix.package = pkgs.lix;
+  nix.package = pkgs.lixPackageSets.stable.lix;
 
   # do garbage collection weekly to keep disk usage low
   nix.gc = {
