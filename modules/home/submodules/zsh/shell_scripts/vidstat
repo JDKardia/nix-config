@@ -19,7 +19,7 @@ get-vid-stats() {
       -select_streams v:0 \
       -show_entries 'stream=width,height,codec_name' \
       -of compact='p=0' |
-      sed -Ez 's/\n|\|/; /g'
+      sed -Ez 's/\n|\|/; /g; s/; ; /; /g'
   )"
   local duration size bit_rate width height codec_name # populated by eval
   eval "$ffp_vars"

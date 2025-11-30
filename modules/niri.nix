@@ -8,7 +8,14 @@
 
     mako # notification system developed by swaywm maintainer
     fuzzel # application picker
-    alacritty # default term
+    ghostty # default term
+    waybar
+    swaybg # wallpaper
+    swayidle # locking screen on idle
+    swaylock # locking screen on idle
+    xwayland-satellite # running x11 apps
+    udiskie # manage and automount usb drives
+
   ];
 
   programs.niri = {
