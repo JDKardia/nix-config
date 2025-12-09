@@ -41,6 +41,7 @@
     wineWowPackages.stable
     winetricks
     xfce.ristretto
+    appimage-run
 
     # nix related
     nixfmt-rfc-style

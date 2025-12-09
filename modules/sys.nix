@@ -17,6 +17,10 @@
       dbPath = "${inputs.programs-db}/sqlite";
     };
     zsh.enable = true;
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
