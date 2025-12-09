@@ -19,7 +19,6 @@
     zsh.enable = true;
     appimage = {
       enable = true;
-      binfmt = true;
     };
   };
 
