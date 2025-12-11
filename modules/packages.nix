@@ -42,6 +42,8 @@
     winetricks
     xfce.ristretto
     appimage-run
+    dolphin-emu
+    retroarch-full
 
     # nix related
     nixfmt-rfc-style
