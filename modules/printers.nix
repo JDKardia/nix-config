@@ -14,6 +14,9 @@
     drivers = with pkgs; [
       cups-filters
       cups-browsed
+      brlaser
+      brgenml1lpr
+      brgenml1cupswrapper
     ];
   };
 }
