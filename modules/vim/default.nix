@@ -157,7 +157,7 @@ _: {
           enable = true;
           folding.enable = true;
           indent.enable = true;
-          highlight.enable=true;
+          highlight.enable = true;
 
           settings = {
             auto_install = true;
@@ -172,7 +172,7 @@ _: {
                 '';
             };
           };
-            # }}}
+          # }}}
         };
         # treesitter-textobjects.enable = true;
         # treesitter-context.enable = true;

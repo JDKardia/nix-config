@@ -1,6 +1,9 @@
 { username, ... }:
 {
-services.yabai = {
+  services.yabai = {
+    enable = false;
+  };
+  services.skhd = {
     enable = false;
   };
 
@@ -10,15 +13,14 @@ services.yabai = {
       ...
     }:
     {
-
       home.file."${config.xdg.configHome}/yabai/yabairc" = {
-          enable = true;
-          force = true;
-          source = ./yabairc;
-        };
+        enable = true;
+        force = true;
+        source = ./yabairc;
+      };
       home.file."${config.xdg.configHome}/skhd/skhdrc" = {
         enable = true;
-        force=true;
+        force = true;
         source = ./skhdrc;
       };
     };
