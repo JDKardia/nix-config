@@ -7,12 +7,13 @@
       homeDir = config.home.homeDirectory;
     in
     {
-
       programs.git = {
         enable = true;
-        userName = "Kardia";
-        userEmail = "joe@voiceofunreason.com";
-        extraConfig = {
+        settings = {
+          user = {
+            name = "Kardia";
+            email = "joe@voiceofunreason.com";
+          };
           color = {
             pager = true;
             branch = "auto";
@@ -25,7 +26,7 @@
             status = "auto";
             ui = "auto";
           };
-          rebase={
+          rebase = {
             update-refs = true;
           };
 
@@ -65,127 +66,69 @@
           pull.ff = "only";
 
           init.defaultBranch = "master";
-        };
 
-        aliases = {
-          #{{{
-          repo-root="rev-parse --show-toplevel";
-          print-head=''!cat "$(git repo-root)/.git/refs/remotes/origin/HEAD" | cut -d'/' -f4'';
-          fetch-remote = ''!fr() { \
-                              git fetch origin +$1:$1; \
-                            }; \
-                            fr'';
-          remote-fetch = ''!rf() { \
-                              git config --add remote.origin.fetch +refs/heads/$1:refs/remotes/origin/$1; \
-                              git fetch origin +$1:refs/remotes/origin/$1; \
-                            }; \
-                            rf'';
-          remote-purge = ''!rp() { \
-                              git config --unset remote.origin.fetch ".*$1.*"; \
-                              git update-ref -d refs/remotes/origin/$1; \
-                            }; \
-                            rp'';
-          super-prune = ''!sp() { local _head=$(git print-head); \
-                            local _failed="$(mktemp)"; \
-                            git branch --merged "$_head"" | grep -v '^[ *]*'"$_head"'$' | xargs -n1 git branch -d 2>"$_failed"; \
-                            echo "the following branches were not pruned:"; \
-                            cat "$_failed" | grep 'error:' | sed "s/.* '/  /g;s/' .*//g;"; \
-                           }; \
-                           sp 2>/dev/null'';
+          alias = {
+            #{{{
+            repo-root = "rev-parse --show-toplevel";
+            print-head = ''!cat "$(git repo-root)/.git/refs/remotes/origin/HEAD" | cut -d'/' -f4'';
+            fetch-remote = ''
+              !fr() { \
+                                            git fetch origin +$1:$1; \
+                                          }; \
+                                          fr'';
+            remote-fetch = ''
+              !rf() { \
+                                            git config --add remote.origin.fetch +refs/heads/$1:refs/remotes/origin/$1; \
+                                            git fetch origin +$1:refs/remotes/origin/$1; \
+                                          }; \
+                                          rf'';
+            remote-purge = ''
+              !rp() { \
+                                            git config --unset remote.origin.fetch ".*$1.*"; \
+                                            git update-ref -d refs/remotes/origin/$1; \
+                                          }; \
+                                          rp'';
+            super-prune = ''
+              !sp() { local _head=$(git print-head); \
+                                          local _failed="$(mktemp)"; \
+                                          git branch --merged "$_head"" | grep -v '^[ *]*'"$_head"'$' | xargs -n1 git branch -d 2>"$_failed"; \
+                                          echo "the following branches were not pruned:"; \
+                                          cat "$_failed" | grep 'error:' | sed "s/.* '/  /g;s/' .*//g;"; \
+                                         }; \
+                                         sp 2>/dev/null'';
 
-          #############
-          s = "status";
-          sb = "status -s -b";
-          #############
-          c = "commit";
-          ca = "commit -all";
-          cm = "commit --message";
-          cam = "commit --all --message";
-          cem = "commit --allow-empty -m";
-          caam = "commit --all --amend --no-edit";
-          #############
-          o = "checkout";
-          om = ''!git checkout "$(git print-head)"'';
-          nb = "checkout -b";
-          nbm = ''!nbm(){ \
-                     local _head=$(git print-head); \
-                     git checkout "$_head" && git pull && git checkout -b "$1"; \
-                   }; \
-                   nbm'';
-          opr = ''!opr(){ \
-                     git fetch-remote "$1" && git checkout "$1"; \
-                   }; \
-                   opr'';
-          #############
-          pu = "push -u";
-          #############
-          d = "diff";
-          dw = "diff --word-diff";
-          dp = "diff --patience";
-          dc = "diff --cached";
-          dk = "diff --check";
-          dck = "diff --cached --check";
-          dt = "difftool";
-          dct = "difftool --cached";
-          #############
-          r = "reset";
-          rh = "reset HEAD";
-          rb = "reset HEAD~";
-          #############
-          l = "log --color --pretty='format:%h %<(14 rtrunc)%an %s'";
-          ll = "log --oneline";
-          lg = "log --oneline --graph --decorate";
-          #############
-          a = "add";
-          aa = "add --all";
-          ai = "add -i";
-          #############
-          f = "fetch";
-          fo = "fetch origin";
-          fu = "fetch upstream";
-          #############
-          fp = "format-patch";
-          #############
-          fk = "fsck";
-          #############
-          g = "grep -p";
-          #############
-          b = "branch";
-          ba = "branch -a";
-          bd = "branch -d";
-          bdd = "branch -D";
-          br = "branch -r";
-          bc = "rev-parse --abbrev-ref HEAD";
-          bu = ''!git rev-parse --abbrev-ref --symbolic-full-name "@{u}'';
-          #############
-          ls = "ls-files";
-          lsf = "!git ls-files | grep -i";
-          #############
-          m = "merge";
-          ma = "merge --abort";
-          mc = "merge --continue";
-          ms = "merge --skip";
-          #############
-          sa = "stash apply";
-          sc = "stash clear";
-          sd = "stash drop";
-          sl = "stash list";
-          sp = "stash pop";
-          ss = "stash --staged";
-          sw = "stash show";
-          st = "!git stash list | wc -l 2>/dev/null | grep -oEi '[0-9][0-9]*'";
-          #############
-          t = "tag";
-          td = "tag -d";
-          #############
-          w = "worktree";
-          wa = "worktree add";
-          wl = "worktree list";
-          #############
-          behind = "!git rev-list --left-only --count $(git bu)...HEAD";
-          ahead = "!git rev-list --right-only --count $(git bu)...HEAD";
-          #}}}
+            #############
+            c = "commit";
+            ca = "commit -all";
+            cm = "commit --message";
+            cam = "commit --all --message";
+            cem = "commit --allow-empty -m";
+            caam = "commit --all --amend --no-edit";
+            #############
+            nb = "checkout -b";
+            nbm = ''
+              !nbm(){ \
+                                   local _head=$(git print-head); \
+                                   git checkout "$_head" && git pull && git checkout -b "$1"; \
+                                 }; \
+                                 nbm'';
+            opr = ''
+              !opr(){ \
+                                   git fetch-remote "$1" && git checkout "$1"; \
+                                 }; \
+                                 opr'';
+            #############
+            diff-word = "diff --word-diff";
+            #############
+            l = "log --color --pretty='format:%h %<(14 rtrunc)%an %s'";
+            ll = "log --oneline";
+            lg = "log --oneline --graph --decorate";
+            #############
+            behind = "!git rev-list --left-only --count $(git bu)...HEAD";
+            ahead = "!git rev-list --right-only --count $(git bu)...HEAD";
+            #}}}
 
+          };
         };
         includes = [
           {
@@ -200,7 +143,6 @@
             condition = "gitdir:${homeDir}/code/**";
             path = "${homeDir}/code/.gitconfig";
           }
-
         ];
       };
       programs.jujutsu = {

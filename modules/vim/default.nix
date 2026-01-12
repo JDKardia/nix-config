@@ -155,14 +155,14 @@ _: {
         treesitter = {
           # {{{
           enable = true;
-          folding = true;
+          folding.enable = true;
+          indent.enable = true;
+          highlight.enable=true;
 
           settings = {
             auto_install = true;
-            indent.enable = true;
             highlight = {
               additional_vim_regex_highlighting = true;
-              enable = true;
               disable =
                 # Lua
                 ''
@@ -171,10 +171,10 @@ _: {
                   end
                 '';
             };
-            # }}}
           };
+            # }}}
         };
-        treesitter-textobjects.enable = true;
+        # treesitter-textobjects.enable = true;
         treesitter-context.enable = true;
         treesitter-refactor.enable = true;
         colorizer.enable = true;

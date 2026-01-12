@@ -90,7 +90,7 @@
           tp = "gtrash put"; # trash put
           tm = "gtrash put"; # trash move (easy to change to rm)
           tt = "gtrash put"; # to trash
-          k="kubectl";
+          k = "kubectl";
         };
         # file = lib.mapAttrs' (name: _: {
         #   name = ".local/bin/${name}";
@@ -109,7 +109,7 @@
         zsh = {
           enable = true;
 
-          dotDir = ".config/zsh";
+          dotDir = "${config.xdg.configHome}/zsh";
           autosuggestion.enable = true;
 
           enableCompletion = true;

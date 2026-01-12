@@ -41,14 +41,13 @@
       file
       glow
       direnv
-      
+
       ## utils
       ripgrep # recursively searches directories for a regex pattern
       jq # A lightweight and flexible command-line JSON processor
       yq-go # yaml processer https://github.com/mikefarah/yq
       fzf # A command-line fuzzy finder
       fd # file finder
-
 
     ];
   };
@@ -106,6 +105,7 @@
       "kubectx"
       "entr"
       "python3"
+      "pandoc"
       #      "docker"
     ];
 
@@ -125,9 +125,9 @@
       "karabiner-elements"
       "obsidian"
       "pycharm"
-      "slack"
+      # "slack"
       "stats"
-      "visual-studio-code"
+      # "visual-studio-code"
       "monitorcontrol"
       "audacity"
       "openlens"
