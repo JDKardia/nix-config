@@ -1,5 +1,8 @@
 { username, ... }:
 {
+services.yabai = {
+    enable = false;
+  };
 
   home-manager.users.${username} =
     {
@@ -7,6 +10,7 @@
       ...
     }:
     {
+
       home.file."${config.xdg.configHome}/yabai/yabairc" = {
           enable = true;
           force = true;
