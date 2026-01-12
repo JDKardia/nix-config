@@ -16,31 +16,15 @@
   environment.systemPackages = with pkgs; [
   ];
   home-manager.users.kardia = {
-
     home.packages = with pkgs; [
+      monitorcontrol
+      yubikey-manager
+
       ## archives
       zip
       xz
       unzip
       p7zip
-      #slack
-      #iterm2
-      just
-      tree
-      gnused
-      gnutar
-      gnugrep
-      findutils
-      gawk
-      gnupg
-      coreutils
-      moreutils
-      nmap # A utility for network discovery and security auditing
-      which
-      shellcheck
-      file
-      glow
-      direnv
 
       ## utils
       ripgrep # recursively searches directories for a regex pattern
@@ -48,6 +32,22 @@
       yq-go # yaml processer https://github.com/mikefarah/yq
       fzf # A command-line fuzzy finder
       fd # file finder
+      coreutils
+      direnv
+      file
+      findutils
+      gawk
+      glow
+      gnugrep
+      gnupg
+      gnused
+      gnutar
+      just
+      moreutils
+      nmap # A utility for network discovery and security auditing
+      shellcheck
+      tree
+      which
 
     ];
   };

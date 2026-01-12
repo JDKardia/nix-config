@@ -175,8 +175,8 @@ _: {
             # }}}
         };
         # treesitter-textobjects.enable = true;
-        treesitter-context.enable = true;
-        treesitter-refactor.enable = true;
+        # treesitter-context.enable = true;
+        # treesitter-refactor.enable = true;
         colorizer.enable = true;
         illuminate.enable = true;
         fidget.enable = true;
