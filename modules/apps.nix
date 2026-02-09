@@ -15,7 +15,7 @@
   # Related Discussion: https://discourse.nixos.org/t/darwin-again/29331
   environment.systemPackages = with pkgs; [
   ];
-  home-manager.users.kardia = {
+  home-manager.users."joseph.kardia" = {
     home.packages = with pkgs; [
       # monitorcontrol
       # yubikey-manager

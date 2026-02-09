@@ -1,6 +1,6 @@
 _: {
 
-  home-manager.users.kardia = {
+  home-manager.users."joseph.kardia" = {
 
     programs.nixvim = {
       enable = true;

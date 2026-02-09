@@ -130,11 +130,11 @@
         treefmt.config.build.wrapper
       );
       darwinConfigurations = {
-        "DV-JV7QTHPR6L" =
+        "DV-H900TTW6RR" =
           let
             system = "aarch64-darwin";
-            username = "kardia";
-            hostname = "DV-JV7QTHPR6L";
+            username = "joseph.kardia";
+            hostname = "DV-H900TTW6RR";
           in
           nix-darwin.lib.darwinSystem {
             inherit system;
