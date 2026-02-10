@@ -17,8 +17,8 @@
   ];
   home-manager.users.kardia = {
     home.packages = with pkgs; [
-      monitorcontrol
-      yubikey-manager
+      # monitorcontrol
+      # yubikey-manager
 
       ## archives
       zip
@@ -84,7 +84,7 @@
 
     taps = [
       "nikitabobko/tap"
-      "koekeishiya/formulae"
+      "asmvik/formulae"
       "FelixKratz/formulae"
     ];
 
@@ -123,10 +123,10 @@
       "google-chrome"
       "iterm2"
       "karabiner-elements"
-      "obsidian"
+      # "obsidian"
       "pycharm"
       # "slack"
-      "stats"
+      # "stats"
       # "visual-studio-code"
       "monitorcontrol"
       "audacity"
