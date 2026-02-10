@@ -92,7 +92,7 @@
     # TODO Feel free to add your favorite apps here.
     brews = [
       "wget" # download tool
-      "curl" # no not install curl via nixpkgs, it's not working well on macOS!
+      "curl" # do not install curl via nixpkgs
       "yabai"
       "skhd"
       "python"
@@ -115,11 +115,11 @@
       "docker-desktop"
       "1password"
       "anki"
-      "deezer"
+      # "deezer"
       "firefox@developer-edition"
       "font-atkynson-mono-nerd-font"
       "font-fira-mono-nerd-font"
-      "gimp"
+      # "gimp"
       "google-chrome"
       "iterm2"
       "karabiner-elements"
