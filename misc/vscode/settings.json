@@ -1,0 +1,348 @@
+{
+  "chat.disableAIFeatures": true,
+  "editor.lineNumbers": "off",
+  "[Markdown]": {
+    "files.trimTrailingWhitespace": false
+  },
+  "[groovy]": {
+    "editor.tabSize": 4
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.detectIndentation": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.detectIndentation": true
+  },
+  "[lua]": {
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+  "[svelte]": {
+    "editor.detectIndentation": false
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "comments": false,
+      "other": true,
+      "strings": true
+    },
+    "editor.tabSize": 2
+  },
+  "colorInfo.languages": [
+    {
+      "colors": "css",
+      "selector": "css"
+    },
+    {
+      "colors": "css",
+      "selector": "sass"
+    },
+    {
+      "colors": "css",
+      "selector": "scss"
+    },
+    {
+      "colors": "css",
+      "selector": "less"
+    },
+    {
+      "colors": "css",
+      "selector": "jsonc"
+    }
+  ],
+  "prettier.requireConfig": true,
+  "editor.accessibilitySupport": "off",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.cursorSurroundingLines": 10,
+  "editor.fontFamily": "FiraMono Nerd Font Mono",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": true,
+  "editor.insertSpaces": true,
+  "editor.largeFileOptimizations": true,
+  "editor.lineHeight": 17,
+  "editor.minimap.enabled": true,
+  "editor.multiCursorModifier": "alt",
+  "editor.renderLineHighlight": "all",
+  "editor.renderWhitespace": "trailing",
+  "editor.rulers": [
+    88
+  ],
+  "editor.scrollbar.horizontal": "visible",
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "punctuation.definition.comment"
+        ],
+        "settings": {
+          "fontStyle": "bold"
+        }
+      }
+    ]
+  },
+  "emmet.excludeLanguages": [
+    "markdown",
+    "typescriptreact",
+    "typescript"
+  ],
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
+  "explorer.confirmDelete": false,
+  "files.associations": {
+    "*.txt": "shellscript",
+    "*Jenkinsfile*": "groovy",
+    "*bashrc": "shellscript",
+    "*jenkinsfile*": "groovy",
+    "*zshrc": "shellscript"
+  },
+  "files.autoSave": "onFocusChange",
+  "files.autoSaveDelay": 10000,
+  "files.defaultLanguage": "json",
+  "files.exclude": {
+    "**/*.map": true,
+    "**/.DS_Store": true,
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.mypy_cache": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.svn": true,
+    "**/.vscode": true,
+    "**/CVS": true,
+    "**/__pycache__": true,
+    "**/env/*": true,
+    "**/envkins/*": true,
+    "**/envune/*": true,
+    "**/fuck/*": true
+  },
+  "files.insertFinalNewline": true,
+  "files.watcherExclude": {
+    "**/.ammonite": true,
+    "**/.bloop": true,
+    "**/.metals": true
+  },
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.path": "git",
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false
+  },
+  "gitlens.keymap": "chorded",
+  "indentRainbow.colors": [
+    "#aea8d318",
+    "#e26a6a18",
+    "#ffd07a18",
+    "#fc639918",
+    "#ffecdb18",
+    "#6495ed18",
+    "#00e0e018",
+    "#f4d03f18",
+    "#b8860b18"
+  ],
+  "python.analysis.diagnosticMode": "openFilesOnly",
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "strict",
+  "python.analysis.autoFormatStrings": true,
+  "python.analysis.autoImportCompletions": true,
+  "search.exclude": {
+    "**/bower_components": true,
+    "**/node_modules": true,
+    "dist": true,
+    "jspm_packages": true
+  },
+  "terminal.external.osxExec": "iterm2",
+  "terminal.integrated.scrollback": 1000,
+  "terminal.integrated.persistentSessionScrollback": 1000,
+  "vim.insertModeKeyBindings": [
+    {
+      "after": [
+        "<Esc>"
+      ],
+      "before": [
+        "j",
+        "k"
+      ]
+    },
+    {
+      "after": [
+        "<Esc>"
+      ],
+      "before": [
+        "k",
+        "j"
+      ]
+    }
+  ],
+  // "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+  // "vscode-neovim.neovimInitVimPaths.linux": "/home/kardia/.config/nvim/init.vim",
+  "window.zoomLevel": 1,
+  "workbench.colorCustomizations": {
+    "editor.selectionBackground": "#ff00aa3d",
+    "editor.selectionHighlightBackground": "#ff00aa3d",
+    "editorRuler.foreground": "#2ee2fa33"
+  },
+  "workbench.colorTheme": "Gruvbox Dark Hard",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+  "workbench.settings.editor": "json",
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "workbench.settings.useSplitJSON": true,
+  "workbench.sideBar.location": "right",
+  "workbench.preferredHighContrastLightColorTheme": "Gruvbox Dark Hard",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "vim.easymotion": true,
+  "vim.useSystemClipboard": false,
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<space>"
+      ],
+      "commands": [
+        "vspacecode.space"
+      ]
+    },
+    {
+      "before": [
+        ","
+      ],
+      "commands": [
+        "vspacecode.space",
+        {
+          "command": "whichkey.triggerKey",
+          "args": "m"
+        }
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<space>"
+      ],
+      "commands": [
+        "vspacecode.space"
+      ]
+    },
+    {
+      "before": [
+        ","
+      ],
+      "commands": [
+        "vspacecode.space",
+        {
+          "command": "whichkey.triggerKey",
+          "args": "m"
+        }
+      ]
+    },
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "y"
+      ],
+      "after": [
+        "\"",
+        "+",
+        "y"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "Y"
+      ],
+      "after": [
+        "\"",
+        "*",
+        "y"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "p"
+      ],
+      "after": [
+        "\"",
+        "+",
+        "p"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "P"
+      ],
+      "after": [
+        "\"",
+        "*",
+        "p"
+      ]
+    },
+  ],
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.preferredHighContrastColorTheme": "Gruvbox Dark Hard"
+}

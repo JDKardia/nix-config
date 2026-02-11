@@ -106,6 +106,7 @@
       "entr"
       "python3"
       "pandoc"
+      "graphviz"
       #      "docker"
     ];
 
