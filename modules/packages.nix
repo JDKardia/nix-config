@@ -4,7 +4,7 @@
     inputs.home-manager.packages.${pkgs.system}.default
     # inputs.twdesktop.tiddlydesktop
     darktable
-    qbittorent
+    qbittorrent-enhanced
 
     atkinson-hyperlegible
     atkinson-monolegible
