@@ -39,15 +39,15 @@
     jack2
     libjack2
     pavucontrol
-    wineWowPackages.stable
+    wineWow64Packages.stable
     winetricks
-    xfce.ristretto
+    ristretto
     appimage-run
     dolphin-emu
     retroarch-full
 
     # nix related
-    nixfmt-rfc-style
+    nixfmt
     deadnix
     comma
     manix

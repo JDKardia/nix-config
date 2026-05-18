@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 {
   time.timeZone = lib.mkDefault "America/Chicago";
   services.openssh = {
@@ -14,7 +14,7 @@
   programs = {
     command-not-found = {
       enable = true;
-      dbPath = "${inputs.programs-db}/sqlite";
+      # dbPath = "${inputs.programs-db}/sqlite";
     };
     zsh.enable = true;
     appimage = {
