@@ -1,4 +1,4 @@
-{ pkgs, niri, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
 

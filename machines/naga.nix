@@ -22,11 +22,6 @@
       ...
     }:
     {
-      systemd.services."systemd-suspend" = {
-        serviceConfig = {
-          Environment = ''"SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"'';
-        };
-      };
       networking = {
         hostName = "naga";
         # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -79,6 +74,31 @@
         extraModulePackages = [ ];
       };
       powerManagement.enable = true;
+      swapDevices = [
+        {
+          device = "/dev/disk/by-uuid/89bdf912-9d69-4357-b5c7-7f898375178d";
+        }
+      ];
+      systemd.services."systemd-suspend" = {
+        serviceConfig = {
+          Environment = ''"SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false"'';
+        };
+      };
+      services.power-profiles-daemon.enable = true;
+      # Suspend first then hibernate when closing the lid
+      services.logind.settings.Login.LidSwitch = "suspend-then-hibernate";
+      # Hibernate on power button pressed
+      services.logind.settings.Login.PowerKey = "hibernate";
+      services.logind.settings.Login.PowerKeyLongPress = "poweroff";
+
+      # Suspend first
+      boot.kernelParams = [ "mem_sleep_default=deep" ];
+
+      # Define time delay for hibernation
+      systemd.sleep.extraConfig = ''
+        HibernateDelaySec=30m
+        SuspendState=mem
+      '';
 
       hardware = {
         enableAllFirmware = true;

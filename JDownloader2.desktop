@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=JDownloader2
+Comment=for managing downloads
+Exec=/home/kardia/.local/bin/jdownloader2
+Terminal=false
+Type=Application
+Categories=Network;

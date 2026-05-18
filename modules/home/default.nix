@@ -4,7 +4,6 @@
   home-manager.users.kardia =
     {
       inputs,
-      lib,
       pkgs,
       my,
       config,
