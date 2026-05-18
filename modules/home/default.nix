@@ -51,8 +51,8 @@
             yubioath-flutter
             yubikey-personalization
             zellij
-            lutris
-            syncthingtray
+            # lutris
+            # syncthingtray
           ]
           ++ (with pkgs.nerd-fonts; [
             _0xproto

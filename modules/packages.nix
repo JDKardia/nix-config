@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    inputs.home-manager.packages.${pkgs.system}.default
+    inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.twdesktop.tiddlydesktop
     darktable
     qbittorrent-enhanced
@@ -76,7 +76,7 @@
     wireguard-ui
     transcrypt
     ruff
-    (python312.withPackages (
+    (python3.withPackages (
       p:
       (with p; [
         python-lsp-ruff
