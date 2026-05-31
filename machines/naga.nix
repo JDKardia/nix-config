@@ -54,7 +54,7 @@
       boot = {
         kernelParams = [
           "snd-intel-dspcfg.dsp_driver=1"
-          "mem_sleep_default=deep"
+          # "mem_sleep_default=deep"
         ];
         supportedFilesystems = [ "ntfs" ];
         loader.systemd-boot.configurationLimit = 100;
@@ -88,17 +88,17 @@
         };
       };
       services.power-profiles-daemon.enable = true;
-      # Suspend first then hibernate when closing the lid
-      services.logind.settings.Login.LidSwitch = "suspend-then-hibernate";
-      # Hibernate on power button pressed
-      services.logind.settings.Login.PowerKey = "hibernate";
-      services.logind.settings.Login.PowerKeyLongPress = "poweroff";
+      # # Suspend first then hibernate when closing the lid
+      # services.logind.settings.Login.LidSwitch = "suspend-then-hibernate";
+      # # Hibernate on power button pressed
+      # services.logind.settings.Login.PowerKey = "hibernate";
+      # services.logind.settings.Login.PowerKeyLongPress = "poweroff";
 
       # Define time delay for hibernation
-      systemd.sleep.settings.Sleep = {
-        HibernateDelaySec = "30m";
-        SuspendState = "mem";
-      };
+      # systemd.sleep.settings.Sleep = {
+      #   HibernateDelaySec = "30m";
+      #   SuspendState = "mem";
+      # };
 
       hardware = {
         enableAllFirmware = true;
