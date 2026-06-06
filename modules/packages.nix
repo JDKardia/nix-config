@@ -49,7 +49,6 @@
     # gst_all_1.gst-plugins-base
     # gst_all_1.gst-plugins-good
     # gst_all_1.gst-plugins-ugly
-    gst_all_1.gstreamer
     # Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
     gst_all_1.gstreamer
     # Common plugins like "filesrc" to combine within e.g. gst-launch
