@@ -62,6 +62,8 @@
     gst_all_1.gst-libav
     # Support the Video Audio (Hardware) Acceleration API
     gst_all_1.gst-vaapi
+    ffmpeg-headless
+    ffmpegthumbnailer
 
     # nix related
     nixfmt
