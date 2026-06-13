@@ -31,6 +31,7 @@
     file
     p7zip
     gtrash
+    exiftool
 
     # general deps
     ffmpeg
