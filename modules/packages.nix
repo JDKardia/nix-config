@@ -4,6 +4,8 @@
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.twdesktop.tiddlydesktop
     darktable
+    calibre
+    calibre-web
     qbittorrent-enhanced
 
     atkinson-hyperlegible
