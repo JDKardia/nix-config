@@ -155,6 +155,12 @@ in
             # compdef _c c
           fpath+=($HOME/.config/nix/modules/home/submodules/zsh/completions)
 
+          ## script setup
+
+          path += ( 
+            "${nixCfgDir}/modules/home/submodules/zsh/python_scripts" 
+            "${nixCfgDir}/modules/home/submodules/zsh/shell_scripts"
+          )
         '')
         # extra after
         ''
