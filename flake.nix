@@ -37,6 +37,9 @@
     # Nix User Repository
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
+
+    nordvpn-nix.url = "github:Triforcey/nordvpn-nix";
+    nordvpn-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -47,6 +50,7 @@
       home-manager,
       niri,
       treefmt-nix,
+      nordvpn-nix,
 
       ...
     }@inputs:
@@ -109,6 +113,7 @@
             hardware-config
             home-manager.nixosModules.home-manager
             niri.nixosModules.niri
+            nordvpn-nix.nixosModules.nordvpn
             {
               home-manager = {
                 useGlobalPkgs = true;
