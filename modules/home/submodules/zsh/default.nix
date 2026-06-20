@@ -157,7 +157,7 @@ in
 
           ## script setup
 
-          path += ( 
+          path+=( 
             "${nixCfgDir}/modules/home/submodules/zsh/python_scripts" 
             "${nixCfgDir}/modules/home/submodules/zsh/shell_scripts"
           )
