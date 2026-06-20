@@ -1,8 +1,7 @@
-_:
-{
+_: {
   services.nordvpn = {
     enable = true;
-    users = [ "alice" ]; # added to the `nordvpn` group
+    users = [ "kardia" ]; # added to the `nordvpn` group
     gui.enable = true; # optional desktop GUI
   };
   # imports = [
