@@ -17,6 +17,7 @@
         "networkmanager"
         "pipewire"
         "jackaudio"
+        "dialout"
       ];
     };
   };
