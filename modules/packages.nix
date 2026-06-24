@@ -7,6 +7,7 @@
     calibre
     calibre-web
     qbittorrent-enhanced
+    filebot
 
     atkinson-hyperlegible
     atkinson-monolegible
