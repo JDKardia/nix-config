@@ -10,7 +10,6 @@ in
     configDir = "${jfDir}/config";
     dataDir = "${jfDir}/data";
     cacheDir = "${jfDir}/cache";
-    webDir = "${jfDir}/web";
     logDir = "${jfDir}/log";
   };
 }
