@@ -9,6 +9,7 @@
     qbittorrent-enhanced
     filebot
     uv
+    tailscale
 
     atkinson-hyperlegible
     atkinson-monolegible
