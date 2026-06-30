@@ -19,22 +19,23 @@
   ];
 
   programs.thunar.enable = true;
+  programs.waybar.enable = true;
   programs.niri = {
     enable = true;
     # package = pkgs.niri-stable;
   };
 
   home-manager.users.kardia = {
-    programs.niri = {
-      # enable = true;
-      settings = {
-        input.keyboard.xkb.options = "caps:escape";
-      };
-    };
+    # programs.niri = {
+    #   # enable = true;
+    #   settings = {
+    #     input.keyboard.xkb.options = "caps:escape";
+    #   };
+    # };
+    xdg.configFile."niri/config.kdl".source = ./config.kdl;
   };
 
   home-manager.users.kardia = {
 
-    xdg.configFile."niri/config.kdl".source = ./config.kdl;
   };
 }

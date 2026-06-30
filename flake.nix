@@ -1,9 +1,7 @@
 {
   description = "kardia's nix config";
   inputs = {
-    # Nixpkgs: nixos-unstable head as of 2024-11-13
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     unstable.follows = "nixpkgs";
 
     lix.url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
@@ -15,7 +13,7 @@
 
     programs-db.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
-    niri.url = "github:sodiboo/niri-flake";
+    # niri.url = "github:sodiboo/niri-flake";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
@@ -48,7 +46,6 @@
       nixpkgs,
       lix-module,
       home-manager,
-      niri,
       treefmt-nix,
       nordvpn-nix,
 
@@ -63,7 +60,6 @@
         inherit system;
         overlays = [
           (_self: _super: { nordvpn = import ./pkgs/nordvpn { }; })
-          niri.overlays.niri
         ];
       };
       treefmt = treefmt-nix.lib.evalModule pkgs (_pkgs: {
@@ -112,7 +108,6 @@
             lix-module.nixosModules.default
             hardware-config
             home-manager.nixosModules.home-manager
-            niri.nixosModules.niri
             nordvpn-nix.nixosModules.nordvpn
             {
               home-manager = {
