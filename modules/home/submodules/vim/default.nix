@@ -155,7 +155,7 @@
       treesitter = {
         # {{{
         enable = true;
-        folding.enable = true;
+        folding.enable = false;
 
         settings = {
           auto_install = true;
