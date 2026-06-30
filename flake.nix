@@ -1,6 +1,8 @@
 {
   description = "kardia's nix config";
   inputs = {
+    #{{{
+
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     unstable.follows = "nixpkgs";
 
@@ -12,8 +14,6 @@
     lix-module.inputs.lix.follows = "lix";
 
     programs-db.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-
-    # niri.url = "github:sodiboo/niri-flake";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
@@ -38,10 +38,12 @@
 
     nordvpn-nix.url = "github:Triforcey/nordvpn-nix";
     nordvpn-nix.inputs.nixpkgs.follows = "nixpkgs";
+    #}}}
   };
 
   outputs =
     {
+      #{{{
       self,
       nixpkgs,
       lix-module,
@@ -50,8 +52,10 @@
       nordvpn-nix,
 
       ...
+      #}}}
     }@inputs:
     let
+      #{{{
       my = import ./lib nixpkgs.lib machines;
       machines = my.lib.exprsIn ./machines;
       system = "x86_64-linux";
@@ -92,8 +96,11 @@
         };
       });
       inherit (self) outputs;
+      #}}}
     in
     {
+      #{{{
+
       formatter.${system} = treefmt.config.build.wrapper;
       packages = pkgs;
 
