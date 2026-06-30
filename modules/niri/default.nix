@@ -32,7 +32,7 @@
     #     input.keyboard.xkb.options = "caps:escape";
     #   };
     # };
-    xdg.configFile."niri/config.kdl".source = ./config.kdl;
+    # xdg.configFile."niri/config.kdl".source = ./config.kdl;
   };
 
   home-manager.users.kardia = {
