@@ -13,6 +13,7 @@
 
     atkinson-hyperlegible
     atkinson-monolegible
+    android-tools
 
     # virtualisation
     dive # look into docker image layers
