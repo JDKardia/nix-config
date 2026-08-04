@@ -5,7 +5,6 @@
     # inputs.twdesktop.tiddlydesktop
     darktable
     calibre
-    calibre-web
     qbittorrent-enhanced
     filebot
     uv
@@ -40,7 +39,7 @@
     exiftool
 
     # general deps
-    ffmpeg
+    ffmpeg-full
     jdk
     pipewire
     jack2
@@ -51,7 +50,7 @@
     ristretto
     appimage-run
     dolphin-emu
-    retroarch-full
+    # retroarch-full
     # gst_all_1.gstreamer
     # gst_all_1.gst-plugins-base
     # gst_all_1.gst-plugins-good
@@ -66,8 +65,6 @@
     gst_all_1.gst-plugins-ugly
     # Plugins to reuse ffmpeg to play almost every video format
     gst_all_1.gst-libav
-    # Support the Video Audio (Hardware) Acceleration API
-    gst_all_1.gst-vaapi
     ffmpeg-headless
     ffmpegthumbnailer
 
@@ -104,7 +101,7 @@
     (python3.withPackages (
       p:
       (with p; [
-        python-lsp-ruff
+        # python-lsp-ruff
         python-lsp-server
       ])
     ))

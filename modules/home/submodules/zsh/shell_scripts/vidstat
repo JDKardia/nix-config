@@ -11,7 +11,8 @@ alias has-args='[[ $# != 0 ]]'
 get-vid-stats() {
   local vid
   vid="$1"
-  trap "failed to stat file: '\$vid'" ERR
+  # shellcheck disable=SC2064
+  trap "echo 'failed to stat file: \"$vid\"'" ERR
 
   ffp_vars="$(
     ffprobe -v quiet -i "$vid" \

@@ -31,8 +31,7 @@
           "@wheel"
         ];
       };
-      package = pkgs.nix;
-
+      package = pkgs.lixPackageSets.stable.lix;
       # Opinionated: disable channels
       channel.enable = false;
 

@@ -6,12 +6,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     unstable.follows = "nixpkgs";
 
-    lix.url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
-    lix.flake = false;
-    lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module?ref=main";
+    # lix.url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+    # lix.flake = false;
+    # lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module?ref=main";
     # lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
-    lix-module.inputs.nixpkgs.follows = "nixpkgs";
-    lix-module.inputs.lix.follows = "lix";
+    # lix-module.inputs.nixpkgs.follows = "nixpkgs";
+    # lix-module.inputs.lix.follows = "lix";
 
     programs-db.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
 
@@ -36,8 +36,8 @@
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
-    nordvpn-nix.url = "github:Triforcey/nordvpn-nix";
-    nordvpn-nix.inputs.nixpkgs.follows = "nixpkgs";
+    # nordvpn-nix.url = "github:Triforcey/nordvpn-nix";
+    # nordvpn-nix.inputs.nixpkgs.follows = "nixpkgs";
     #}}}
   };
 
@@ -46,10 +46,10 @@
       #{{{
       self,
       nixpkgs,
-      lix-module,
+      # lix-module,
       home-manager,
       treefmt-nix,
-      nordvpn-nix,
+      # nordvpn-nix,
 
       ...
       #}}}
@@ -62,9 +62,9 @@
 
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [
-          (_self: _super: { nordvpn = import ./pkgs/nordvpn { }; })
-        ];
+        # overlays = [
+        #   (_self: _super: { nordvpn = import ./pkgs/nordvpn { }; })
+        # ];
       };
       treefmt = treefmt-nix.lib.evalModule pkgs (_pkgs: {
         projectRootFile = "flake.nix";
@@ -112,10 +112,10 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            lix-module.nixosModules.default
+            # lix-module.nixosModules.default
             hardware-config
             home-manager.nixosModules.home-manager
-            nordvpn-nix.nixosModules.nordvpn
+            # nordvpn-nix.nixosModules.nordvpn
             {
               home-manager = {
                 useGlobalPkgs = true;

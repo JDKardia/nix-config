@@ -18,6 +18,7 @@
         "pipewire"
         "jackaudio"
         "dialout"
+        "nordvpn"
       ];
     };
   };

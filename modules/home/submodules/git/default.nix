@@ -1,8 +1,10 @@
 _: {
   programs.git = {
     enable = true;
-    userName = "Kardia";
-    userEmail = "joe@kardia.codes";
+    settings.user = {
+      name = "Kardia";
+      email = "joe@kardia.codes";
+    };
   };
   programs.jujutsu = {
     enable = true;

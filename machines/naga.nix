@@ -61,7 +61,8 @@
 
         loader.systemd-boot.enable = true;
         loader.efi.canTouchEfiVariables = true;
-        initrd.availableKernelModules = [
+        initrd.kernelModules = [
+          "dm-snapshot"
           "xhci_pci"
           "nvme"
           "usb_storage"
@@ -69,10 +70,15 @@
           "sdhci_pci"
           "thunderbolt"
         ];
-        initrd.kernelModules = [ "dm-snapshot" ];
         kernelModules = [
           "kvm-intel"
           "snd_hda_intel"
+          "xhci_pci"
+          "nvme"
+          "usb_storage"
+          "sd_mod"
+          "sdhci_pci"
+          "thunderbolt"
         ];
         extraModulePackages = [ ];
       };

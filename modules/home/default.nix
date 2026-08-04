@@ -55,6 +55,7 @@
             # syncthingtray
           ]
           ++ (with pkgs.nerd-fonts; [
+            #{{{
             _0xproto
             _3270
             agave
@@ -122,9 +123,10 @@
             ubuntu-sans
             victor-mono
             zed-mono
+            #}}}
 
           ]);
-        stateVersion = "24.05";
+        stateVersion = "26.11";
       };
 
       programs = {
