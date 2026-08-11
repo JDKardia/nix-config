@@ -16,6 +16,7 @@
     xwayland-satellite # running x11 apps
     udiskie # manage and automount usb drives
     networkmanagerapplet
+    brightnessctl
 
   ];
 
