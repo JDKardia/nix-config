@@ -9,6 +9,7 @@
     filebot
     uv
     tailscale
+    qpdfview
 
     atkinson-hyperlegible
     atkinson-monolegible
