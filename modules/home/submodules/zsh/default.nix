@@ -180,7 +180,7 @@ in
 
     };
 
-    zellij.enableZshIntegration = true;
+    #zellij.enableZshIntegration = true;
     fzf.enableZshIntegration = true;
   };
 

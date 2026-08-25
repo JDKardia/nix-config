@@ -33,7 +33,6 @@
             audacity
             chromium
             discord
-            firefox-beta
             gimp
             gnomeExtensions.appindicator
             mpv

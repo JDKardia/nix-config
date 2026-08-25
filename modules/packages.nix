@@ -14,6 +14,7 @@
     atkinson-hyperlegible
     atkinson-monolegible
     android-tools
+    firefox
 
     # virtualisation
     dive # look into docker image layers
@@ -37,6 +38,8 @@
     file
     p7zip
     gtrash
+    inotify-tools
+    inotify-info
     exiftool
 
     # general deps
