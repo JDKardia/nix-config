@@ -6,10 +6,12 @@
     darktable
     calibre
     qbittorrent-enhanced
-    filebot
     uv
     tailscale
     qpdfview
+    git
+    neovim
+    zsh
 
     atkinson-hyperlegible
     atkinson-monolegible
