@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+switch(){
+set -euo pipefail
+nix fmt
+cur_gen="$(sudo nix-env --list-generations --profile /nix/var/nix/profiles/system | grep current | awk '{print $1}')"
+base_msg="update $cur_gen -> $((cur_gen + 1))"
+git commit --all --message "(+) $base_msg"
+sudo nixos-rebuild switch --flake .#naga || git commit --amend --message "(-) $base_msg"
+git push
+}
+diff(){
+set -euo pipefail
+cmd="echo format, fix, and check files;
+nix fmt
+echo ;
+sleep 0.5;
+echo; 
+echo build:;
+nixos-rebuild build --show-trace --flake .#naga;
+echo;
+echo ------------------------------------------------;
+"
+
+fd | entr bash -c "$cmd"
+}
+diff(){
+hostname="$(hostname)"
+
+case "$(uname)" in
+  Linux)
+    flake="$HOME/.config/nix#nixosConfigurations.\"$hostname\".config.system.build.toplevel"
+    ;;
+  Darwin)
+    flake="git+file://$HOME/.config/nixpkgs#darwinConfigurations.\"$hostname\".system"
+    ;;
+  *)
+    echo "System not supported"
+    exit 1
+    ;;
+esac
+
+built="$(nix build --no-link --print-out-paths "$flake")"
+
+nix store diff-closures /run/current-system/ "$built"
+
+nix run nixpkgs#nix-diff -- --character-oriented /run/current-system/ "$built"
+}
+repl(){
+nixos-rebuild repl --flake .#naga
+}
+main(){
+  "$@"
+}
+
+main "$@"

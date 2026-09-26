@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.twdesktop.tiddlydesktop
+    direnv
     darktable
     calibre
     qbittorrent-enhanced
@@ -12,6 +13,8 @@
     git
     neovim
     zsh
+    shfmt
+    shellcheck
 
     atkinson-hyperlegible
     atkinson-monolegible
