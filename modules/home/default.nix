@@ -132,7 +132,6 @@
         home-manager.enable = true;
         nix-index = {
           enable = true;
-          enableZshIntegration = true;
         };
         # Enable home-manager and git
         ssh = {
